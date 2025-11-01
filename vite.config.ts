@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   plugins: [vue()],
-  base: "/", // Korrekte Repository-Name verwenden
+  base: "/classroom/", // Korrekte Repository-Name für GitHub Pages
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
