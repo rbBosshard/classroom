@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .crypto-gradient {
+    @apply bg-gray-50;
+  }
+  
+  .crypto-card {
+    @apply bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+  
+  .crypto-button {
+    @apply bg-primary-600 text-white px-5 py-2.5 rounded-md font-medium hover:bg-primary-700 transition-colors duration-200;
+  }
+}

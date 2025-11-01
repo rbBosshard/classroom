@@ -1,0 +1,31 @@
+{
+    "name": "classroom-platform",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Interactive classroom learning platform with Vue.js",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "build:vercel": "vite build --config vite.config.vercel.ts",
+        "preview": "vite preview",
+        "preview:vercel": "vite preview --config vite.config.vercel.ts",
+        "serve": "python3 -m http.server 8080 --directory dist"
+    },
+    "dependencies": {
+        "@vueuse/core": "^10.5.0",
+        "crypto-js": "^4.2.0",
+        "vue": "^3.5.22"
+    },
+    "devDependencies": {
+        "@types/crypto-js": "^4.2.1",
+        "@types/node": "^24.9.2",
+        "@vitejs/plugin-vue": "^4.6.2",
+        "@vue/tsconfig": "^0.8.1",
+        "autoprefixer": "^10.4.16",
+        "postcss": "^8.4.31",
+        "tailwindcss": "^3.3.5",
+        "typescript": "^5.9.3",
+        "vite": "^4.5.0",
+        "vue-tsc": "^1.8.27"
+    }
+}
