@@ -26,7 +26,6 @@
 
 const FUN_FACTS = [
   'ROT13 (Rotation um 13) ist besonders, weil <strong>zweimaliges Anwenden</strong> den Originaltext zurückgibt!',
-  'Die Caesar-Verschlüsselung wird auch <strong>"Verschiebechiffre"</strong> oder "Shift Cipher" genannt.',
   'Caesar nutzte diese Verschlüsselung für <strong>militärische Befehle</strong>. Damals konnte kaum jemand lesen, was zusätzlichen Schutz bot.',
 ] as const
 </script>

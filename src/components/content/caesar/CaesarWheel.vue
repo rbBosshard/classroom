@@ -8,7 +8,7 @@
     <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r mb-4">
       <p class="text-sm text-gray-700">
         <strong>So funktioniert's:</strong> Der innere Ring (lila) zeigt den <strong>Geheimtext</strong> (verschlüsselt). 
-        Der äußere Ring (blau) zeigt den <strong>Klartext</strong> (Original). Drehe den äußeren Ring, um die Verschiebung einzustellen.
+        Der äussere Ring (blau) zeigt den <strong>Klartext</strong> (Original). Drehe den äusseren Ring, um die Verschiebung einzustellen.
       </p>
     </div>
     

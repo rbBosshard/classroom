@@ -135,6 +135,41 @@ export function useVigenereCipher() {
     return colors[(index % keyLength) % colors.length];
   }
 
+  // Get color class based on the actual letter (same letter = same color)
+  // 26 unique colors for each letter A-Z
+  function getColorClassByLetter(letter: string): string {
+    const colors = [
+      "bg-red-200 text-red-800", // A
+      "bg-orange-200 text-orange-800", // B
+      "bg-amber-200 text-amber-800", // C
+      "bg-yellow-200 text-yellow-800", // D
+      "bg-lime-200 text-lime-800", // E
+      "bg-green-200 text-green-800", // F
+      "bg-emerald-200 text-emerald-800", // G
+      "bg-teal-200 text-teal-800", // H
+      "bg-cyan-200 text-cyan-800", // I
+      "bg-sky-200 text-sky-800", // J
+      "bg-blue-200 text-blue-800", // K
+      "bg-indigo-200 text-indigo-800", // L
+      "bg-violet-200 text-violet-800", // M
+      "bg-purple-200 text-purple-800", // N
+      "bg-fuchsia-200 text-fuchsia-800", // O
+      "bg-pink-200 text-pink-800", // P
+      "bg-rose-200 text-rose-800", // Q
+      "bg-red-300 text-red-900", // R
+      "bg-orange-300 text-orange-900", // S
+      "bg-amber-300 text-amber-900", // T
+      "bg-yellow-300 text-yellow-900", // U
+      "bg-lime-300 text-lime-900", // V
+      "bg-green-300 text-green-900", // W
+      "bg-emerald-300 text-emerald-900", // X
+      "bg-teal-300 text-teal-900", // Y
+      "bg-cyan-300 text-cyan-900", // Z
+    ];
+    const charIndex = alphabet.indexOf(letter.toUpperCase());
+    return charIndex >= 0 ? colors[charIndex] : "bg-gray-200 text-gray-800";
+  }
+
   return {
     alphabet,
     encryptChar,
@@ -145,6 +180,7 @@ export function useVigenereCipher() {
     getEncryptionSteps,
     caesarEncrypt,
     getKeyColorClass,
+    getColorClassByLetter,
   };
 }
 
@@ -268,6 +304,9 @@ export function useKasiskiTest() {
 
     if (keyLen === 0 || text.length < keyLen * 3) {
       frequencyResults.value = [];
+      alert(
+        "Text ist zu kurz oder Schlüssellänge konnte nicht geschätzt werden."
+      );
       return;
     }
 
@@ -319,12 +358,14 @@ export function useKasiskiTest() {
   }
 
   function loadExampleFromPublicTextFile() {
-    fetch("/examples/vigenere_example.txt")
+    // Use relative path - Vite will handle base URL automatically
+    fetch("examples/vigenere_example.txt")
       .then((response) => response.text())
       .then((text) => {
         crackCiphertext.value = text.toUpperCase().replace(/[^A-Z]/g, "");
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("Fehler beim Laden des Beispiels:", error);
         alert("Fehler beim Laden des Beispiels.");
       });
   }

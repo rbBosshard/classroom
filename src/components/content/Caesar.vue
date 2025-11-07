@@ -5,52 +5,35 @@
 
     <!-- Caesar Wheel Section -->
     <div class="mb-8">
-      <CaesarWheel
-        :shift="wheel.shift.value"
-        :snapped-rotation="wheel.snappedRotation.value"
-        :is-dragging="wheel.isDragging.value"
-        :alphabet="cipher.alphabet"
-        @update:shift="wheel.setShift"
-        @start-drag="wheel.startDrag"
-      >
-        <CaesarTextTransform
-          :mode="mode"
-          :plain-text="plainText"
-          :encrypted-text="encryptedText"
-          :encrypted-input="encryptedInput"
-          :decrypted-text="decryptedText"
-          :shift="cipher.shift.value"
-          @update:mode="mode = $event"
-          @update:plain-text="handlePlainTextUpdate"
-          @update:encrypted-input="handleEncryptedInputUpdate"
-          @use-example="handleExampleClick"
-        />
+      <CaesarWheel :shift="wheel.shift.value" :snapped-rotation="wheel.snappedRotation.value"
+        :is-dragging="wheel.isDragging.value" :alphabet="cipher.alphabet" @update:shift="wheel.setShift"
+        @start-drag="wheel.startDrag">
+        <CaesarTextTransform :mode="mode" :plain-text="plainText" :encrypted-text="encryptedText"
+          :encrypted-input="encryptedInput" :decrypted-text="decryptedText" :shift="cipher.shift.value"
+          @update:mode="mode = $event" @update:plain-text="handlePlainTextUpdate"
+          @update:encrypted-input="handleEncryptedInputUpdate" @use-example="handleExampleClick" />
       </CaesarWheel>
     </div>
 
     <!-- Visual Transformation Display -->
     <div class="mb-8">
-      <AlphabetTransformation
-        :alphabet="cipher.alphabet"
-        :shifted-alphabet="cipher.shiftedAlphabet.value"
-        :shift="cipher.shift.value"
-      />
+      <AlphabetTransformation :alphabet="cipher.alphabet" :shifted-alphabet="cipher.shiftedAlphabet.value"
+        :shift="cipher.shift.value" />
     </div>
 
     <!-- How it Works Section -->
     <CaesarHowItWorks />
 
+    <!-- Modulo Explanation -->
+    <ModuloExplanation />
+
     <!-- Interactive Challenge -->
     <div class="mb-6">
-      <CaesarChallenge
-        :challenge="challenge.challenge.value"
-        :user-answer="challenge.userAnswer.value"
+      <CaesarChallenge :challenge="challenge.challenge.value" :user-answer="challenge.userAnswer.value"
         :challenge-completed="challenge.challengeCompleted.value"
         :challenge-feedback="challenge.challengeFeedback.value"
-        @update:user-answer="challenge.userAnswer.value = $event"
-        @check="handleChallengeCheck"
-        @new-challenge="challenge.newChallenge()"
-      />
+        @update:user-answer="challenge.userAnswer.value = $event" @check="handleChallengeCheck"
+        @new-challenge="challenge.newChallenge()" />
     </div>
 
     <!-- Fun Facts -->
@@ -58,16 +41,12 @@
 
     <!-- Action Buttons -->
     <div class="flex flex-wrap gap-3 sm:gap-4">
-      <button 
-        @click="reset" 
-        class="px-4 sm:px-6 py-2 sm:py-3 bg-gray-400 text-white rounded-lg hover:bg-gray-500 transition-colors"
-      >
+      <button @click="reset"
+        class="px-4 sm:px-6 py-2 sm:py-3 bg-gray-400 text-white rounded-lg hover:bg-gray-500 transition-colors">
         ↻ Zurücksetzen
       </button>
-      <button 
-        @click="$emit('back')" 
-        class="px-4 sm:px-6 py-2 sm:py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
-      >
+      <button @click="$emit('back')"
+        class="px-4 sm:px-6 py-2 sm:py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">
         ← Zurück
       </button>
     </div>
@@ -87,6 +66,7 @@ import AlphabetTransformation from './caesar/AlphabetTransformation.vue'
 import CaesarHeader from './caesar/CaesarHeader.vue'
 import CaesarHowItWorks from './caesar/CaesarHowItWorks.vue'
 import CaesarFunFacts from './caesar/CaesarFunFacts.vue'
+import ModuloExplanation from '@/components/ui/ModuloExplanation.vue'
 
 // Emits
 const emit = defineEmits<{
@@ -105,11 +85,11 @@ const plainText = ref('')
 const encryptedInput = ref('')
 
 // Computed Properties - Automatically reactive
-const encryptedText = computed(() => 
+const encryptedText = computed(() =>
   plainText.value ? cipher.encrypt(plainText.value) : ''
 )
 
-const decryptedText = computed(() => 
+const decryptedText = computed(() =>
   encryptedInput.value ? cipher.decrypt(encryptedInput.value) : ''
 )
 

@@ -2,18 +2,18 @@
   <section class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-400 p-6 rounded-xl">
     <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
       <span class="text-2xl">🎯</span>
-      Interaktive Challenge
+      Challenge
     </h3>
-    
+
     <!-- Active Challenge -->
     <div v-if="!challengeCompleted">
       <div class="bg-white p-4 rounded-lg mb-4 shadow-sm">
         <p class="text-gray-700 mb-2">
-          <strong>Aufgabe:</strong> Verschlüssele das Wort 
+          <strong>Aufgabe:</strong> Verschlüssele das Wort
           <span class="challenge-badge bg-blue-100 text-blue-900">
             {{ challenge.word }}
           </span>
-          mit der Verschiebung 
+          mit der Verschiebung
           <span class="challenge-badge bg-purple-100 text-purple-900">
             {{ challenge.shift }}
           </span>
@@ -22,52 +22,34 @@
           💡 Tipp: Stelle die Caesar-Scheibe oben auf {{ challenge.shift }} ein und lies die Verschlüsselung ab!
         </p>
       </div>
-      
+
       <div class="flex flex-wrap gap-3 items-end">
         <div class="flex-1 min-w-[200px]">
-          <label 
-            for="challenge-answer" 
-            class="block text-sm font-semibold text-gray-700 mb-2"
-          >
+          <label for="challenge-answer" class="block text-sm font-semibold text-gray-700 mb-2">
             Deine Antwort:
           </label>
-          <input
-            id="challenge-answer"
-            :value="userAnswer"
-            @input="handleAnswerInput"
-            @keyup.enter="handleCheck"
-            type="text"
-            placeholder="Gib das verschlüsselte Wort ein..."
-            class="answer-input"
-          />
+          <input id="challenge-answer" :value="userAnswer" @input="handleAnswerInput" @keyup.enter="handleCheck"
+            type="text" placeholder="Gib das verschlüsselte Wort ein..." class="answer-input" />
         </div>
-        <button
-          @click="handleCheck"
-          class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold shadow-md"
-        >
+        <button @click="handleCheck"
+          class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold shadow-md">
           ✓ Überprüfen
         </button>
       </div>
-      
+
       <!-- Feedback -->
-      <div 
-        v-if="challengeFeedback"
-        :class="feedbackClasses"
-        role="alert"
-      >
+      <div v-if="challengeFeedback" :class="feedbackClasses" role="alert">
         {{ challengeFeedback.message }}
       </div>
     </div>
-    
+
     <!-- Success State -->
     <div v-else class="text-center py-6">
       <p class="text-6xl mb-3" aria-hidden="true">🎉</p>
       <p class="text-green-700 font-bold text-2xl mb-2">Perfekt gelöst!</p>
       <p class="text-gray-700 mb-4">Du hast die Caesar-Verschlüsselung verstanden!</p>
-      <button 
-        @click="handleNewChallenge" 
-        class="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold shadow-md"
-      >
+      <button @click="handleNewChallenge"
+        class="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold shadow-md">
         🔄 Nächste Challenge
       </button>
     </div>
@@ -103,9 +85,9 @@ const emit = defineEmits<{
  */
 const feedbackClasses = computed(() => {
   const baseClasses = 'mt-4 p-4 rounded-lg font-semibold'
-  
+
   if (!props.challengeFeedback) return baseClasses
-  
+
   return props.challengeFeedback.correct
     ? `${baseClasses} bg-green-200 text-green-900 border-2 border-green-400`
     : `${baseClasses} bg-red-200 text-red-900 border-2 border-red-400`

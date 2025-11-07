@@ -3,15 +3,19 @@
     <!-- Header -->
     <VigenereHeader />
 
+    <!-- Learning Objectives -->
+    <VigenereLearningObjectives />
+
     <!-- Navigation Links -->
     <nav class="mb-8 sticky top-0 bg-white z-20 py-4 border-b-2 border-gray-200 shadow-sm">
       <div class="flex flex-wrap gap-2 justify-center">
-        <a
-          v-for="section in sections"
-          :key="section.id"
-          :href="'#' + section.id"
-          class="px-4 py-2 font-semibold transition-colors rounded-lg bg-purple-100 text-purple-700 hover:bg-purple-600 hover:text-white"
-        >
+        <a v-for="(section, index) in sections" :key="section.id" :href="'#' + section.id"
+          @click="updateProgress(index)" :class="[
+            'px-4 py-2 font-semibold transition-colors rounded-lg',
+            index <= currentSectionIndex
+              ? 'bg-purple-100 text-purple-700 hover:bg-purple-600 hover:text-white'
+              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+          ]">
           {{ section.icon }} {{ section.label }}
         </a>
       </div>
@@ -28,18 +32,32 @@
 
     <!-- Section 4: Kasiski Test -->
     <VigenereKasiski />
+
+    <!-- Section 5: Quiz -->
+    <VigenereQuiz />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import VigenereHeader from './vigenere/VigenereHeader.vue';
+import VigenereLearningObjectives from './vigenere/VigenereLearningObjectives.vue';
 import VigenereTabulaRecta from './vigenere/VigenereTabulaRecta.vue';
 import VigenereComparison from './vigenere/VigenereComparison.vue';
 import VigenereEncryptDecrypt from './vigenere/VigenereEncryptDecrypt.vue';
 import VigenereKasiski from './vigenere/VigenereKasiski.vue';
+import VigenereQuiz from './vigenere/VigenereQuiz.vue';
+import ModuloExplanation from '@/components/ui/ModuloExplanation.vue';
 import { VIGENERE_SECTIONS } from '@/constants/vigenere';
 
 const sections = VIGENERE_SECTIONS;
+const currentSectionIndex = ref(0);
+
+function updateProgress(index: number) {
+  if (index > currentSectionIndex.value) {
+    currentSectionIndex.value = index;
+  }
+}
 </script>
 
 <style scoped>

@@ -1,9 +1,9 @@
 <template>
   <section id="encrypt-decrypt" class="space-y-6 mb-12 scroll-mt-32">
     <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-purple-500 pb-2">
-      🔐 Ver- & Entschlüsseln
+      🔐 Ver- & Entschlüsseln mit Vigenère
     </h3>
-    
+
     <div class="grid md:grid-cols-2 gap-6">
       <!-- Encryption Section -->
       <div class="space-y-4">
@@ -14,28 +14,31 @@
         <!-- Key Input -->
         <div>
           <label class="block text-sm font-semibold text-gray-700 mb-2">
-            🔑 Schlüsselwort (nur Buchstaben)
+            🔑 Schlüsselwort
           </label>
           <div class="relative">
-            <input
-              v-model="encryptKey"
-              @input="encryptKey = encryptKey.toUpperCase().replace(/[^A-Z]/g, '')"
-              type="text"
-              placeholder="z.B. GEHEIM"
-              class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-purple-50 text-purple-700 font-mono font-bold"
-            />
-            <button
-              v-if="encryptKey"
-              @click="copyToClipboard(encryptKey)"
+            <input v-model="encryptKey" @input="encryptKey = encryptKey.toUpperCase().replace(/[^A-Z]/g, '')"
+              type="text" :placeholder="VIGENERE_ENCRYPT_DECRYPT.placeholders.key"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-purple-50 text-purple-700 font-mono font-bold" />
+            <button v-if="encryptKey" @click="copyToClipboard(encryptKey)"
               class="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:bg-purple-200 rounded transition-colors"
-              title="Schlüssel kopieren"
-            >
+              title="Schlüssel kopieren">
               📋
             </button>
           </div>
           <p class="text-sm text-gray-500 mt-1">
-            {{ encryptKey.length > 0 ? `Schlüssellänge: ${encryptKey.length} Buchstaben` : 'Bitte Schlüsselwort eingeben' }}
+            {{ encryptKeyLengthText }}
           </p>
+          <!-- Helpful tip for beginners -->
+          <div
+            v-if="encryptKey.length > 0 && encryptKey.length < VIGENERE_ENCRYPT_DECRYPT.keyLengthWarnings.short.threshold"
+            class="mt-2 p-2 bg-yellow-50 border border-yellow-300 rounded text-xs text-yellow-800"
+            v-html="VIGENERE_ENCRYPT_DECRYPT.keyLengthWarnings.short.message">
+          </div>
+          <div v-else-if="encryptKey.length >= VIGENERE_ENCRYPT_DECRYPT.keyLengthWarnings.good.threshold"
+            class="mt-2 p-2 bg-green-50 border border-green-300 rounded text-xs text-green-800"
+            v-html="VIGENERE_ENCRYPT_DECRYPT.keyLengthWarnings.good.message">
+          </div>
         </div>
 
         <!-- Plaintext Input -->
@@ -44,19 +47,11 @@
             📝 Klartext
           </label>
           <div class="relative">
-            <textarea
-              v-model="encryptPlaintext"
-              @input="encryptPlaintext = encryptPlaintext.toUpperCase()"
-              placeholder="Gib hier deine Nachricht ein..."
-              rows="4"
-              class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono bg-blue-50 text-blue-700 font-bold"
-            ></textarea>
-            <button
-              v-if="encryptPlaintext"
-              @click="copyToClipboard(encryptPlaintext)"
-              class="absolute right-2 top-2 p-2 hover:bg-blue-200 rounded transition-colors"
-              title="Klartext kopieren"
-            >
+            <textarea v-model="encryptPlaintext" @input="encryptPlaintext = encryptPlaintext.toUpperCase()"
+              :placeholder="VIGENERE_ENCRYPT_DECRYPT.placeholders.plaintext" rows="4"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono bg-blue-50 text-blue-700 font-bold"></textarea>
+            <button v-if="encryptPlaintext" @click="copyToClipboard(encryptPlaintext)"
+              class="absolute right-2 top-2 p-2 hover:bg-blue-200 rounded transition-colors" title="Klartext kopieren">
               📋
             </button>
           </div>
@@ -71,11 +66,9 @@
             <p class="text-lg font-mono font-bold text-orange-700 pr-10 break-all">
               {{ vigenereEncrypt(encryptPlaintext, encryptKey) }}
             </p>
-            <button
-              @click="copyToClipboard(vigenereEncrypt(encryptPlaintext, encryptKey))"
+            <button @click="copyToClipboard(vigenereEncrypt(encryptPlaintext, encryptKey))"
               class="absolute right-2 top-2 p-2 hover:bg-orange-200 rounded transition-colors"
-              title="Geheimtext kopieren"
-            >
+              title="Geheimtext kopieren">
               📋
             </button>
           </div>
@@ -97,11 +90,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr
-                      v-for="(step, index) in getEncryptionSteps(encryptPlaintext, encryptKey)"
-                      :key="'step-' + index"
-                      class="border-b border-gray-200 hover:bg-white"
-                    >
+                    <tr v-for="(step, index) in getEncryptionSteps(encryptPlaintext, encryptKey)" :key="'step-' + index"
+                      class="border-b border-gray-200 hover:bg-white">
                       <td class="px-2 py-1 text-gray-600">{{ index + 1 }}</td>
                       <td class="px-2 py-1 font-bold text-blue-600 bg-blue-50">{{ step.plainChar }}</td>
                       <td class="px-2 py-1 font-bold text-purple-600 bg-purple-50">{{ step.keyChar }}</td>
@@ -131,24 +121,17 @@
             🔑 Schlüsselwort
           </label>
           <div class="relative">
-            <input
-              v-model="decryptKey"
-              @input="decryptKey = decryptKey.toUpperCase().replace(/[^A-Z]/g, '')"
-              type="text"
-              placeholder="z.B. GEHEIM"
-              class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-purple-50 text-purple-700 font-mono font-bold"
-            />
-            <button
-              v-if="decryptKey"
-              @click="copyToClipboard(decryptKey)"
+            <input v-model="decryptKey" @input="decryptKey = decryptKey.toUpperCase().replace(/[^A-Z]/g, '')"
+              type="text" :placeholder="VIGENERE_ENCRYPT_DECRYPT.placeholders.key"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-purple-50 text-purple-700 font-mono font-bold" />
+            <button v-if="decryptKey" @click="copyToClipboard(decryptKey)"
               class="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:bg-purple-200 rounded transition-colors"
-              title="Schlüssel kopieren"
-            >
+              title="Schlüssel kopieren">
               📋
             </button>
           </div>
           <p class="text-sm text-gray-500 mt-1">
-            {{ decryptKey.length > 0 ? `Schlüssellänge: ${decryptKey.length} Buchstaben` : 'Bitte Schlüsselwort eingeben' }}
+            {{ decryptKeyLengthText }}
           </p>
         </div>
 
@@ -158,19 +141,12 @@
             🔐 Geheimtext
           </label>
           <div class="relative">
-            <textarea
-              v-model="decryptCiphertext"
-              @input="decryptCiphertext = decryptCiphertext.toUpperCase()"
-              placeholder="Gib hier den verschlüsselten Text ein..."
-              rows="4"
-              class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent font-mono bg-orange-50 text-orange-700 font-bold"
-            ></textarea>
-            <button
-              v-if="decryptCiphertext"
-              @click="copyToClipboard(decryptCiphertext)"
+            <textarea v-model="decryptCiphertext" @input="decryptCiphertext = decryptCiphertext.toUpperCase()"
+              :placeholder="VIGENERE_ENCRYPT_DECRYPT.placeholders.ciphertext" rows="4"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent font-mono bg-orange-50 text-orange-700 font-bold"></textarea>
+            <button v-if="decryptCiphertext" @click="copyToClipboard(decryptCiphertext)"
               class="absolute right-2 top-2 p-2 hover:bg-orange-200 rounded transition-colors"
-              title="Geheimtext kopieren"
-            >
+              title="Geheimtext kopieren">
               📋
             </button>
           </div>
@@ -185,11 +161,9 @@
             <p class="text-lg font-mono font-bold text-blue-700 pr-10 break-all">
               {{ vigenereDecrypt(decryptCiphertext, decryptKey) }}
             </p>
-            <button
-              @click="copyToClipboard(vigenereDecrypt(decryptCiphertext, decryptKey))"
+            <button @click="copyToClipboard(vigenereDecrypt(decryptCiphertext, decryptKey))"
               class="absolute right-2 top-2 p-2 hover:bg-blue-200 rounded transition-colors"
-              title="Entschlüsselten Text kopieren"
-            >
+              title="Entschlüsselten Text kopieren">
               📋
             </button>
           </div>
@@ -204,8 +178,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useVigenereCipher } from '@/composables/useVigenereCipher';
+import { VIGENERE_ENCRYPT_DECRYPT } from '@/constants/vigenere';
 
 const { vigenereEncrypt, vigenereDecrypt, getEncryptionSteps } = useVigenereCipher();
 
@@ -213,6 +188,19 @@ const encryptKey = ref('');
 const encryptPlaintext = ref('');
 const decryptKey = ref('');
 const decryptCiphertext = ref('');
+
+// Computed properties für Textausgaben (verhindert Prettier-Probleme)
+const encryptKeyLengthText = computed(() => {
+  return encryptKey.value.length > 0
+    ? `Schlüssellänge: ${encryptKey.value.length} Buchstaben`
+    : 'Bitte Schlüsselwort eingeben';
+});
+
+const decryptKeyLengthText = computed(() => {
+  return decryptKey.value.length > 0
+    ? `Schlüssellänge: ${decryptKey.value.length} Buchstaben`
+    : 'Bitte Schlüsselwort eingeben';
+});
 
 function copyToClipboard(text: string) {
   navigator.clipboard.writeText(text).then(() => {

@@ -15,7 +15,7 @@ export function formatDate(date: Date | string): string {
 }
 
 /**
- * Formatiert eine Dateigröße in lesbares Format
+ * Formatiert eine Dateigrösse in lesbares Format
  */
 export function formatFileSize(bytes: number): string {
   if (bytes === 0) return "0 Bytes";

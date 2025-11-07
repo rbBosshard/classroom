@@ -24,7 +24,7 @@ export function removeNonLetters(str: string): string {
 }
 
 /**
- * Konvertiert Text in Großbuchstaben (für Verschlüsselung)
+ * Konvertiert Text in Grossbuchstaben (für Verschlüsselung)
  */
 export function toUpperCase(text: string): string {
   return text.toUpperCase();
