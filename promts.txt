@@ -1,0 +1,18 @@
+Ich möchte Lerninhalte erstellen, die sich auch für ein Selbststudium eignen.
+
+Ich möchte einen interaktiven Inhalt zu folgender Verschlüsselung:
+Substitution -> polyalphabetischer Verschlüsselung -> Vigenere
+
+
+Es soll auch eine aufgabe dazu gehen wie die Verschlüsselung und Entschlüsselung geht und auch wie man sie Knacken kann.
+
+Bis jetzt habe ich Transposition und monoalphabetische Substitution durgenommen in der Schulklasse.
+
+
+Das Ziel ist es, die Schüler auf die ENIGMA verschlüsselung vorzubereiten.
+
+Ich zeige einen Filmausschnitt von The Imitation game wie alan turing die ENIGMA knackt und sie sollen dann eine Ahnung haben worum es geht beim Knacken der ENIGMA im 2. Weltkrieg
+
+Darum soll es eine passende überleitung geben von Vigener zu ENIGMA und was noch fehlt um die ENIGMA zu verstehen.
+
+

@@ -1,4 +1,4 @@
-// Hierarchische Themenstruktur für Gymnasium 1 Kryptographie
+// Hierarchische Themenstruktur
 
 export type MaterialType =
   | "pdf"
@@ -93,13 +93,13 @@ export const curriculumTree: Topic = {
                       level: 5,
                       children: [
                         {
-                          id: "caesar-wheel",
+                          id: "caesar",
                           title: "Interaktive Caesar-Scheibe",
                           icon: "🎯",
                           description:
                             "Lerne Caesar-Verschlüsselung mit einer drehbaren Scheibe",
                           level: 6,
-                          content: "CaesarWheel",
+                          content: "Caesar",
                           contentType: "interactive",
                         },
                       ],
@@ -110,7 +110,38 @@ export const curriculumTree: Topic = {
                       icon: "🔄",
                       description: "Buchstaben werden unterschiedlich ersetzt",
                       level: 5,
-                      // Hier kannst du eigene Übungen hinzufügen
+                      children: [
+                        {
+                          id: "vigenere",
+                          title: "Vigenère-Verschlüsselung",
+                          icon: "🔐",
+                          description:
+                            "Lerne die berühmte polyalphabetische Verschlüsselung - und wie man sie knackt!",
+                          level: 6,
+                          content: "Vigenere",
+                          contentType: "interactive",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "transposition",
+                  title: "Transposition",
+                  icon: "🔀",
+                  description:
+                    "Buchstaben werden in ihrer Reihenfolge vertauscht",
+                  level: 4,
+                  children: [
+                    {
+                      id: "skytale",
+                      title: "Skytale",
+                      icon: "📜",
+                      description:
+                        "Die antike spartanische Transpositionsverschlüsselung",
+                      level: 5,
+                      content: "Skytale",
+                      contentType: "interactive",
                     },
                   ],
                 },
@@ -134,14 +165,6 @@ export const curriculumTree: Topic = {
               ],
             },
           ],
-        },
-        {
-          id: "grundlagen",
-          title: "Grundbegriffe",
-          icon: "📚",
-          description: "Wichtige Begriffe der Kryptographie",
-          level: 3,
-          // Hier kannst du eigene Übungen hinzufügen
         },
       ],
     },

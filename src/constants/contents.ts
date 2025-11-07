@@ -23,7 +23,9 @@ import type { Component } from "vue";
  */
 export const CONTENT_COMPONENTS: Record<string, () => Promise<Component>> = {
   // Hier deine Inhalte mit dynamischen Imports hinzufügen:
-  CaesarWheel: () => import("../components/content/CaesarWheel.vue"),
+  Caesar: () => import("../components/content/Caesar.vue"),
+  Vigenere: () => import("../components/content/Vigenere.vue"),
+  Skytale: () => import("../components/content/Skytale.vue"),
 } as const;
 
 export type ContentName = keyof typeof CONTENT_COMPONENTS;

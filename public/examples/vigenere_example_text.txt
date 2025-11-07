@@ -1,0 +1,11 @@
+im jahr achtzehnhundertvierundfuenfzig fand der englische wissenschaftler charles babbage eine loesung der chiffre die er jedoch nie publizierte
+der erste der eine allgemeingueltige angriffsmethode auf die vigenere chiffre beschrieb war der preussische infanteriemajor und kryptologe friedrich wilhelm kasiski
+er veroeffentlichte achtzehnhundertdreiundsechzig in berlin sein buch die geheimschriften und die dechiffrir kunst und erlaeuterte darin seine idee zur entzifferung von vigenere verschluesselten texten
+seine entzifferungsmethode ist noch heute unter seinem namen als kasiski test bekannt
+als erstes ist die laenge des verwendeten schluesselworts zu ermitteln
+dazu durchsuchte kasiski den geheimtext nach buchstabenfolgen der laenge zwei bigramme oder laenger trigramme tetragramme und so weiter die mehrmals vorkommen genannt doppler
+anschliessend bestimmte er den abstand zwischen den dopplern
+er erzeugte so eine moeglichst vollstaendige liste mit im geheimtext auftretenden dopplern und deren abstaenden
+in dieser suchte er mithilfe der faktorisierung primfaktorzerlegung nach gemeinsamen laengen um so auf die vermutliche schluesselwortlaenge zu schliessen
+im cryptologia artikel breaking short vigenere ciphers ist die wichtige seite einundvierzig aus kasiskis buch abgebildet
+nach der untersuchung seines vigenere verschluesselten beispieltextes mit einhundertachtzig buchstaben zieht er das fazit hier kommt der faktor fuenf am haeufigsten vor der schluessel muss demnach fuenf buchstaben enthalten
