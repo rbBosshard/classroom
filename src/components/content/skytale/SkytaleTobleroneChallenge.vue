@@ -21,7 +21,7 @@
         <div class="flex-shrink-0">
           <!-- Toblerone Bild -->
           <img 
-            src="/classroom/images/toblerone.jpg" 
+            src="/images/toblerone.jpg" 
             alt="Toblerone" 
             class="w-20 h-20 object-contain rounded"
           />

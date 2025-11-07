@@ -43,7 +43,7 @@
         <!-- Bild: Skytale Sparta -->
         <div class="flex justify-center my-4">
           <img 
-            src="/classroom/images/skytale_sparta.png" 
+            src="/images/skytale_sparta.png" 
             alt="Skytale mit Nachricht THIS IS SPARTA" 
             class="max-w-full h-auto rounded-lg shadow-md border-2 border-amber-200"
             style="max-height: 200px;"
@@ -58,7 +58,7 @@
         <!-- Bild: Skytale Sparta -->
         <div class="flex justify-center my-4">
           <img 
-            src="/classroom/images/this_is_sparta_geheimtext.png" 
+            src="/images/this_is_sparta_geheimtext.png" 
             alt="Skytale Geiheimtext" 
             class="max-w-full h-auto rounded-lg shadow-md border-2 border-amber-200"
             style="max-height: 90px;"
@@ -339,7 +339,7 @@ N I S</pre>
             <div class="flex-shrink-0">
               <!-- Toblerone Bild -->
               <img 
-                src="/classroom/images/toblerone.jpg" 
+                src="/images/toblerone.jpg" 
                 alt="Toblerone" 
                 class="w-20 h-20 object-contain rounded"
               />
