@@ -26,6 +26,14 @@ export const CONTENT_COMPONENTS: Record<string, () => Promise<Component>> = {
   Caesar: () => import("../components/content/Caesar.vue"),
   Vigenere: () => import("../components/content/Vigenere.vue"),
   Skytale: () => import("../components/content/Skytale.vue"),
+
+  // Theorie-Komponenten
+  SubstitutionTheory: () =>
+    import("../components/content/SubstitutionTheory.vue"),
+  TranspositionTheory: () =>
+    import("../components/content/TranspositionTheory.vue"),
+  MonoalphabeticTheory: () =>
+    import("../components/content/MonoalphabeticTheory.vue"),
 } as const;
 
 export type ContentName = keyof typeof CONTENT_COMPONENTS;

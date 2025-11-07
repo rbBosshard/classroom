@@ -1,12 +1,12 @@
 Ich möchte Lerninhalte erstellen, die sich auch für ein Selbststudium eignen.
 
-Ich möchte einen interaktiven Inhalt zu folgender Verschlüsselung:
-Substitution -> polyalphabetischer Verschlüsselung -> Vigenere
+Ich möchte einen interaktiven Inhalt zur Häufikkeitsanalyse im Modul zufällige monoalphabetische Verschlüsselung.
+Es soll ein deutsches und ein englishces beispiel geladen werden. es soll zudem auch die buchstabenhäufigkeiten von deutschen und englsichen texten gezeigt werden.
+Die schüler sollen dann die möglcih keit haben den schlüssel zu entwickeln damit der platzhalter text (klartext zum gheimtext beispiel) schritt für schritt ausgefüllt wird.
 
 
-Es soll auch eine aufgabe dazu gehen wie die Verschlüsselung und Entschlüsselung geht und auch wie man sie Knacken kann.
 
-Bis jetzt habe ich Transposition und monoalphabetische Substitution durgenommen in der Schulklasse.
+
 
 
 Das Ziel ist es, die Schüler auf die ENIGMA verschlüsselung vorzubereiten.

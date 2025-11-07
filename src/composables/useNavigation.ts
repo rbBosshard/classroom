@@ -4,13 +4,14 @@
  */
 
 import { ref, computed, onMounted, onUnmounted } from "vue";
-import { curriculumTree } from "../types/curriculum";
+import { getActiveCurriculum, getClassIdFromUrl } from "../config/class-config";
 import {
   findTopicById,
   findParentTopicId,
   buildBreadcrumbs,
 } from "../utils/curriculum-helpers";
 import { CONTENT_COMPONENTS } from "../constants/contents";
+import { useErrorHandling } from "./useErrorHandling";
 import type { Topic } from "../types/curriculum";
 import type { Component } from "vue";
 
@@ -24,6 +25,9 @@ interface NavigationState {
 }
 
 export function useNavigation() {
+  // Error Handling
+  const { handleError } = useErrorHandling();
+
   // State
   const currentView = ref<ViewType>("navigation");
   const currentTopicId = ref<string>("root");
@@ -35,17 +39,20 @@ export function useNavigation() {
 
   // Computed
   const currentTopic = computed(() =>
-    findTopicById(curriculumTree, currentTopicId.value)
+    findTopicById(getActiveCurriculum(), currentTopicId.value)
   );
 
   const breadcrumbs = computed(() => {
     if (currentView.value === "content" && currentContentTopic.value) {
-      return buildBreadcrumbs(curriculumTree, currentContentTopic.value.id);
+      return buildBreadcrumbs(
+        getActiveCurriculum(),
+        currentContentTopic.value.id
+      );
     }
     if (currentTopicId.value === "root") {
       return [];
     }
-    return buildBreadcrumbs(curriculumTree, currentTopicId.value);
+    return buildBreadcrumbs(getActiveCurriculum(), currentTopicId.value);
   });
 
   // Helper: Update Browser History
@@ -95,7 +102,7 @@ export function useNavigation() {
     currentTopicId.value = state.topicId;
 
     if (state.view === "content" && state.contentName && state.contentTopicId) {
-      const topic = findTopicById(curriculumTree, state.contentTopicId);
+      const topic = findTopicById(getActiveCurriculum(), state.contentTopicId);
       if (topic) {
         const componentLoader = CONTENT_COMPONENTS[state.contentName];
         if (componentLoader) {
@@ -106,10 +113,7 @@ export function useNavigation() {
               currentContentTopic.value = topic;
             })
             .catch((error) => {
-              console.error(
-                `Failed to load content component: ${state.contentName}`,
-                error
-              );
+              handleError(error, "content-loading", "error");
               currentContentComponent.value = null;
               currentContentTopic.value = null;
             });
@@ -160,16 +164,14 @@ export function useNavigation() {
           contentTopicId: topic.id,
         });
       } catch (error) {
-        console.error(
-          `Failed to load content component: ${contentName}`,
-          error
-        );
+        handleError(error as Error, "content-loading", "error");
         // Error wird von ErrorBoundary gefangen
         throw error;
       }
     } else {
-      console.error(`Content component not found: ${contentName}`);
-      throw new Error(`Content "${contentName}" nicht gefunden`);
+      const error = new Error(`Content "${contentName}" nicht gefunden`);
+      handleError(error, "content-loading", "error");
+      throw error;
     }
   }
 
@@ -180,7 +182,7 @@ export function useNavigation() {
     // Navigiere zum Parent-Topic
     if (currentContentTopic.value) {
       const parentId = findParentTopicId(
-        curriculumTree,
+        getActiveCurriculum(),
         currentContentTopic.value.id
       );
       if (parentId) {
@@ -195,8 +197,17 @@ export function useNavigation() {
 
   // Setup: Initialize from URL and listen to popstate
   onMounted(() => {
-    // Initial state from URL
     const params = new URLSearchParams(window.location.search);
+
+    // Wenn kein class-Parameter vorhanden ist, füge den Default hinzu
+    if (!params.has("class")) {
+      const classId = getClassIdFromUrl(); // Gibt DEFAULT_CLASS_ID zurück wenn nicht vorhanden
+      const url = new URL(window.location.href);
+      url.searchParams.set("class", classId);
+      window.history.replaceState(null, "", url.toString());
+    }
+
+    // Initial state from URL
     if (params.has("view") || params.has("topic")) {
       restoreState(null);
     } else {
@@ -207,7 +218,6 @@ export function useNavigation() {
     // Listen to browser back/forward
     window.addEventListener("popstate", handlePopState);
   });
-
   onUnmounted(() => {
     window.removeEventListener("popstate", handlePopState);
   });
@@ -229,6 +239,7 @@ export function useNavigation() {
     currentView,
     currentTopic,
     currentContentComponent,
+    currentContentTopic,
     breadcrumbs,
 
     // Actions
