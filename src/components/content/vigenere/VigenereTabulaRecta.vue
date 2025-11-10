@@ -169,7 +169,7 @@
 
     <!-- Example with Key -->
     <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
-      <h4 class="font-bold text-gray-800 mb-3">📝 Vollständiges Beispiel</h4>
+      <h4 class="font-bold text-gray-800 mb-3">📝 Vollständiges Beispiel mit Schlüsselwort "OLE"</h4>
 
       <!-- Table format -->
       <div class="bg-white p-4 rounded-lg mb-4 overflow-x-auto">

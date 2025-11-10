@@ -33,13 +33,6 @@ export default [
     rules: {
       // TypeScript specific
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-        },
-      ],
       
       // Vue specific
       'vue/multi-word-component-names': 'off',

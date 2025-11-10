@@ -2,7 +2,7 @@
   <div>
     <h3 class="text-lg sm:text-xl font-semibold text-gray-700 mb-4 flex items-center gap-2">
       🎯 Interaktive Caesar-Scheibe
-      <span class="text-sm font-normal text-gray-500">(Drehe den äußeren Ring!)</span>
+      <span class="text-sm font-normal text-gray-500">(Drehe den äusseren Ring!)</span>
     </h3>
     
     <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r mb-4">
