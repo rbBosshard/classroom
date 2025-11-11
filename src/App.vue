@@ -5,26 +5,43 @@
 
     <!-- Header -->
     <header class="relative overflow-hidden">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2">
-
-      </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2"></div>
     </header>
 
     <!-- Main Content -->
     <main class="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
       <!-- Topic Navigation View -->
       <div v-if="currentView === 'navigation'">
-        <TopicNavigation :current-topic="currentTopic" :breadcrumbs="breadcrumbs" @navigate="navigateToTopic"
-          @show-content="showContent" />
+        <TopicNavigation
+          :current-topic="currentTopic"
+          :breadcrumbs="breadcrumbs"
+          @navigate="navigateToTopic"
+          @show-content="showContent"
+        />
       </div>
 
       <!-- Content View with Error Boundary & Suspense -->
-      <div v-else-if="currentView === 'content' && currentContentComponent" class="max-w-4xl mx-auto">
+      <div
+        v-else-if="currentView === 'content' && currentContentComponent"
+        class="max-w-4xl mx-auto"
+      >
         <!-- Back Button -->
-        <button @click="backToNavigation"
-          class="mb-4 sm:mb-6 flex items-center text-primary-600 hover:text-primary-800 transition-colors font-medium text-sm sm:text-base">
-          <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        <button
+          @click="backToNavigation"
+          class="mb-4 sm:mb-6 flex items-center text-primary-600 hover:text-primary-800 transition-colors font-medium text-sm sm:text-base"
+        >
+          <svg
+            class="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            ></path>
           </svg>
           <span class="truncate">Zurück zur Übersicht</span>
         </button>
@@ -34,8 +51,12 @@
           <Suspense>
             <!-- Main Content (Lazy-Loaded) -->
             <template #default>
-              <component :is="currentContentComponent" :topic="currentContentTopic" @complete="onContentComplete"
-                @back="backToNavigation" />
+              <component
+                :is="currentContentComponent"
+                :topic="currentContentTopic"
+                @complete="onContentComplete"
+                @back="backToNavigation"
+              />
             </template>
 
             <!-- Loading Fallback -->
@@ -69,4 +90,5 @@ const {
   onContentComplete,
   retryLoadContent,
 } = useNavigation()
+
 </script>

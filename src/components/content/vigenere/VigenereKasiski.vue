@@ -1,7 +1,7 @@
 <template>
   <section id="kasiski" class="space-y-6 mb-12 scroll-mt-32">
     <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-purple-500 pb-2">
-      🔬 Kasiski-Test & Krypto-Analyse
+      🔬 Kasiski-Test (Krypto-Analyse)
     </h3>
 
     <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r">
@@ -57,18 +57,19 @@
             im Schlüsselwort verwendet wird, entsteht
             <strong>genau die gleiche verschlüsselte Sequenz</strong>!
           </p>
-          <div class="mt-2 bg-purple-50 p-3 rounded font-mono text-xs">
-            <div>Position 0: D + G = K</div>
-            <div>Position 1: E + E = I</div>
-            <div>Position 2: R + H = Z</div>
-            <div class="mt-2 font-bold text-purple-700">→ "DER" wird zu "KIZ"</div>
+          <div class="mt-2 bg-purple-50 p-3 rounded text-xs">
+            <p><strong>Beispiel:</strong></p>
+            <p>• Klartext: ...DER... ...DER...</p>
+            <p>• Schlüssel: ...OLE... ...OLE...</p>
+            <p>• Geheimtext: ...RPV... ...RPV...</p>
+            <p class="mt-2">→ Die verschlüsselte Sequenz "RPV" taucht zweimal im Geheimtext auf!</p>
           </div>
         </div>
 
         <div class="bg-white rounded-lg p-4 border-l-4 border-blue-500">
           <h5 class="font-bold text-blue-700 mb-2">2️⃣ Schritt 2: Abstände messen</h5>
           <p class="text-sm">
-            Wenn "KIZ" an Position 12 und 48 erscheint, ist der Abstand
+            Wenn "RPV" an Position 12 und 48 erscheint, ist der Abstand
             <strong>36 Buchstaben</strong>. Dieser Abstand muss ein
             <strong>Vielfaches der Schlüssellänge</strong> sein!
           </p>
@@ -436,7 +437,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useKasiskiTest } from '@/composables/useVigenereCipher';
 import { VIGENERE_KASISKI } from '@/constants/vigenere';
 import FrequencyChart from '@/components/ui/FrequencyChart.vue';
@@ -453,6 +454,11 @@ const {
   loadExampleFromPublicTextFile,
 } = useKasiskiTest();
 
+// Load example on component mount
+onMounted(() => {
+  loadExampleFromPublicTextFile();
+});
+
 // Current repeat navigation
 const currentRepeatIndex = ref(0);
 
@@ -462,10 +468,8 @@ const currentRepeat = computed(() => {
     return null;
   }
   // Make sure index is valid
-  if (currentRepeatIndex.value >= kasiskiRepeats.value.length) {
-    currentRepeatIndex.value = 0;
-  }
-  return kasiskiRepeats.value[currentRepeatIndex.value];
+  const validIndex = Math.min(currentRepeatIndex.value, kasiskiRepeats.value.length - 1);
+  return kasiskiRepeats.value[validIndex];
 });
 
 // Text length hint message

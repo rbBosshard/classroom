@@ -4,36 +4,11 @@
       ⚖️ Caesar vs. Vigenère im Vergleich
     </h3>
 
-    <div
-      class="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-500 p-4 rounded-r"
-    >
+    <div class="bg-purple-50 border-l-4 border-purple-300 p-4 rounded-r">
       <p class="text-gray-700">
         <strong>Warum ist Vigenère sicherer als Caesar?</strong> Lass uns dasselbe Wort mit beiden
         Methoden verschlüsseln und sehen, was passiert!
       </p>
-    </div>
-
-    <!-- Input for longer text -->
-    <div class="bg-white border-2 border-gray-300 rounded-lg p-4">
-      <label class="block text-sm font-semibold text-gray-700 mb-2">
-        📝 Testtext für Häufigkeitsanalyse
-      </label>
-      <textarea
-        v-model="analysisText"
-        placeholder="Gib einen längeren Text ein (mindestens 100 Buchstaben empfohlen)..."
-        rows="4"
-        class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-purple-500 bg-gray-50"
-        @input="analysisText = analysisText.toUpperCase()"
-      ></textarea>
-      <div class="flex gap-2 mt-2">
-        <button
-          class="text-sm bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
-          @click="loadSampleText"
-        >
-          📖 Beispieltext laden
-        </button>
-        <span class="text-sm text-gray-600 self-center"> Buchstaben: {{ letterCount }} </span>
-      </div>
     </div>
 
     <!-- Interactive Comparison -->
@@ -193,6 +168,23 @@
       </div>
     </div>
 
+    <!-- Input for longer text -->
+    <div class="bg-white border-2 border-gray-300 rounded-lg p-4">
+      <label class="block text-sm font-semibold text-gray-700 mb-2">
+        📝 Testtext für Häufigkeitsanalyse
+      </label>
+      <textarea
+        v-model="analysisText"
+        placeholder="Gib einen längeren Text ein (mindestens 100 Buchstaben empfohlen)..."
+        rows="4"
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-purple-500 bg-gray-50"
+        @input="analysisText = analysisText.toUpperCase()"
+      ></textarea>
+      <div class="flex gap-2 mt-2">
+        <span class="text-sm text-gray-600 self-center"> Buchstaben: {{ letterCount }} </span>
+      </div>
+    </div>
+
     <!-- Frequency Analysis Comparison -->
     <div v-if="letterCount >= 50" class="space-y-4">
       <div
@@ -236,11 +228,11 @@
         <h5 class="font-bold text-green-800 mb-2">💡 Wichtige Erkenntnis</h5>
         <ul class="list-disc list-inside space-y-1 text-gray-700 text-sm">
           <li>
-            <strong>Monoalphabetisch (Caesar):</strong> Hohe Varianz im Häufigkeitsprofil → Muster
+            <strong>Monoalphabetisch (z. B. Caesar):</strong> Hohe Varianz im Häufigkeitsprofil → Muster
             bleiben sichtbar
           </li>
           <li>
-            <strong>Polyalphabetisch (Vigenère):</strong> Niedrige Varianz → Muster werden verwischt
+            <strong>Polyalphabetisch (z. B. Vigenère):</strong> Niedrige Varianz → Muster werden verwischt
           </li>
           <li>Dies macht Vigenère deutlich resistenter gegen einfache Häufigkeitsanalysen!</li>
         </ul>
@@ -263,7 +255,7 @@ const comparisonVigenereKey = ref(VIGENERE_COMPARISON.defaultVigenereKey);
 
 // For frequency analysis
 const analysisText = ref(
-  'DIEEIGENSCHAFTENDERVIGENEREVERSCHLUESSELUNGMACHENSIESTARKERGEGENHAEUFIGKEITSANALYSENWEILGLEICHEBUCHSTABENUNTERSCHIEDLICHVERSCHLUESSELTWERDENKOENNEN'
+  'DIEEIGENSCHAFTENDERVIGENEREVERSCHLUESSELUNGMACHENSIESTARKERGEGENHAEUFIGKEITSANALYSENWEILGLEICHEBUCHSTABENUNTERSCHIEDLICHVERSCHLUESSELTWERDENKOENNENDASISTDERGROSSEUNTERSCHIEDZCAESARWOIMMERDIESELBEVERSCHIEBUNGVERWENDETWIRDBEIVIGENEREWERDENVIELEVERSCHIEBUNGENGENUTZTUNDDADURCHWIRDDASHAEUFIGKEITSPROFILFLACHANGLEICHMAESSIGERVERTEILTWASDIEKRYPTOANALYSEDEUTLICHERSCHWERT'
 );
 
 const letterCount = computed(() => {
@@ -277,9 +269,4 @@ const caesarEncryptedAnalysis = computed(() => {
 const vigenereEncryptedAnalysis = computed(() => {
   return vigenereEncrypt(analysisText.value, comparisonVigenereKey.value);
 });
-
-function loadSampleText() {
-  analysisText.value =
-    'DIEEIGENSCHAFTENDERVIGENEREVERSCHLUESSELUNGMACHENSIESTARKERGEGENHAEUFIGKEITSANALYSENWEILGLEICHEBUCHSTABENUNTERSCHIEDLICHVERSCHLUESSELTWERDENKOENNENDASISTDERGROSSEUNTERSCHIEDZCAESARWOIMMERDIESELBEVERSCHIEBUNGVERWENDETWIRDBEIVIGENEREWERDENVIELEVERSCHIEBUNGENGENUTZTUNDDADURCHWIRDDASHAEUFIGKEITSPROFILFLACHANGLEICHMAESSIGERVERTEILTWASDIEKRYPTOANALYSEDEUTLICHERSCHWERT';
-}
 </script>

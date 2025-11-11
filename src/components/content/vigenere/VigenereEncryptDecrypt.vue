@@ -1,7 +1,7 @@
 <template>
   <section id="encrypt-decrypt" class="space-y-6 mb-12 scroll-mt-32">
     <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-purple-500 pb-2">
-      🔐 Ver- & Entschlüsseln mit Vigenère
+      🔐 Ver- & Entschlüsseln mit Vigenère 
     </h3>
 
     <div class="grid md:grid-cols-2 gap-6">

@@ -8,7 +8,7 @@ export const VIGENERE_SECTIONS = [
   { id: 'intro', label: 'Tabula Recta', icon: '📚' },
   { id: 'comparison', label: 'Caesar vs. Vigenère', icon: '⚖️' },
   { id: 'encrypt-decrypt', label: 'Ver- & Entschlüsseln', icon: '🔐' },
-  { id: 'kasiski', label: 'Kasiski-Test', icon: '🔬' },
+  { id: 'kasiski', label: 'Kryptoanalyse', icon: '🔬' },
   { id: 'quiz', label: 'Quiz', icon: '✍️' },
 ];
 
@@ -32,10 +32,6 @@ export const VIGENERE_LEARNING_OBJECTIVES = [
   {
     icon: '✓',
     text: 'Die <strong>Schwachstellen</strong> der Vigenère-Verschlüsselung verstehen',
-  },
-  {
-    icon: '✓',
-    text: 'Den <strong>Kasiski-Test</strong> zur Kryptoanalyse anwenden',
   },
 ];
 
@@ -124,7 +120,7 @@ export const VIGENERE_COMPARISON = {
   defaultCaesarShift: 3,
   defaultVigenereKey: 'OLE',
   caesarProblem:
-    "⚠️ <strong>Problem:</strong> Gleiche Buchstaben werden immer mit der <em>gleichen</em> Verschiebung verschlüsselt. Das 'M' wird beide Male zu 'P'.",
+    "⚠️ <strong>Problem:</strong> Gleiche Buchstaben werden immer mit der <em>gleichen</em> Verschiebung verschlüsselt. Das 'M' in HAMMER wird beide Male gleich verschlüsselt.",
   vigenereAdvantage:
     "✅ <strong>Vorteil:</strong> Gleiche Buchstaben werden <em>unterschiedlich</em> verschlüsselt! Das erste 'M' wird mit 'O' (Verschiebung 14) verschlüsselt, das zweite mit 'L' (Verschiebung 11). Dies erschwert die Häufigkeitsanalyse erheblich, da die Buchstabenverteilung gleichmässiger wird.",
 };
@@ -179,8 +175,7 @@ export const VIGENERE_KASISKI = {
     '<strong>Vigenère ist knackbar</strong> – Der Kasiski-Test zeigt, dass selbst diese jahrhundertelang als unknackbar geltende Verschlüsselung mit mathematischen Methoden gebrochen werden kann.',
     '<strong>Wiederholungen sind der Schwachpunkt</strong> – Wenn im Klartext dieselbe Wortgruppe mehrfach vorkommt, entsteht bei gleicher Schlüsselposition die gleiche verschlüsselte Sequenz. Der Abstand verrät die Schlüssellänge.',
     '<strong>Häufigkeitsanalyse funktioniert immer noch</strong> – Sobald die Schlüssellänge bekannt ist, wird jede Position wie eine einfache Caesar-Verschlüsselung behandelt. Damit kann jeder Buchstabe des Schlüssels einzeln geknackt werden.',
-    '<strong>Je länger und zufälliger der Schlüssel, desto sicherer</strong> – Ein kurzer Schlüssel (z.B. 3-5 Buchstaben) macht Vigenère verwundbar. Ein sehr langer, zufälliger Schlüssel (gleich lang wie die Nachricht) führt zur unknackbaren <em>One-Time-Pad</em> Verschlüsselung.',
-    '<strong>Moderne Verschlüsselung lernt aus diesen Schwächen</strong> – AES und andere moderne Verfahren vermeiden strukturelle Wiederholungen und verwenden komplexere Transformationen als einfache Addition.',
+    '<strong>Je länger und zufälliger der Schlüssel, desto sicherer</strong> – Ein kurzer Schlüssel (z.B. 3-5 Buchstaben) macht Vigenère verwundbar.',
   ],
 };
 
@@ -204,6 +199,14 @@ export const VIGENERE_QUIZ_QUESTIONS = [
   },
   {
     id: 2,
+    question: 'Du verschlüsselst "AAAA" mit dem Schlüssel "ABCD". Was ist der Geheimtext?',
+    options: [{ text: 'ABCD' }, { text: 'AAAA' }, { text: 'BBBB' }, { text: 'BCDE' }],
+    correctAnswer: 0,
+    explanation:
+      'Jedes A wird mit dem entsprechenden Schlüsselbuchstaben verschoben: A+A=A (0+0), A+B=B (0+1), A+C=C (0+2), A+D=D (0+3). Ergebnis: ABCD.',
+  },
+  {
+    id: 3,
     question: 'Warum sind Wiederholungen im Klartext ein Problem für die Vigenère-Verschlüsselung?',
     options: [
       { text: 'Sie machen den Text zu lang' },
@@ -218,7 +221,23 @@ export const VIGENERE_QUIZ_QUESTIONS = [
       'Wenn dieselbe Wortgruppe mit demselben Schlüsselteil verschlüsselt wird, entsteht die gleiche verschlüsselte Sequenz. Der Abstand zwischen diesen Wiederholungen kann die Schlüssellänge verraten.',
   },
   {
-    id: 3,
+    id: 4,
+    question:
+      'Im Geheimtext findest du "XYZ" an Position 5 und wieder an Position 35. Was kannst du über die Schlüssellänge vermuten?',
+    options: [
+      { text: 'Die Schlüssellänge ist definitiv 30' },
+      {
+        text: 'Die Schlüssellänge ist wahrscheinlich ein Teiler von 30 (z.B. 2, 3, 5, 6, 10, 15, oder 30)',
+      },
+      { text: 'Die Schlüssellänge spielt keine Rolle' },
+      { text: 'Der Schlüssel ist genau 3 Buchstaben lang' },
+    ],
+    correctAnswer: 1,
+    explanation:
+      'Der Abstand beträgt 30 (35-5). Die Schlüssellänge ist wahrscheinlich ein Teiler von 30. Dies liegt daran, dass dieselbe Klartextsequenz nur dann zur gleichen Geheimtextsequenz führt, wenn sie mit demselben Schlüsselteil verschlüsselt wird.',
+  },
+  {
+    id: 5,
     question: 'Wofür wird der Kasiski-Test verwendet?',
     options: [
       { text: 'Um Texte schneller zu verschlüsseln' },
@@ -233,36 +252,84 @@ export const VIGENERE_QUIZ_QUESTIONS = [
       'Der Kasiski-Test sucht Wiederholungen im Geheimtext. Die Abstände zwischen diesen Wiederholungen verraten wahrscheinliche Schlüssellängen.',
   },
   {
-    id: 4,
-    question: 'Wie macht man die Vigenère-Verschlüsselung sicherer?',
+    id: 6,
+    question:
+      'Wenn du die Schlüssellänge 5 kennst, wie gehst du vor, um jeden einzelnen Schlüsselbuchstaben zu finden?',
     options: [
-      { text: 'Einen kürzeren Schlüssel verwenden' },
-      { text: 'Nur Grossbuchstaben verwenden' },
-      { text: 'Einen längeren, zufälligen Schlüssel verwenden' },
-      { text: 'Den gleichen Schlüssel immer wiederverwenden' },
+      { text: 'Du probierst alle möglichen 5-Buchstaben-Kombinationen aus (Brute-Force)' },
+      {
+        text: 'Du teilst den Text in 5 Gruppen (Position 1, 6, 11, ... / Position 2, 7, 12, ... usw.) und analysierst jede Gruppe einzeln wie eine Caesar-Verschlüsselung',
+      },
+      { text: 'Du nutzt die Tabula Recta rückwärts' },
+      { text: 'Du kannst die einzelnen Buchstaben nicht herausfinden' },
     ],
-    correctAnswer: 2,
+    correctAnswer: 1,
     explanation:
-      'Je länger und zufälliger der Schlüssel, desto schwieriger ist es, ihn durch Kryptoanalyse zu knacken.',
+      'Bei bekannter Schlüssellänge wird jede Position wie eine separate Caesar-Verschlüsselung behandelt. Durch Häufigkeitsanalyse jeder Gruppe kann man jeden Schlüsselbuchstaben einzeln bestimmen.',
+  },
+  {
+    id: 7,
+    question:
+      'Warum gilt die Vigenère-Verschlüsselung mit einem zufälligen Schlüssel, der so lang wie der Text ist und nur einmal verwendet wird, als unknackbar?',
+    options: [
+      { text: 'Weil niemand genug Zeit hat, alle Möglichkeiten auszuprobieren' },
+      {
+        text: 'Weil es keine Wiederholungen im Schlüssel gibt und somit keine statistischen Muster erkennbar sind',
+      },
+      { text: 'Weil die Tabula Recta zu komplex wird' },
+      { text: 'Das ist falsch, auch diese Verschlüsselung kann immer geknackt werden' },
+    ],
+    correctAnswer: 1,
+    explanation:
+      'Dies beschreibt das "One-Time-Pad" – die einzige nachweislich unknackbare Verschlüsselung. Ohne Wiederholungen gibt es keine statistischen Muster, und jeder mögliche Klartext ist gleich wahrscheinlich.',
+  },
+  {
+    id: 8,
+    question:
+      'Bei einem Vigenère-verschlüsselten Text mit Schlüssellänge 4 findest du in jeder 4. Position (1, 5, 9, 13, ...) häufig den Buchstaben "Q". Was bedeutet das wahrscheinlich?',
+    options: [
+      { text: 'Der Klartext enthält viele Q' },
+      {
+        text: 'An diesen Positionen steht im Klartext wahrscheinlich oft "E" und der erste Schlüsselbuchstabe verschiebt E zu Q',
+      },
+      { text: 'Der Schlüssel beginnt mit Q' },
+      { text: 'Das ist reiner Zufall' },
+    ],
+    correctAnswer: 1,
+    explanation:
+      'In deutschen/englischen Texten ist E der häufigste Buchstabe. Wenn jede 4. Position denselben Geheimtextbuchstaben zeigt, wurde wahrscheinlich E mit demselben Schlüsselbuchstaben verschlüsselt. E→Q bedeutet eine Verschiebung von 12, also ist der erste Schlüsselbuchstabe "M".',
+  },
+  {
+    id: 9,
+    question: 'Welche Aussage über die Sicherheit von Vigenère ist korrekt?',
+    options: [
+      { text: 'Vigenère ist immer sicherer als Caesar, unabhängig vom Schlüssel' },
+      { text: 'Ein Vigenère-Schlüssel mit nur einem Buchstaben ist identisch mit Caesar' },
+      { text: 'Die Länge des Geheimtexts hat keinen Einfluss auf die Sicherheit' },
+      { text: 'Moderne Computer können Vigenère nicht knacken' },
+    ],
+    correctAnswer: 1,
+    explanation:
+      'Ein einbuchstabiger Vigenère-Schlüssel bedeutet, dass jeder Buchstabe mit derselben Verschiebung verschlüsselt wird – das ist exakt die Caesar-Verschlüsselung. Längere Geheimtexte erleichtern die Kryptoanalyse durch mehr statistische Daten.',
   },
 ];
 
 export const VIGENERE_QUIZ_RESULTS = {
   scores: {
     perfect: {
-      threshold: 4,
+      threshold: 9,
       emoji: '🎉',
       title: 'Perfekt!',
-      message: 'Du hast alle Konzepte verstanden! 🌟',
+      message: 'Du hast alle Konzepte verstanden! Du bist ein Kryptoanalyse-Experte! 🌟',
     },
     veryGood: {
-      threshold: 3,
+      threshold: 7,
       emoji: '👍',
       title: 'Sehr gut!',
-      message: 'Fast perfekt! Schau dir die falsche Antwort nochmal an.',
+      message: 'Fast perfekt! Schau dir die falsche(n) Antwort(en) nochmal an.',
     },
     good: {
-      threshold: 2,
+      threshold: 5,
       emoji: '👌',
       title: 'Nicht schlecht!',
       message: 'Du bist auf dem richtigen Weg. Lies nochmal die entsprechenden Abschnitte.',

@@ -93,31 +93,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Why it matters -->
-      <div class="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-lg">
-        <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-          <span>💡</span>
-          Warum war das Steckerbrett so wichtig?
-        </h3>
-        <div class="space-y-3 text-gray-700">
-          <p>
-            Ohne Steckerbrett wäre ENIGMA deutlich einfacher zu knacken gewesen. Das Steckerbrett:
-          </p>
-          <ul class="list-disc list-inside space-y-1 ml-4">
-            <li>Verschleiert die Rotor-Verschlüsselung zusätzlich</li>
-            <li>Macht Häufigkeitsanalyse noch schwieriger</li>
-            <li>Verhindert direkte Rückschlüsse auf die Rotor-Positionen</li>
-            <li>War für die Alliierten eines der grössten Hindernisse</li>
-          </ul>
-          <div class="bg-white p-3 rounded-lg mt-3">
-            <p class="text-sm italic">
-              "Das Steckerbrett war die beste Verteidigung der ENIGMA. Ohne es hätten wir die
-              Maschine Jahre früher geknackt." - Alan Turing (sinngemäss)
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 </template>

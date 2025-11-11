@@ -27,7 +27,7 @@
     <!-- Section 1: Einführung -->
     <EnigmaIntroduction />
 
-    <!-- Section 4: Rotoren-Prinzip -->
+    <!-- Section 4: Rotoren-->
     <EnigmaRotorPrinciple />
 
     <!-- Section 5: Steckerbrett -->

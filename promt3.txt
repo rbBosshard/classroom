@@ -1,0 +1,1 @@
+ich möchte nach dem thema polyalphabetischer verschlüsselung (vigenere und enigma) überleiten zu einenm neuen lerninhalt (neues modul): onetimepad & perfektee sicherheit

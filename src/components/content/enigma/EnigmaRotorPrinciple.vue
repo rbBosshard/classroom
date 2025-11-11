@@ -6,7 +6,7 @@ import enigmaImgageColored from '@/assets/images/enigma_rotor.svg';
   <section id="rotors" class="mb-16 scroll-mt-24">
     <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
       <span class="text-4xl">⚙️</span>
-      Das Rotoren-Prinzip
+      Die Rotoren
     </h2>
 
     <div class="space-y-8">

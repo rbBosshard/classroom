@@ -50,7 +50,11 @@
           <p class="text-blue-900 font-semibold">💡 Vorteil gegenüber Caesar</p>
           <p class="text-blue-800 mt-2">
             Caesar hat nur <strong>25 mögliche Schlüssel</strong> (Verschiebungen 1-25). <br />
-            Zufällige Substitution hat <strong>26! ≈ 4 × 10²⁶ Möglichkeiten</strong>!
+            Zufällige Substitution hat
+            <strong
+              >26! = 26 × 25 × 24 × ... × 3 × 2 × 1 = 403'291'461'126'605'635'584'000'000
+              Möglichkeiten</strong
+            >!
           </p>
         </div>
       </div>

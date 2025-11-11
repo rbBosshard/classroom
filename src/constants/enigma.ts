@@ -71,7 +71,7 @@ export const ENIGMA_SECTIONS: EnigmaSection[] = [
   },
   {
     id: 'rotors',
-    label: 'Rotoren-Prinzip',
+    label: 'Rotoren',
     icon: '⚙️',
   },
   {
@@ -170,15 +170,46 @@ export const ENIGMA_QUIZ_QUESTIONS = [
       'Eine fundamentale Eigenschaft der ENIGMA war, dass kein Buchstabe jemals auf sich selbst verschlüsselt werden konnte. Diese Eigenschaft half Alan Turing und seinem Team bei der Kryptoanalyse enorm.',
   },
   {
-    question: 'Wie viele mögliche Einstellungen hatte die Wehrmacht-ENIGMA (M3)?',
+    question: 'Was ist ein "Crib" in der ENIGMA-Kryptoanalyse?',
     options: [
-      'Etwa 1.000',
-      'Etwa 100.000',
-      'Etwa 150 Trilliarden (159 Trillionen)',
-      'Unendlich viele',
+      'Ein Fehler in der ENIGMA-Maschine',
+      'Ein bekanntes oder vermutetes Wort im Klartext',
+      'Eine spezielle Rotor-Einstellung',
+      'Ein Code-Name für die Bombe-Maschine',
+    ],
+    correctIndex: 1,
+    explanation:
+      'Ein "Crib" ist ein bekanntes oder vermutetes Wort im Klartext (z.B. "WETTER" in Wetterberichten). Durch Vergleich mit dem Geheimtext und unter Ausnutzung der Tatsache, dass kein Buchstabe auf sich selbst verschlüsselt werden kann, konnten Kryptoanalytiker die Einstellungen eingrenzen.',
+  },
+  {
+    question: 'Wie funktionierte Alan Turings "Bombe"-Maschine?',
+    options: [
+      'Sie sprengte die ENIGMA-Maschinen',
+      'Sie probierte systematisch verschiedene Rotor-Einstellungen basierend auf Cribs und Widersprüchen aus',
+      'Sie verschlüsselte Nachrichten schneller als ENIGMA',
+      'Sie hackte das Steckerbrett',
+    ],
+    correctIndex: 1,
+    explanation:
+      'Die Bombe testete systematisch verschiedene Rotor-Einstellungen, indem sie nach logischen Widersprüchen suchte. Wenn eine Einstellung zu einem Widerspruch führte (z.B. A→B und gleichzeitig B→C aber A≠C), konnte sie ausgeschlossen werden. So wurden täglich die Einstellungen gefunden.',
+  },
+  {
+    question: 'Wie viele mögliche Einstellungen hatte die Wehrmacht-ENIGMA (M3)?',
+    options: ['1590', 'Etwa 159 Millionen', 'Etwa 159 Trilliarden', 'Unendlich viele'],
+    correctIndex: 2,
+    explanation:
+      'Die ENIGMA M3 hatte etwa 159.000.000.000.000.000.000 (159 Trilliarden) mögliche Einstellungen! Das kommt durch die Kombination von: 3 Rotoren aus 5 (60 Möglichkeiten), 26³ Rotorstellungen (17.576), 26³ Ringstellungen (17.576) und Steckerbrett (≈ 150 Billionen) Kombinationen.',
+  },
+  {
+    question: 'Warum änderten die Deutschen täglich die ENIGMA-Einstellungen?',
+    options: [
+      'Um die Maschinen zu testen',
+      'Weil sie nicht wussten, welche Einstellungen sicher sind',
+      'Um zu verhindern, dass geknackte Nachrichten für längere Zeit lesbar sind',
+      'Das war Vorschrift ohne besonderen Grund',
     ],
     correctIndex: 2,
     explanation:
-      'Die ENIGMA M3 hatte etwa 159.000.000.000.000.000.000 (159 Trilliarden) mögliche Einstellungen! Das kommt durch die Kombination von: 3 Rotoren aus 5 (60 Möglichkeiten), 26³ Rotorstellungen (17.576), 26³ Ringstellungen (17.576) und Steckerbrett (≈ 150 Billionen).',
+      'Durch tägliches Ändern der Einstellungen (Tageschlüssel) wurde sichergestellt, dass selbst wenn ein Tageschlüssel geknackt wurde, nur die Nachrichten dieses einen Tages gelesen werden konnten. Am nächsten Tag musste die Kryptoanalyse von vorne beginnen.',
   },
 ];

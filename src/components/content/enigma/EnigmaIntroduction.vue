@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import EnigmaHistory from './EnigmaHistory.vue';
 
-import enigmaImage from '@/assets/images/enigma.jpg';
+import enigmaImage from '@/assets/images/enigma_wikipedia.jpg';
 import enigmaImgageColored from '@/assets/images/enigma_colored.webp';
 import enigmaImgageCircuit from '@/assets/images/enigma_clear_circuit.jpg';
 </script>
@@ -43,7 +43,7 @@ import enigmaImgageCircuit from '@/assets/images/enigma_clear_circuit.jpg';
 
       <div class="bg-gradient-to-r from-pink-50 to-green-50 p-8 rounded-lg mb-8">
         <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          Die Maschine im Überblick
+          Die Verschlüsselungsmaschine ENIGMA im Überblick
         </h3>
         <!-- Image -->
         <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg flex flex-col">

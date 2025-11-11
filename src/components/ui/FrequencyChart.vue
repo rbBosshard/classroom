@@ -45,23 +45,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Reference line for German E frequency (if enabled) -->
-        <div
-          v-if="showReference && referencePercentage > 0"
-          class="absolute ml-12 border-t-2 border-dashed border-red-500"
-          :style="{
-            bottom: (referencePercentage / maxPercentage) * 100 * 0.85 + '%',
-            left: '3rem',
-            right: '1rem',
-          }"
-        >
-          <span
-            class="absolute -top-6 right-0 text-xs font-semibold text-red-600 bg-white px-2 py-1 rounded"
-          >
-            Erwartete Häufigkeit von "E": {{ referencePercentage.toFixed(1) }}%
-          </span>
-        </div>
       </div>
 
       <!-- Legend & Statistics -->
