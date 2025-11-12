@@ -203,20 +203,17 @@ export function useKasiskiTest() {
 
   const kasiskiRepeats = computed(() => {
     const text = crackCiphertext.value.toUpperCase().replace(/[^A-Z]/g, '');
-    if (text.length < 6) return [];
+    if (text.length < 3) return []; // Mindestens 3 Buchstaben für ein Trigramm
 
     const sequences = new Map<string, number[]>();
-    const minLen = 3;
-    const maxLen = Math.min(10, Math.floor(text.length / 3)); // Längere Sequenzen erlauben
 
-    // 🧩 Schritt 1: alle Sequenzen aller Längen sammeln
-    for (let len = minLen; len <= maxLen; len++) {
-      for (let i = 0; i <= text.length - len; i++) {
-        const seq = text.substring(i, i + len);
-        const arr = sequences.get(seq);
-        if (arr) arr.push(i);
-        else sequences.set(seq, [i]);
+    // Alle Trigramme sammeln
+    for (let i = 0; i <= text.length - 3; i++) {
+      const trigram = text.substring(i, i + 3);
+      if (!sequences.has(trigram)) {
+        sequences.set(trigram, []);
       }
+      sequences.get(trigram)!.push(i);
     }
 
     const results: Array<{
@@ -224,23 +221,23 @@ export function useKasiskiTest() {
       positions: number[];
       spacings: number[];
       factors: number[];
-      score: number; // Neu: Score für bessere Sortierung
+      score: number;
     }> = [];
 
-    // 🧩 Schritt 2: nur Sequenzen mit mehrfachen Vorkommen behalten
+    // Nur Trigramme mit mindestens 2 Vorkommen
     for (const [sequence, positions] of sequences.entries()) {
       if (positions.length < 2) continue;
 
-      // Alle Distanzen zwischen konsekutiven Vorkommen (nicht alle Paare!)
+      // Abstände zwischen aufeinanderfolgenden Vorkommen berechnen
       const spacings: number[] = [];
       for (let i = 0; i < positions.length - 1; i++) {
         spacings.push(positions[i + 1] - positions[i]);
       }
 
-      // Faktoren berechnen (2–30, da längere Schlüssel möglich sind)
+      // Faktoren der Abstände berechnen
       const factorSet = new Set<number>();
       for (const spacing of spacings) {
-        for (let f = 2; f <= 30; f++) {
+        for (let f = 2; f <= text.length; f++) {
           if (spacing % f === 0) {
             factorSet.add(f);
           }
@@ -248,47 +245,16 @@ export function useKasiskiTest() {
       }
       const factors = Array.from(factorSet).sort((a, b) => a - b);
 
-      // Score berechnen: längere Sequenzen mit mehr Wiederholungen sind wichtiger
-      const score = sequence.length * positions.length * 10 + (positions.length > 2 ? 50 : 0); // Bonus für 3+ Wiederholungen
+      // Score: mehr Vorkommen = höherer Score
+      const score = positions.length * 100;
 
       results.push({ sequence, positions, spacings, factors, score });
     }
 
-    // 🧩 Schritt 3: Nach Score sortieren (bessere Priorisierung)
-    results.sort((a, b) => {
-      // Primär nach Score
-      if (b.score !== a.score) return b.score - a.score;
-      // Sekundär nach Länge
-      if (b.sequence.length !== a.sequence.length) return b.sequence.length - a.sequence.length;
-      // Tertiär nach Anzahl Wiederholungen
-      return b.positions.length - a.positions.length;
-    });
+    // Alphabetisch sortieren
+    results.sort((a, b) => a.sequence.localeCompare(b.sequence));
 
-    // 🧩 Schritt 4: Überlappende und eingeschlossene Sequenzen filtern
-    const uniqueResults: typeof results = [];
-    for (const res of results) {
-      let isContained = false;
-
-      // Prüfen ob diese Sequenz in einer bereits hinzugefügten enthalten ist
-      for (const existing of uniqueResults) {
-        if (
-          existing.sequence.includes(res.sequence) &&
-          res.positions.every(pos =>
-            existing.positions.some(ePos => pos >= ePos && pos < ePos + existing.sequence.length)
-          )
-        ) {
-          isContained = true;
-          break;
-        }
-      }
-
-      if (!isContained) {
-        uniqueResults.push(res);
-      }
-    }
-
-    // Limit auf die besten 20 Ergebnisse
-    return uniqueResults.slice(0, 20);
+    return results;
   });
 
   // Helper: GCD (Greatest Common Divisor) berechnen
@@ -428,6 +394,9 @@ export function useKasiskiTest() {
 
     frequencyResults.value = results;
     crackedKey.value = results.map(r => r.keyLetter).join('');
+
+    // Automatically test the key
+    applyCrackedKey();
   }
 
   function applyCrackedKey() {

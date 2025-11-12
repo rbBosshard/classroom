@@ -4,31 +4,6 @@
       📚 Einführung & Tabula Recta
     </h3>
 
-    <!-- Recap: Monoalphabetic Encryption Problem -->
-    <div class="bg-grey-100 border-l-4 border-grey-400 p-4 sm:p-5 rounded-r">
-      <h4 class="text-lg font-bold text-red-800 mb-3 flex items-center gap-2">
-        <span>Rückblick: Das Problem der monoalphabetischen Verschlüsselung</span>
-      </h4>
-      <p class="text-gray-700 mb-3">
-        Bei allen monoalphabetischen Verfahren (und damit auch der Ceasar-Verschlüsselung) wird
-        jeder Buchstabe
-        <em>immer gleich</em> verschlüsselt:
-      </p>
-      <p>
-        <strong>Schwachstellen:</strong>
-      </p>
-      <div class="space-y-2 text-sm text-gray-700">
-        <p
-          v-for="(problem, index) in VIGENERE_TABULA_RECTA.monoalphabeticProblems"
-          :key="'problem-' + index"
-          class="flex items-start gap-2"
-        >
-          <span class="text-red-500 font-bold">{{ problem.icon }}</span>
-          <span v-html="problem.text"></span>
-        </p>
-      </div>
-    </div>
-
     <!-- Transition: The Solution -->
     <div
       class="bg-gradient-to-r from-yellow-50 to-green-50 border-2 border-green-400 p-4 sm:p-5 rounded-lg"
@@ -57,9 +32,14 @@
       </div>
     </div>
 
+    <!-- Section 2: Caesar vs. Vigenère Comparison -->
+    <VigenereComparison />
+
     <!-- Tabula Recta -->
     <div>
-      <h4 class="text-xl font-bold text-gray-800 mb-3 pt-4">📊 Die Tabula Recta (Vigenère-Quadrat)</h4>
+      <h4 class="text-xl font-bold text-gray-800 mb-3 pt-4">
+        📊 Die Tabula Recta (Vigenère-Quadrat)
+      </h4>
       <p class="text-gray-600 mb-4">
         Dies ist das Werkzeug für die Vigenère-Verschlüsselung. Jede Zeile ist eine
         Caesar-Verschiebung:
@@ -67,28 +47,53 @@
 
       <div class="overflow-x-auto">
         <div class="inline-block min-w-full">
+          <!-- Labels -->
+          <div class="flex items-end mb-1 gap-1">
+            <div class="text-xs font-bold text-gray-700 whitespace-nowrap pb-0.5">
+              Schlüssel (Zeilen) →
+            </div>
+            <div class="flex-1 text-center">
+              <span class="text-xs font-bold text-gray-700">Klartext (Spalten) ↓</span>
+            </div>
+          </div>
+
           <div class="flex text-xs sm:text-sm font-mono">
             <!-- Header row -->
             <div class="flex flex-col">
+              <!-- Top-left corner cell -->
               <div
-                class="w-8 h-8 flex items-center justify-center font-bold bg-blue-200 border border-gray-300"
+                class="w-8 h-8 flex items-center justify-center font-bold bg-gray-200 border border-gray-300"
               ></div>
+              <!-- Row headers (Schlüssel) with highlighting -->
               <div
-                v-for="letter in alphabet"
+                v-for="(letter, index) in alphabet"
                 :key="'row-header-' + letter"
-                class="w-8 h-8 flex items-center justify-center font-bold bg-blue-100 border border-gray-300"
+                :class="[
+                  'w-8 h-8 flex items-center justify-center font-bold border border-gray-300 transition-all cursor-pointer',
+                  selectedRow === index
+                    ? 'bg-purple-400 text-white scale-110 z-20'
+                    : 'bg-purple-100 hover:bg-purple-200',
+                ]"
+                @click="handleRowHeaderClick(index)"
               >
                 {{ letter }}
               </div>
             </div>
 
-            <!-- Column headers -->
+            <!-- Column headers and grid -->
             <div class="flex-1 overflow-x-auto">
+              <!-- Column headers (Klartext) with highlighting -->
               <div class="flex">
                 <div
-                  v-for="letter in alphabet"
+                  v-for="(letter, index) in alphabet"
                   :key="'col-header-' + letter"
-                  class="w-8 h-8 flex items-center justify-center font-bold bg-blue-200 border border-gray-300"
+                  :class="[
+                    'w-8 h-8 flex items-center justify-center font-bold border border-gray-300 transition-all cursor-pointer',
+                    selectedCol === index
+                      ? 'bg-blue-400 text-white scale-110 z-20'
+                      : 'bg-blue-200 hover:bg-blue-300',
+                  ]"
+                  @click="handleColHeaderClick(index)"
                 >
                   {{ letter }}
                 </div>
@@ -100,11 +105,10 @@
                   v-for="(_, colIndex) in alphabet"
                   :key="'cell-' + rowIndex + '-' + colIndex"
                   :class="[
-                    'w-8 h-8 flex items-center justify-center border border-gray-300 transition-colors',
-                    isHighlightedCell(rowIndex, colIndex)
-                      ? 'bg-orange-300 font-bold scale-110 z-10'
-                      : 'bg-white hover:bg-gray-300',
+                    'w-8 h-8 flex items-center justify-center border border-gray-300 transition-all cursor-pointer',
+                    getCellClass(rowIndex, colIndex),
                   ]"
+                  @click="handleCellClick(rowIndex, colIndex)"
                 >
                   {{ getVigenereChar(rowIndex, colIndex) }}
                 </div>
@@ -121,7 +125,7 @@
             <span class="font-semibold">Klartext-Buchstabe:</span>
             <select
               v-model="examplePlainChar"
-              class="border border-gray-300 rounded px-3 py-1 bg-white"
+              class="border-2 border-blue-400 rounded px-3 py-1 bg-blue-50 font-semibold text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
             >
               <option v-for="letter in alphabet" :key="'plain-' + letter" :value="letter">
                 {{ letter }}
@@ -132,7 +136,7 @@
             <span class="font-semibold">Schlüssel-Buchstabe:</span>
             <select
               v-model="exampleKeyChar"
-              class="border border-gray-300 rounded px-3 py-1 bg-white"
+              class="border-2 border-purple-400 rounded px-3 py-1 bg-purple-50 font-semibold text-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-300"
             >
               <option v-for="letter in alphabet" :key="'key-' + letter" :value="letter">
                 {{ letter }}
@@ -159,7 +163,7 @@
     <!-- Interactive Encryption Challenge -->
     <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
       <h4 class="font-bold text-gray-800 mb-3">
-        🎯 Aufgabe 1: Verschlüssle mit Schlüsselwort "OLE"
+        🎯 Aufgabe 1: Verschlüssle "FUSSBALL" mit dem Schlüsselwort "OLE"
       </h4>
 
       <p class="text-gray-700 mb-4 text-sm">
@@ -254,7 +258,7 @@
 
       <div class="mt-4 flex gap-2">
         <button
-          class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-semibold"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
           @click="checkEncryption"
         >
           ✓ Überprüfen
@@ -272,7 +276,7 @@
     <!-- Interactive Decryption Challenge -->
     <div class="bg-pink-50 border border-pink-200 rounded-lg p-4">
       <h4 class="font-bold text-gray-800 mb-3">
-        🔓 Aufgabe 2: Entschlüssle mit Schlüsselwort "OLE"
+        🔓 Aufgabe 2: Entschlüssle den Geheimtext "SIWTZC" mit dem Schlüsselwort "TOR"
       </h4>
 
       <p class="text-gray-700 mb-4 text-sm">
@@ -359,7 +363,7 @@
             nach dem Geheimtext-Buchstaben. Der Klartext steht in der obersten Zeile darüber!
           </p>
           <p class="text-xs text-gray-600 mt-2">
-            Beispiel: N (Geheimtext) mit Schlüssel O → Suche N in Zeile O, schaue nach oben → Z
+            Beispiel: S (Geheimtext) mit Schlüssel T → Suche S in Zeile T, schaue nach oben → Z
           </p>
         </div>
       </div>
@@ -384,15 +388,29 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useVigenereCipher } from '@/composables/useVigenereCipher';
 import { VIGENERE_ALPHABET, VIGENERE_TABULA_RECTA } from '@/constants/vigenere';
+import VigenereComparison from './VigenereComparison.vue';
 
 const { encryptChar, getVigenereChar } = useVigenereCipher();
 const alphabet = VIGENERE_ALPHABET;
 
 const examplePlainChar = ref('F');
 const exampleKeyChar = ref('O');
+
+// Tabula Recta click state
+const selectedRow = ref<number | null>(alphabet.indexOf('O'));
+const selectedCol = ref<number | null>(alphabet.indexOf('F'));
+
+// Watch for changes in dropdowns to update table selection
+watch(examplePlainChar, newVal => {
+  selectedCol.value = alphabet.indexOf(newVal);
+});
+
+watch(exampleKeyChar, newVal => {
+  selectedRow.value = alphabet.indexOf(newVal);
+});
 
 // Encryption challenge state
 const encryptionChallenge = {
@@ -414,8 +432,8 @@ const allCorrect = computed(() => {
 
 // Decryption challenge state
 const decryptionChallenge = {
-  ciphertext: ['N', 'F', 'J', 'O', 'W', 'P'],
-  key: ['O', 'L', 'E', 'O', 'L', 'E'],
+  ciphertext: ['S', 'I', 'W', 'T', 'Z', 'C'],
+  key: ['T', 'O', 'R', 'T', 'O', 'R'],
   correctPlaintext: ['Z', 'U', 'F', 'A', 'L', 'L'],
 };
 
@@ -434,6 +452,55 @@ function isHighlightedCell(row: number, col: number): boolean {
   const plainIndex = alphabet.indexOf(examplePlainChar.value);
   const keyIndex = alphabet.indexOf(exampleKeyChar.value);
   return row === keyIndex && col === plainIndex;
+}
+
+// Tabula Recta click handlers
+function handleCellClick(rowIndex: number, colIndex: number): void {
+  selectedRow.value = rowIndex;
+  selectedCol.value = colIndex;
+  // Sync with interactive example
+  exampleKeyChar.value = alphabet[rowIndex];
+  examplePlainChar.value = alphabet[colIndex];
+}
+
+function handleRowHeaderClick(rowIndex: number): void {
+  if (selectedRow.value === rowIndex) {
+    // Toggle off if clicking the same row
+    selectedRow.value = null;
+  } else {
+    selectedRow.value = rowIndex;
+    // Sync with interactive example
+    exampleKeyChar.value = alphabet[rowIndex];
+  }
+}
+
+function handleColHeaderClick(colIndex: number): void {
+  if (selectedCol.value === colIndex) {
+    // Toggle off if clicking the same column
+    selectedCol.value = null;
+  } else {
+    selectedCol.value = colIndex;
+    // Sync with interactive example
+    examplePlainChar.value = alphabet[colIndex];
+  }
+}
+
+function getCellClass(rowIndex: number, colIndex: number): string {
+  const isSelected = selectedRow.value === rowIndex && selectedCol.value === colIndex;
+  const isInSelectedRow = selectedRow.value === rowIndex && selectedCol.value !== null;
+  const isInSelectedCol = selectedCol.value === colIndex && selectedRow.value !== null;
+  const isHighlighted = isHighlightedCell(rowIndex, colIndex);
+
+  if (isSelected) {
+    return 'bg-orange-400 text-white font-bold scale-110 z-30 shadow-lg';
+  }
+  if (isInSelectedRow || isInSelectedCol) {
+    return 'bg-orange-200 font-semibold z-20';
+  }
+  if (isHighlighted) {
+    return 'bg-orange-300 font-bold scale-110 z-10';
+  }
+  return 'bg-white hover:bg-gray-200';
 }
 
 // Encryption challenge functions

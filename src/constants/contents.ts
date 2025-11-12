@@ -27,6 +27,7 @@ export const CONTENT_COMPONENTS: Record<string, () => Promise<Component>> = {
   Vigenere: () => import('../components/content/Vigenere.vue'),
   Skytale: () => import('../components/content/Skytale.vue'),
   Enigma: () => import('../components/content/Enigma.vue'),
+  OneTimePad: () => import('../components/content/OneTimePad.vue'),
 
   // Theorie-Komponenten
   SubstitutionTheory: () => import('../components/content/SubstitutionTheory.vue'),

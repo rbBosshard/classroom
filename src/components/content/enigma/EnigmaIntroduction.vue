@@ -173,7 +173,7 @@ import enigmaImgageCircuit from '@/assets/images/enigma_clear_circuit.jpg';
         </h3>
         <p class="text-gray-700 mb-4">
           Die Wehrmacht-ENIGMA (M3) hatte etwa <strong>159.000.000.000.000.000.000</strong>
-          (159 Trilliarden) mögliche Einstellungen:
+          (159 Trilliarden) mögliche Einstellungen (so viele Schlüssel):
         </p>
         <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
           <li>
@@ -185,7 +185,7 @@ import enigmaImgageCircuit from '@/assets/images/enigma_clear_circuit.jpg';
             <code class="bg-yellow-100 px-2 py-1 rounded">17.576 Möglichkeiten</code>
           </li>
           <li>
-            Ringstellungen:
+            Ringstellungen (schauen wir nicht an):
             <code class="bg-yellow-100 px-2 py-1 rounded">17.576 Möglichkeiten</code>
           </li>
           <li>

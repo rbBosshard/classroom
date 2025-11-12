@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { findTopicById, findParentTopicId, buildBreadcrumbs } from '../curriculum-helpers';
+import { findTopicById, findParentTopicId } from '../curriculum-helpers';
 import type { Topic } from '@/types/curriculum';
 
 // Mock curriculum for testing

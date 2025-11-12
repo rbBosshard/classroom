@@ -19,7 +19,7 @@
     </div>
 
     <div class="bg-blue-100 p-4 rounded-lg mt-4">
-      <h4 class="font-semibold text-blue-900 mb-2">🔐 Sicherheit</h4>
+      <h4 class="font-semibold text-blue-900 mb-2">Sicherheit</h4>
       <p class="text-sm text-gray-800">
         Die Caesar-Verschlüsselung ist heute <strong>nicht mehr sicher</strong>, weil es nur 
         26 mögliche Schlüssel gibt. Ein Computer kann alle in Sekundenbruchteilen durchprobieren 

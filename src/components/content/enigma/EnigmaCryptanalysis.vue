@@ -77,12 +77,32 @@
             </p>
             <div class="space-y-2 text-sm">
               <div class="bg-indigo-50 p-2 rounded font-mono">
-                <div class="text-gray-600">Geheimtext: QJKLD...</div>
-                <div class="text-indigo-600">Vermutung: WETTER</div>
+                <div class="text-gray-600">Geheimtext: ...GSTZZUGARLVYQGMYWMLU...</div>
+                <div class="text-indigo-600">Vermutung: WETTERVORHERSAGE</div>
               </div>
               <p class="text-gray-600">
-                Mit dieser Information konnte die Bombe prüfen: "Wenn Q = W, kann dann J = E sein
-                (ohne dass ein Buchstabe auf sich selbst verschlüsselt wird)?"
+                Mit dieser Information konnte die Bombe prüfen: "Wenn G = W, dann muss S = E und T =
+                T sein. Aber das ist unmöglich! Denk dran, dass Selbst-Verschlüsselung nie möglich
+                ist mit ENIGMA! Darum kann diese Position z. B. ausgeschlossen werden."
+              </p>
+            </div>
+            <div>
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="font-bold text-gray-800 mb-4">🔗 ENIGMA Crib Beispiel</h3>
+                <a
+                  href="https://www.101computing.net/enigma-crib/"
+                  class="text-blue-600 hover:underline"
+                  target="_blank"
+                  >Crib Annahme im Klartext: "WETTERVORHERSAGE"</a
+                >
+              </div>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-lg mt-4">
+              <p class="text-sm text-gray-700">
+                <strong>💡 Fazit:</strong> Allein diese Eigenschaft eliminierte die meisten
+                möglichen Positionen. Kombiniert mit anderen Techniken wurde der Suchraum schnell
+                handhabbar!
               </p>
             </div>
           </div>
@@ -105,63 +125,6 @@
             Eine einzelne Bombe konnte etwa 20 Minuten brauchen, um eine Nachricht zu knacken.
             Bletchley Park hatte am Ende des Krieges über 200 Bomben im Einsatz!
           </p>
-        </div>
-      </div>
-
-      <!-- Human Errors -->
-      <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-500">
-        <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span>🤦</span>
-          Menschliche Fehler
-        </h3>
-        <p class="text-gray-700 mb-4">
-          Die grössten Schwachstellen waren oft die <strong>Operatoren</strong> selbst:
-        </p>
-
-        <div class="grid md:grid-cols-3 gap-6">
-          <div
-            v-for="(error, index) in humanErrors"
-            :key="index"
-            class="bg-white p-4 rounded-lg shadow"
-          >
-            <div class="text-3xl mb-2">{{ error.icon }}</div>
-            <h4 class="font-semibold text-gray-800 mb-2">{{ error.title }}</h4>
-            <p class="text-sm text-gray-600">{{ error.description }}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive Demo -->
-      <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-purple-300">
-        <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span>🎯</span>
-          Keine Selbst-Verschlüsselung wegen dem Reflektor
-        </h3>
-
-        <div class="space-y-4">
-          <div class="bg-purple-50 p-4 rounded-lg">
-            <p class="text-gray-700 mb-3">
-              Diese Eigenschaft war eine der grössten Schwächen. Wenn du wusstest, dass ein Wort im
-              Klartext vorkommt, konntest du viele Positionen ausschliessen!
-            </p>
-
-            <div class="bg-white p-6 rounded-lg shadow-md">
-              <h3 class="text-xl font-bold text-gray-800 mb-4">🔗 ENIGMA Crib Beispiel</h3>
-              <a
-                href="https://www.101computing.net/enigma-crib/"
-                class="text-blue-600 hover:underline"
-                target="_blank"
-                >Crib Annahme im Klartext: "WETTERVORHERSAGE"</a
-              >
-            </div>
-          </div>
-
-          <div class="bg-green-50 p-4 rounded-lg">
-            <p class="text-sm text-gray-700">
-              <strong>💡 Fazit:</strong> Allein diese Eigenschaft eliminierte die meisten möglichen
-              Positionen. Kombiniert mit anderen Techniken wurde der Suchraum schnell handhabbar!
-            </p>
-          </div>
         </div>
       </div>
 
@@ -210,22 +173,22 @@ import enigmaBombe from '@/assets/images/TuringBombeBletchleyPark.jpg';
 
 const weaknesses = [
   {
-    icon: '🚫',
-    title: 'Keine Selbst-Verschlüsselung',
-    borderColor: 'border-red-500',
-    description:
-      'Ein Buchstabe wurde NIEMALS auf sich selbst verschlüsselt. Wenn du "A" drückst, kann niemals "A" aufleuchten.',
-    example:
-      'Wenn du "WETTER" im Klartext vermutest und im Geheimtext ein "W" siehst, kann das NICHT die Position sein!',
-  },
-  {
-    icon: '🔄',
+    icon: '🔮',
     title: 'Vorhersagbare Nachrichtenanfänge',
     borderColor: 'border-orange-500',
     description:
       'Viele deutsche Nachrichten begannen mit vorhersagbaren Wörtern, sogennante Cribs (z.B. "WETTERBERICHT", "HEILHITLER" oder ein in standardisierter Gruss).',
     example:
       'Wetterberichte wurden täglich um dieselbe Zeit gesendet und begannen meist mit "WETTER". Das waren ideale "Cribs" (vermutete Klartexte).',
+  },
+  {
+    icon: '🚫',
+    title: 'Keine Selbst-Verschlüsselung wegen dem Reflektor',
+    borderColor: 'border-red-500',
+    description:
+      'Ein Buchstabe wurde NIEMALS auf sich selbst verschlüsselt. Wenn du "W" drückst, kann niemals "W" aufleuchten. Diese Eigenschaft war eine der grössten Schwächen.',
+    example:
+      'Wenn du "WETTER" im Klartext vermutest und im Geheimtext ein "W" siehst, kann das NICHT die Position sein!',
   },
   {
     icon: '📅',
@@ -235,26 +198,6 @@ const weaknesses = [
       'Die Einstellungen wurden täglich gewechselt, aber der ganze Tag nutzte dieselbe Konfiguration.',
     example:
       'Sobald ein Schlüssel geknackt war, konnten ALLE Nachrichten des Tages entschlüsselt werden!',
-  },
-];
-
-const humanErrors = [
-  {
-    icon: '💤',
-    title: 'Faule Operatoren',
-    description:
-      'Manche Operatoren wählten einfache Rotorstellungen wie "AAA" oder "ABC", statt zufällige.',
-  },
-  {
-    icon: '😴',
-    title: 'Wiederholte Muster',
-    description:
-      'Operatoren verwendeten manchmal dieselben Steckerbrett-Verbindungen mehrere Tage hintereinander.',
-  },
-  {
-    icon: '📝',
-    title: 'Vorhersagbare Inhalte',
-    description: 'Wetterberichte, Positions-Meldungen und Statusberichte folgten festen Formaten.',
   },
 ];
 </script>

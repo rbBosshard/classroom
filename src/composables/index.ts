@@ -9,6 +9,7 @@ export { useCaesarChallenge } from './useCaesarChallenge';
 export { useSkytaleCipher } from './useSkytaleCipher';
 export { useVigenereCipher, useKasiskiTest } from './useVigenereCipher';
 export { useEnigmaCipher } from './useEnigmaCipher';
+export { useOneTimePad } from './useOneTimePad';
 export { useErrorHandling } from './useErrorHandling';
 export { useFrequencyAnalysis } from './useFrequencyAnalysis';
 

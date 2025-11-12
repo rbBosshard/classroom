@@ -36,8 +36,27 @@
 
         <div class="bg-white rounded-lg p-3 space-y-2">
           <div class="font-mono text-center">
+            <!-- Klartext in boxes -->
             <div class="text-sm text-gray-600 mb-1">Klartext:</div>
-            <div class="text-xl font-bold text-blue-600 mb-2">{{ comparisonText }}</div>
+            <div class="flex justify-center gap-1 mb-1">
+              <span
+                v-for="(char, index) in comparisonText.split('')"
+                :key="'caesar-plain-' + index"
+                class="w-8 h-8 flex items-center justify-center bg-blue-100 border-2 border-blue-300 text-blue-800 rounded font-bold text-sm"
+              >
+                {{ char }}
+              </span>
+            </div>
+            <!-- Klartext Index -->
+            <div class="flex justify-center gap-1 mb-2">
+              <span
+                v-for="(char, index) in comparisonText.split('')"
+                :key="'caesar-plain-idx-' + index"
+                class="w-8 h-8 flex items-center justify-center bg-blue-50 border border-blue-200 text-blue-600 rounded font-mono text-xs"
+              >
+                {{ alphabet.indexOf(char) }}
+              </span>
+            </div>
 
             <!-- Key visualization - showing the key letter repeated -->
             <div class="text-sm text-gray-600 mb-1">Schlüssel wiederholt:</div>
@@ -45,27 +64,47 @@
               <span
                 v-for="(_, index) in comparisonText.split('')"
                 :key="'caesar-key-' + index"
-                class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded font-bold text-sm"
+                class="w-8 h-8 flex items-center justify-center bg-yellow-200 text-yellow-800 rounded font-bold text-sm"
               >
                 {{ alphabet[comparisonCaesarShift % 26] }}
               </span>
             </div>
 
             <!-- Offset boxes -->
-            <div class="text-sm text-gray-600 mb-1">Offset:</div>
             <div class="flex justify-center gap-1 mb-2">
               <span
                 v-for="(_, index) in comparisonText.split('')"
                 :key="'caesar-offset-' + index"
-                class="bg-yellow-100 border border-yellow-300 text-yellow-800 px-2 py-1 rounded font-mono text-xs font-semibold"
+                class="w-8 h-8 flex items-center justify-center bg-yellow-100 border border-yellow-300 text-yellow-800 rounded font-mono text-xs font-semibold"
               >
                 {{ comparisonCaesarShift }}
               </span>
             </div>
 
+            <!-- Geheimtext in boxes -->
             <div class="text-sm text-gray-600 mb-1">Geheimtext:</div>
-            <div class="text-xl font-bold text-orange-600">
-              {{ caesarEncrypt(comparisonText, comparisonCaesarShift) }}
+            <div class="flex justify-center gap-1 mb-1">
+              <span
+                v-for="(char, index) in caesarEncrypt(comparisonText, comparisonCaesarShift).split(
+                  ''
+                )"
+                :key="'caesar-cipher-' + index"
+                class="w-8 h-8 flex items-center justify-center bg-orange-200 border-2 border-orange-400 text-orange-800 rounded font-bold text-sm"
+              >
+                {{ char }}
+              </span>
+            </div>
+            <!-- Geheimtext Index -->
+            <div class="flex justify-center gap-1 mb-2">
+              <span
+                v-for="(char, index) in caesarEncrypt(comparisonText, comparisonCaesarShift).split(
+                  ''
+                )"
+                :key="'caesar-cipher-idx-' + index"
+                class="w-8 h-8 flex items-center justify-center bg-orange-50 border border-orange-200 text-orange-600 rounded font-mono text-xs"
+              >
+                {{ alphabet.indexOf(char) }}
+              </span>
             </div>
           </div>
 
@@ -100,8 +139,27 @@
 
         <div class="bg-white rounded-lg p-3 space-y-2">
           <div class="font-mono text-center">
+            <!-- Klartext in boxes -->
             <div class="text-sm text-gray-600 mb-1">Klartext:</div>
-            <div class="text-xl font-bold text-blue-600 mb-2">{{ comparisonText }}</div>
+            <div class="flex justify-center gap-1 mb-1">
+              <span
+                v-for="(char, index) in comparisonText.split('')"
+                :key="'vigenere-plain-' + index"
+                class="w-8 h-8 flex items-center justify-center bg-blue-100 border-2 border-blue-300 text-blue-800 rounded font-bold text-sm"
+              >
+                {{ char }}
+              </span>
+            </div>
+            <!-- Klartext Index -->
+            <div class="flex justify-center gap-1 mb-2">
+              <span
+                v-for="(char, index) in comparisonText.split('')"
+                :key="'vigenere-plain-idx-' + index"
+                class="w-8 h-8 flex items-center justify-center bg-blue-50 border border-blue-200 text-blue-600 rounded font-mono text-xs"
+              >
+                {{ alphabet.indexOf(char) }}
+              </span>
+            </div>
 
             <!-- Key visualization with colors based on letter -->
             <div class="text-sm text-gray-600 mb-1">Schlüssel wiederholt:</div>
@@ -109,14 +167,14 @@
               <span
                 v-for="(_, index) in comparisonText.split('')"
                 :key="'vigenere-key-' + index"
-                :class="
+                :class="[
+                  'w-8 h-8 flex items-center justify-center rounded font-bold text-sm',
                   comparisonVigenereKey.length > 0
                     ? getColorClassByLetter(
                         comparisonVigenereKey[index % comparisonVigenereKey.length]
                       )
-                    : 'bg-gray-200 text-gray-800'
-                "
-                class="px-2 py-1 rounded font-bold text-sm"
+                    : 'bg-gray-200 text-gray-800',
+                ]"
               >
                 {{
                   comparisonVigenereKey.length > 0
@@ -127,19 +185,18 @@
             </div>
 
             <!-- Offset boxes for Vigenère -->
-            <div class="text-sm text-gray-600 mb-1">Offset:</div>
             <div class="flex justify-center gap-1 mb-2">
               <span
                 v-for="(_, index) in comparisonText.split('')"
                 :key="'vigenere-offset-' + index"
-                :class="
+                :class="[
+                  'w-8 h-8 flex items-center justify-center border rounded font-mono text-xs font-semibold',
                   comparisonVigenereKey.length > 0
                     ? getColorClassByLetter(
                         comparisonVigenereKey[index % comparisonVigenereKey.length]
                       )
-                    : 'bg-gray-100 border-gray-300 text-gray-800'
-                "
-                class="border px-2 py-1 rounded font-mono text-xs font-semibold"
+                    : 'bg-gray-100 border-gray-300 text-gray-800',
+                ]"
               >
                 {{
                   comparisonVigenereKey.length > 0
@@ -149,13 +206,32 @@
               </span>
             </div>
 
+            <!-- Geheimtext in boxes -->
             <div class="text-sm text-gray-600 mb-1">Geheimtext:</div>
-            <div class="text-xl font-bold text-orange-600">
-              {{
-                comparisonVigenereKey.length > 0
+            <div class="flex justify-center gap-1 mb-1">
+              <span
+                v-for="(char, index) in (comparisonVigenereKey.length > 0
                   ? vigenereEncrypt(comparisonText, comparisonVigenereKey)
                   : '?????'
-              }}
+                ).split('')"
+                :key="'vigenere-cipher-' + index"
+                class="w-8 h-8 flex items-center justify-center bg-orange-200 border-2 border-orange-400 text-orange-800 rounded font-bold text-sm"
+              >
+                {{ char }}
+              </span>
+            </div>
+            <!-- Geheimtext Index -->
+            <div class="flex justify-center gap-1 mb-2">
+              <span
+                v-for="(char, index) in (comparisonVigenereKey.length > 0
+                  ? vigenereEncrypt(comparisonText, comparisonVigenereKey)
+                  : '?????'
+                ).split('')"
+                :key="'vigenere-cipher-idx-' + index"
+                class="w-8 h-8 flex items-center justify-center bg-orange-50 border border-orange-200 text-orange-600 rounded font-mono text-xs"
+              >
+                {{ char === '?' ? '?' : alphabet.indexOf(char) }}
+              </span>
             </div>
           </div>
 
@@ -169,6 +245,19 @@
     </div>
 
     <!-- Input for longer text -->
+
+    <div
+      class="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-orange-500 p-4 rounded-r"
+    >
+      <h4 class="font-bold text-gray-800 mb-2">
+        🔬 Der entscheidende Unterschied: Häufigkeitsprofile
+      </h4>
+      <p class="text-gray-700 text-sm">
+        Schauen wir uns an, wie die <strong>Buchstabenhäufigkeiten</strong> bei beiden
+        Verschlüsselungen aussehen:
+      </p>
+    </div>
+
     <div class="bg-white border-2 border-gray-300 rounded-lg p-4">
       <label class="block text-sm font-semibold text-gray-700 mb-2">
         📝 Testtext für Häufigkeitsanalyse
@@ -180,31 +269,30 @@
         class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-purple-500 bg-gray-50"
         @input="analysisText = analysisText.toUpperCase()"
       ></textarea>
-      <div class="flex gap-2 mt-2">
-        <span class="text-sm text-gray-600 self-center"> Buchstaben: {{ letterCount }} </span>
+      <div class="flex gap-4 mt-3 items-center">
+        <span class="text-sm text-gray-600"> Buchstaben: {{ letterCount }} </span>
+        <div class="flex items-center gap-2">
+          <label class="text-sm font-semibold text-gray-700">Vigenère-Schlüssel für Analyse:</label>
+          <input
+            v-model="analysisVigenereKey"
+            type="text"
+            placeholder="z.B. KRYPTO"
+            maxlength="15"
+            class="border border-purple-300 rounded px-3 py-1 font-mono font-bold bg-white text-purple-800 focus:ring-2 focus:ring-purple-300 focus:outline-none"
+            @input="analysisVigenereKey = analysisVigenereKey.toUpperCase().replace(/[^A-Z]/g, '')"
+          />
+        </div>
       </div>
     </div>
 
     <!-- Frequency Analysis Comparison -->
     <div v-if="letterCount >= 50" class="space-y-4">
-      <div
-        class="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-orange-500 p-4 rounded-r"
-      >
-        <h4 class="font-bold text-gray-800 mb-2">
-          🔬 Der entscheidende Unterschied: Häufigkeitsprofile
-        </h4>
-        <p class="text-gray-700 text-sm">
-          Schauen wir uns an, wie die <strong>Buchstabenhäufigkeiten</strong> bei beiden
-          Verschlüsselungen aussehen:
-        </p>
-      </div>
-
       <div class="grid md:grid-cols-2 gap-6">
         <!-- Caesar Frequency -->
         <div>
           <FrequencyChart
             :text="caesarEncryptedAnalysis"
-            :title="`📊 Caesar-Verschlüsselung (Shift ${comparisonCaesarShift})`"
+            :title="`Monoalphabetisch: Caesar`"
             :show-reference="true"
             :reference-percentage="17.4"
             color-scheme="blue"
@@ -216,7 +304,7 @@
         <div>
           <FrequencyChart
             :text="vigenereEncryptedAnalysis"
-            :title="`📊 Vigenère-Verschlüsselung (Key: ${comparisonVigenereKey})`"
+            :title="`Polyalphabetisch: Vigenère`"
             :show-reference="false"
             color-scheme="purple"
             explanation="<strong>✅ Vorteil:</strong> Das Profil ist viel flacher und gleichmässiger verteilt! Die polyalphabetische Verschlüsselung verteilt die Buchstaben auf mehrere Positionen, was die typischen Muster verschleiert."
@@ -228,11 +316,12 @@
         <h5 class="font-bold text-green-800 mb-2">💡 Wichtige Erkenntnis</h5>
         <ul class="list-disc list-inside space-y-1 text-gray-700 text-sm">
           <li>
-            <strong>Monoalphabetisch (z. B. Caesar):</strong> Hohe Varianz im Häufigkeitsprofil → Muster
-            bleiben sichtbar
+            <strong>Monoalphabetisch (z. B. Caesar):</strong> Hohe Varianz im Häufigkeitsprofil →
+            Muster bleiben sichtbar
           </li>
           <li>
-            <strong>Polyalphabetisch (z. B. Vigenère):</strong> Niedrige Varianz → Muster werden verwischt
+            <strong>Polyalphabetisch (z. B. Vigenère):</strong> Niedrige Varianz → Muster werden
+            verwischt
           </li>
           <li>Dies macht Vigenère deutlich resistenter gegen einfache Häufigkeitsanalysen!</li>
         </ul>
@@ -257,6 +346,7 @@ const comparisonVigenereKey = ref(VIGENERE_COMPARISON.defaultVigenereKey);
 const analysisText = ref(
   'DIEEIGENSCHAFTENDERVIGENEREVERSCHLUESSELUNGMACHENSIESTARKERGEGENHAEUFIGKEITSANALYSENWEILGLEICHEBUCHSTABENUNTERSCHIEDLICHVERSCHLUESSELTWERDENKOENNENDASISTDERGROSSEUNTERSCHIEDZCAESARWOIMMERDIESELBEVERSCHIEBUNGVERWENDETWIRDBEIVIGENEREWERDENVIELEVERSCHIEBUNGENGENUTZTUNDDADURCHWIRDDASHAEUFIGKEITSPROFILFLACHANGLEICHMAESSIGERVERTEILTWASDIEKRYPTOANALYSEDEUTLICHERSCHWERT'
 );
+const analysisVigenereKey = ref('KRYPTO');
 
 const letterCount = computed(() => {
   return analysisText.value.replace(/[^A-Z]/g, '').length;
@@ -267,6 +357,6 @@ const caesarEncryptedAnalysis = computed(() => {
 });
 
 const vigenereEncryptedAnalysis = computed(() => {
-  return vigenereEncrypt(analysisText.value, comparisonVigenereKey.value);
+  return vigenereEncrypt(analysisText.value, analysisVigenereKey.value);
 });
 </script>

@@ -7,25 +7,29 @@
     <VigenereLearningObjectives />
 
     <!-- Navigation Links -->
-    <nav class="mb-8 sticky top-0 bg-white z-20 py-4 border-b-2 border-gray-200 shadow-sm">
+    <nav class="mb-8 top-0 bg-white z-20 py-4 border-b-2 border-gray-200 shadow-sm">
       <div class="flex flex-wrap gap-2 justify-center">
-        <a v-for="(section, index) in sections" :key="section.id" :href="'#' + section.id"
-          @click="updateProgress(index)" :class="[
+        <a
+          v-for="(section, index) in sections"
+          :key="section.id"
+          :href="'#' + section.id"
+          :class="[
             'px-4 py-2 font-semibold transition-colors rounded-lg',
             index <= currentSectionIndex
               ? 'bg-purple-100 text-purple-700 hover:bg-purple-600 hover:text-white'
-              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-          ]">
+              : 'bg-gray-100 text-gray-500 hover:bg-gray-200',
+          ]"
+          @click="updateProgress(index)"
+        >
           {{ section.icon }} {{ section.label }}
         </a>
       </div>
     </nav>
 
+
+
     <!-- Section 1: Tabula Recta -->
     <VigenereTabulaRecta />
-
-    <!-- Section 2: Caesar vs. Vigenère Comparison -->
-    <VigenereComparison />
 
     <!-- Section 3: Encrypt & Decrypt -->
     <VigenereEncryptDecrypt />
@@ -43,7 +47,6 @@ import { ref } from 'vue';
 import VigenereHeader from './vigenere/VigenereHeader.vue';
 import VigenereLearningObjectives from './vigenere/VigenereLearningObjectives.vue';
 import VigenereTabulaRecta from './vigenere/VigenereTabulaRecta.vue';
-import VigenereComparison from './vigenere/VigenereComparison.vue';
 import VigenereEncryptDecrypt from './vigenere/VigenereEncryptDecrypt.vue';
 import VigenereKasiski from './vigenere/VigenereKasiski.vue';
 import VigenereQuiz from './vigenere/VigenereQuiz.vue';

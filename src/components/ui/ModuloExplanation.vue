@@ -20,7 +20,7 @@
                     <div class="bg-white p-4 rounded-lg border border-blue-200">
                         <h4 class="font-semibold text-blue-800 mb-2">Was ist Modulo?</h4>
                         <p class="mb-3">
-                            Die <strong>Modulo-Operation</strong> (geschrieben als <code>mod</code>) gibt den Rest einer
+                            Die <strong>Modulo-Operation</strong> (geschrieben als <code>%</code> oder <code>mod</code>) gibt den Rest einer
                             Division zurück. In der Kryptographie verwenden wir <strong>mod 26</strong>, weil das
                             lateinische Alphabet 26 Buchstaben hat.
                         </p>

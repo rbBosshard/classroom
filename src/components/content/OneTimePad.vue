@@ -1,13 +1,12 @@
 <template>
   <div class="crypto-card p-4 sm:p-6 md:p-8">
     <!-- Header -->
-    <EnigmaHeader />
+    <OneTimePadHeader />
 
     <!-- Learning Objectives -->
-    <EnigmaLearningObjectives />
+    <OneTimePadLearningObjectives />
 
     <!-- Navigation Links -->
-    <!-- sticky -->
     <nav class="mb-8 top-0 bg-white z-20 py-4 border-b-2 border-gray-200 shadow-sm">
       <div class="flex flex-wrap gap-2 justify-center">
         <a
@@ -16,7 +15,9 @@
           :href="'#' + section.id"
           :class="[
             'px-4 py-2 font-semibold transition-colors rounded-lg',
-            'bg-gray-100 text-gray-500 hover:bg-gray-200',
+            index <= currentSectionIndex
+              ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-600 hover:text-white'
+              : 'bg-gray-100 text-gray-500 hover:bg-gray-200',
           ]"
           @click="updateProgress(index)"
         >
@@ -25,39 +26,29 @@
       </div>
     </nav>
 
-    <!-- Section 1: Einführung -->
-    <EnigmaIntroduction />
-
-    <!-- Section 4: Rotoren-->
-    <EnigmaRotorPrinciple />
-
-    <!-- Section 5: Steckerbrett -->
-    <EnigmaPlugboard />
-
-    <!-- Section 6: ENIGMA-Simulator -->
-    <EnigmaSimulator />
-
-    <!-- Section 7: Kryptoanalyse -->
-    <EnigmaCryptanalysis />
-
-    <!-- Section 8: Quiz -->
-    <EnigmaQuiz />
+    <!-- Sections -->
+    <OneTimePadIntro />
+    <OneTimePadHowItWorks />
+    <OneTimePadInteractive />
+    <OneTimePadPerfectSecrecy />
+    <OneTimePadProblems />
+    <OneTimePadQuiz />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import EnigmaHeader from './enigma/EnigmaHeader.vue';
-import EnigmaLearningObjectives from './enigma/EnigmaLearningObjectives.vue';
-import EnigmaIntroduction from './enigma/EnigmaIntroduction.vue';
-import EnigmaRotorPrinciple from './enigma/EnigmaRotorPrinciple.vue';
-import EnigmaPlugboard from './enigma/EnigmaPlugboard.vue';
-import EnigmaSimulator from './enigma/EnigmaSimulator.vue';
-import EnigmaCryptanalysis from './enigma/EnigmaCryptanalysis.vue';
-import EnigmaQuiz from './enigma/EnigmaQuiz.vue';
-import { ENIGMA_SECTIONS } from '@/constants/enigma';
+import OneTimePadHeader from './onetimepad/OneTimePadHeader.vue';
+import OneTimePadLearningObjectives from './onetimepad/OneTimePadLearningObjectives.vue';
+import OneTimePadIntro from './onetimepad/OneTimePadIntro.vue';
+import OneTimePadHowItWorks from './onetimepad/OneTimePadHowItWorks.vue';
+import OneTimePadInteractive from './onetimepad/OneTimePadInteractive.vue';
+import OneTimePadPerfectSecrecy from './onetimepad/OneTimePadPerfectSecrecy.vue';
+import OneTimePadProblems from './onetimepad/OneTimePadProblems.vue';
+import OneTimePadQuiz from './onetimepad/OneTimePadQuiz.vue';
+import { OTP_SECTIONS } from '@/constants/onetimepad';
 
-const sections = ENIGMA_SECTIONS;
+const sections = OTP_SECTIONS;
 const currentSectionIndex = ref(0);
 
 function updateProgress(index: number) {

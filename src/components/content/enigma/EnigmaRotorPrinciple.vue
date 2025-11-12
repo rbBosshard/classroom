@@ -42,8 +42,8 @@ import enigmaImgageColored from '@/assets/images/enigma_rotor.svg';
                 Rotation
               </h4>
               <p class="text-gray-700">
-                Nach jedem Buchstaben dreht sich der rechte Rotor um eine Position. Dies ändert die
-                Verschlüsselung für den nächsten Buchstaben!
+                Nach jedem Buchstaben dreht sich mindestens ein Rotor um eine Position. Dies ändert
+                die Verschlüsselung für den nächsten Buchstaben!
               </p>
             </div>
           </div>
@@ -97,7 +97,9 @@ import enigmaImgageColored from '@/assets/images/enigma_rotor.svg';
         </div>
 
         <div class="bg-gray-50 p-4 rounded-lg">
-          <h4 class="font-semibold text-gray-800 mb-3">🔢 Beispiel-Sequenz (einfache Verdrahtung):</h4>
+          <h4 class="font-semibold text-gray-800 mb-3">
+            🔢 Beispiel-Sequenz (einfache Verdrahtung):
+          </h4>
           <div class="font-mono text-sm space-y-1 overflow-x-auto">
             <div class="grid grid-cols-4 gap-2 font-bold mb-2 text-gray-600">
               <span>Buchstabenposition</span>
@@ -150,7 +152,6 @@ import enigmaImgageColored from '@/assets/images/enigma_rotor.svg';
           </div>
         </div>
       </div>
-
 
       <!-- The Reflector -->
       <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-500">

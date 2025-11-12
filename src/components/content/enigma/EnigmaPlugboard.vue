@@ -28,7 +28,6 @@
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-blue-50 p-6 rounded-lg">
           <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span>📏</span>
             Regeln
           </h3>
           <ul class="space-y-2 text-gray-700">
@@ -53,7 +52,6 @@
 
         <div class="bg-yellow-50 p-6 rounded-lg">
           <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span>🔐</span>
             Sicherheitseffekt
           </h3>
           <div class="space-y-3 text-gray-700">
@@ -73,7 +71,6 @@
       <!-- Historical Usage -->
       <div class="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-lg">
         <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span>📅</span>
           Historische Nutzung
         </h3>
         <div class="grid md:grid-cols-2 gap-6">

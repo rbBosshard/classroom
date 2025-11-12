@@ -19,7 +19,6 @@
     <!-- Was ist das? -->
     <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-6">
       <h2 class="text-2xl font-bold text-primary-900 mb-4 flex items-center">
-        <span class="text-3xl mr-3">🔐</span>
         Was ist zufällige monoalphabetische Substitution?
       </h2>
       <div class="prose prose-lg max-w-none">

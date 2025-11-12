@@ -47,7 +47,7 @@ export const curriculumTree_BURGDORF_29F_GYM1: Topic = {
                         {
                           id: 'caesar',
                           title: 'Caesar-Verschlüsselung',
-                          icon: '⚔️',
+                          icon: '➡️',
                           description: 'Lerne Caesar-Verschlüsselung mit einer drehbaren Scheibe',
                           level: 6,
                           content: 'Caesar',
@@ -73,7 +73,7 @@ export const curriculumTree_BURGDORF_29F_GYM1: Topic = {
                         {
                           id: 'vigenere',
                           title: 'Vigenère-Verschlüsselung',
-                          icon: '🔐',
+                          icon: '🗝️',
                           description:
                             'Lerne die berühmte polyalphabetische Verschlüsselung - und wie man sie knackt!',
                           level: 6,
@@ -88,6 +88,15 @@ export const curriculumTree_BURGDORF_29F_GYM1: Topic = {
                           level: 6,
                           content: 'Enigma',
                         },
+                        // {
+                        //   id: 'onetimepad',
+                        //   title: 'One-Time-Pad',
+                        //   icon: '🛡️',
+                        //   description:
+                        //     'Die einzige mathematisch beweisbar unknackbare Verschlüsselung - perfekte Sicherheit mit einem Preis',
+                        //   level: 6,
+                        //   content: 'OneTimePad',
+                        // },
                       ],
                     },
                   ],
@@ -103,11 +112,10 @@ export const curriculumTree_BURGDORF_29F_GYM1: Topic = {
                     {
                       id: 'skytale',
                       title: 'Skytale',
-                      icon: '📜',
+                      icon: '📏',
                       description: 'Die antike spartanische Transpositionsverschlüsselung',
                       level: 5,
                       content: 'Skytale',
-                      materials: [gym1Materials.skytaleAssignment],
                     },
                   ],
                 },

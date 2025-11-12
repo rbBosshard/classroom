@@ -95,7 +95,7 @@
       <!-- Verschlüsselter Text (nur sichtbar wenn korrekt) -->
       <div v-if="isCorrect" class="bg-green-50 p-4 rounded-lg border-2 border-green-300">
         <p class="text-sm font-medium text-gray-700 mb-2">
-          🔐 Geheimtext (spaltenweise gelesen):
+          Geheimtext (spaltenweise gelesen):
         </p>
         <div class="font-mono text-lg font-bold text-green-900 break-all">
           {{ correctCiphertext }}

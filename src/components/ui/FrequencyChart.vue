@@ -191,10 +191,10 @@ function getProfileClass(): string {
 
 function getProfileDescription(): string {
   if (variance.value > 8) {
-    return '📈 Stark ausgeprägt (monoalphabetisch)';
+    return 'Stark ausgeprägt (monoalphabetisch)';
   } else if (variance.value < 2) {
-    return '📊 Flach (polyalphabetisch)';
+    return 'Flach (polyalphabetisch)';
   }
-  return '📉 Mittel';
+  return 'Mittel';
 }
 </script>

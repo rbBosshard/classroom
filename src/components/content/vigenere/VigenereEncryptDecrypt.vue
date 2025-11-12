@@ -1,7 +1,7 @@
 <template>
   <section id="encrypt-decrypt" class="space-y-6 mb-12 scroll-mt-32">
     <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-purple-500 pb-2">
-      🔐 Ver- & Entschlüsseln mit Vigenère 
+      Ver- & Entschlüsseln mit Vigenère 
     </h3>
 
     <div class="grid md:grid-cols-2 gap-6">
@@ -60,7 +60,7 @@
         <!-- Encrypted Output -->
         <div v-if="encryptKey.length > 0 && encryptPlaintext.length > 0">
           <label class="block text-sm font-semibold text-gray-700 mb-2">
-            🔐 Geheimtext
+            Geheimtext
           </label>
           <div class="relative bg-orange-50 border-2 border-orange-400 rounded-lg px-4 py-3">
             <p class="text-lg font-mono font-bold text-orange-700 pr-10 break-all">
@@ -138,7 +138,7 @@
         <!-- Ciphertext Input -->
         <div>
           <label class="block text-sm font-semibold text-gray-700 mb-2">
-            🔐 Geheimtext
+            Geheimtext
           </label>
           <div class="relative">
             <textarea v-model="decryptCiphertext" @input="decryptCiphertext = decryptCiphertext.toUpperCase()"

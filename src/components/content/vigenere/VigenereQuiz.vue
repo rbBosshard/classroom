@@ -1,7 +1,7 @@
 <template>
   <section id="quiz" class="space-y-6 mb-12 scroll-mt-32">
     <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-purple-500 pb-2">
-      ✍️ Überprüfe dein Wissen
+      ✍️ Quiz: Überprüfe dein Wissen
     </h3>
 
     <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r">

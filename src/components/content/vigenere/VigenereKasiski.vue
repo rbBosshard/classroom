@@ -1,7 +1,7 @@
 <template>
   <section id="kasiski" class="space-y-6 mb-12 scroll-mt-32">
     <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-purple-500 pb-2">
-      🔬 Kasiski-Test (Krypto-Analyse)
+      🔬 Krypto-Analyse
     </h3>
 
     <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r">
@@ -16,27 +16,105 @@
     <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
       <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
         <span>⚠️</span>
-        Das Problem mit Vigenère
+        Beobachtungen & Analyse
       </h3>
       <p class="text-gray-700 mb-4">
-        Stell dir vor, du verwendest das Schlüsselwort
-        <code class="bg-red-100 px-2 py-1 rounded font-mono">GEHEIM</code> (6 Buchstaben):
+        In längeren Texten gibt es Wiederholungen von Buchstabenfolgen.
       </p>
-      <div class="bg-white p-4 rounded font-mono text-sm overflow-x-auto mb-4">
-        <div class="text-purple-600">Klartext: ANGRIFFUMZEHNUHRBEIBERLINNORDBAHNHOF</div>
-        <div class="text-blue-600">Schlüssel: GEHEIMGEHEIMGEHEIMGEHEIMGEHEIMGEHEIMG</div>
-        <div class="text-red-600">Geheimtext: GVVZQNKKAKEVTBKZLMQBMZPQQVZEXZFIAHYXL</div>
+      <div class="bg-white p-4 rounded overflow-x-auto mb-4">
+        <!-- Position -->
+        <div class="mb-3">
+          <div class="text-gray-700 font-bold text-xs mb-1">Position:</div>
+          <div class="flex gap-0.5 font-mono text-xs">
+            <span
+              v-for="(char, index) in examplePlaintext"
+              :key="'pos-' + index"
+              :class="[
+                'text-gray-700 border border-gray-300 px-1 py-1 text-center w-[1.5rem] flex-shrink-0',
+                getKeyPositionClass(index, 'gray'),
+              ]"
+              >{{ index }}</span
+            >
+          </div>
+        </div>
+        <!-- Klartext -->
+        <div class="mb-3">
+          <div class="text-purple-700 font-bold text-xs mb-1">Klartext:</div>
+          <div class="flex gap-0.5 font-mono text-xs">
+            <span
+              v-for="(char, index) in examplePlaintext"
+              :key="'plain-' + index"
+              :class="[
+                'text-purple-800 border border-purple-300 px-1.5 py-1 text-center min-w-[1.5rem] flex-shrink-0',
+                getKeyPositionClass(index, 'purple'),
+              ]"
+              >{{ char }}</span
+            >
+          </div>
+        </div>
+        <!-- Schlüssel -->
+        <div class="mb-3">
+          <div class="text-blue-700 font-bold text-xs mb-1">Schlüssel:</div>
+          <div class="flex gap-0.5 font-mono text-xs">
+            <span
+              v-for="(char, index) in examplePlaintext"
+              :key="'key-' + index"
+              :class="[
+                'text-blue-800 border border-blue-300 px-1.5 py-1 text-center min-w-[1.5rem] flex-shrink-0',
+                getKeyPositionClass(index, 'blue'),
+              ]"
+              >{{ exampleKey[index % exampleKey.length] }}</span
+            >
+          </div>
+        </div>
+        <!-- Geheimtext -->
+        <div>
+          <div class="text-red-700 font-bold text-xs mb-1">Geheimtext:</div>
+          <div class="flex gap-0.5 font-mono text-xs">
+            <span
+              v-for="(char, index) in exampleCiphertext"
+              :key="'cipher-' + index"
+              :class="[
+                'text-red-800 border border-red-300 px-1.5 py-1 text-center min-w-[1.5rem] flex-shrink-0',
+                getKeyPositionClass(index, 'red'),
+              ]"
+              >{{ char }}</span
+            >
+          </div>
+        </div>
       </div>
       <div class="space-y-3 text-gray-700">
-        <p>
-          🔍 <strong>Position 0, 6, 12, 18...</strong> werden alle mit demselben "G" verschlüsselt
+        <p class="flex items-start gap-2">
+          <span
+            class="inline-block ml-2 px-2 py-0.5 bg-yellow-200 border border-yellow-600 rounded text-xs font-bold"
+            >GELB</span
+          >
+          <span>
+            Wiederholungen im Klartext (z.B. Trigramm "EIN") sind im Geheimtext
+            <strong>nicht</strong> sichtbar, wenn sie an unterschiedlichen Positionen relativ zum
+            Schlüssel auftreten.
+          </span>
         </p>
-        <p>
-          🔍 <strong>Position 1, 7, 13, 19...</strong> werden alle mit demselben "E" verschlüsselt
+        <p class="flex items-start gap-2">
+          <span
+            class="inline-block ml-2 px-2 py-0.5 bg-green-200 border border-green-600 rounded text-xs font-bold"
+            >GRÜN</span
+          >
+          <span>
+            Wiederholungen im Klartext (z.B. Trigramm "ESE") sind <strong>auch</strong> im
+            Geheimtext sichtbar ("AGM"), wenn sie relativ zum Schlüssel an den gleichen Positionen
+            auftreten.
+          </span>
         </p>
-        <p>
-          💡 <strong>Lösung:</strong> Man kann den Text in 6 Spalten aufteilen und jede Spalte ist
-          eine einfache Caesar-Verschiebung!
+        <p class="flex items-start gap-2">
+          <span
+            class="inline-block ml-2 px-2 py-0.5 bg-pink-200 border border-pink-600 rounded text-xs font-bold"
+            >PINK</span
+          >
+          <span>
+            Es kann Wiederholungen im Geheimtext (z.B. Trigramm "AAG") geben, die zufällig sind und
+            an der Position im Klartext <strong>nicht</strong> vorkommen.
+          </span>
         </p>
       </div>
     </div>
@@ -53,54 +131,28 @@
         <div class="bg-white rounded-lg p-4 border-l-4 border-purple-500">
           <h5 class="font-bold text-purple-700 mb-2">1️⃣ Schritt 1: Wiederholungen finden</h5>
           <p class="text-sm">
-            Stell dir vor, im Klartext steht zweimal das Wort "DER". Wenn beide Male dieselbe Stelle
-            im Schlüsselwort verwendet wird, entsteht
-            <strong>genau die gleiche verschlüsselte Sequenz</strong>!
+            Suche im Geheimtext nach sich wiederholenden Sequenzen von mindestens
+            <strong>3 Buchstaben</strong> (Trigramme). Notiere dir die Positionen dieser
+            Wiederholungen.
           </p>
-          <div class="mt-2 bg-purple-50 p-3 rounded text-xs">
-            <p><strong>Beispiel:</strong></p>
-            <p>• Klartext: ...DER... ...DER...</p>
-            <p>• Schlüssel: ...OLE... ...OLE...</p>
-            <p>• Geheimtext: ...RPV... ...RPV...</p>
-            <p class="mt-2">→ Die verschlüsselte Sequenz "RPV" taucht zweimal im Geheimtext auf!</p>
-          </div>
         </div>
 
         <div class="bg-white rounded-lg p-4 border-l-4 border-blue-500">
           <h5 class="font-bold text-blue-700 mb-2">2️⃣ Schritt 2: Abstände messen</h5>
           <p class="text-sm">
-            Wenn "RPV" an Position 12 und 48 erscheint, ist der Abstand
-            <strong>36 Buchstaben</strong>. Dieser Abstand muss ein
+            Wenn zum Beispiel "AGM" an Position 16 und 28 erscheint, ist der Abstand
+            <strong>14 Buchstaben</strong>. Dieser Abstand sollte mit hoher Wahrscheinlichkeit ein
             <strong>Vielfaches der Schlüssellänge</strong> sein!
           </p>
-          <div class="mt-2 bg-blue-50 p-3 rounded text-xs">
-            <p>
-              <strong>Warum?</strong> Das Schlüsselwort wiederholt sich alle N Buchstaben (N =
-              Schlüssellänge).
-            </p>
-            <p class="mt-1">
-              Wenn beide "DER" mit der gleichen Schlüsselposition beginnen, liegt dazwischen eine
-              ganze Anzahl von Schlüsselwiederholungen.
-            </p>
-          </div>
         </div>
 
         <div class="bg-white rounded-lg p-4 border-l-4 border-green-500">
           <h5 class="font-bold text-green-700 mb-2">3️⃣ Schritt 3: Teiler berechnen</h5>
           <p class="text-sm">
-            Wenn der Abstand 36 ist, könnte die Schlüssellänge sein: 2, 3, 4, 6, 9, 12, 18 oder 36.
-            Wenn wir <strong>mehrere Wiederholungen</strong> finden und die Teiler vergleichen,
-            kristallisiert sich die wahrscheinlichste Schlüssellänge heraus.
+            Wenn der Abstand 16 ist, könnte die Schlüssellänge sein: 2, 4, 8 oder 16. Wenn wir bei
+            längeren Texten <strong>verschiedene Wiederholungen</strong> finden und die Teiler
+            vergleichen, kristallisiert sich die wahrscheinlichste Schlüssellänge heraus.
           </p>
-          <div class="mt-2 bg-green-50 p-3 rounded text-xs">
-            <p><strong>Beispiel:</strong></p>
-            <p>• Wiederholung 1: Abstand 36 → Teiler: 2, 3, 4, 6, 9, 12, 18, 36</p>
-            <p>• Wiederholung 2: Abstand 24 → Teiler: 2, 3, 4, 6, 8, 12, 24</p>
-            <p>• Wiederholung 3: Abstand 18 → Teiler: 2, 3, 6, 9, 18</p>
-            <p class="mt-2 font-bold text-green-700">
-              → Gemeinsame Teiler: 2, 3, 6 → Wahrscheinlich 6!
-            </p>
-          </div>
         </div>
       </div>
     </div>
@@ -123,7 +175,10 @@
       <!-- Interactive Kasiski -->
       <div class="mt-4">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <label class="text-sm font-semibold text-gray-700"> 🔍 Geheimtext analysieren </label>
+          <label class="text-sm font-semibold text-gray-700">
+            🔍 Dieser Beispiel Geheimtext wurde mit dem Vigenère-Verfahren verschlüsselt, doch der
+            verwendete Schlüssel ist nicht bekannt.
+          </label>
           <div class="flex gap-2">
             <button
               class="text-xs bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-lg font-semibold transition-colors"
@@ -133,17 +188,20 @@
             </button>
           </div>
         </div>
-        <div class="relative">
+        <div
+          class="relative bg-orange-50 border-2 border-orange-300 rounded-lg p-4 font-mono text-sm leading-relaxed min-h-[8rem]"
+        >
           <textarea
             v-model="crackCiphertext"
             placeholder="Gib einen längeren Geheimtext ein oder klicke auf Beispiel laden..."
-            rows="4"
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-sm font-mono focus:ring-2 focus:ring-purple-500 bg-orange-50 text-orange-700 font-bold"
+            rows="6"
+            class="w-full bg-transparent border-none outline-none resize-none text-orange-700 font-bold whitespace-pre-wrap break-words pr-10 p-0 m-0 leading-relaxed"
+            style="font-family: inherit; font-size: inherit; line-height: inherit"
             @input="crackCiphertext = crackCiphertext.toUpperCase().replace(/[^A-Z]/g, '')"
           ></textarea>
           <button
             v-if="crackCiphertext"
-            class="absolute right-2 top-2 p-2 hover:bg-orange-200 rounded transition-colors"
+            class="absolute right-3 top-3 p-2 hover:bg-orange-200 rounded transition-colors text-lg"
             title="Geheimtext kopieren"
             @click="copyToClipboard(crackCiphertext)"
           >
@@ -164,17 +222,12 @@
         ></div>
 
         <!-- Highlighted Ciphertext Display -->
-        <div v-if="crackCiphertext.length > 20 && kasiskiRepeats.length > 0" class="mt-4">
+        <div v-if="kasiskiRepeats.length > 0" class="mt-4">
           <div class="flex items-center justify-between mb-2">
-            <h5 class="font-bold text-gray-700">📍 Geheimtext mit markierten Wiederholungen:</h5>
+            <h5 class="font-bold text-gray-700">
+              📍 Geheimtext mit markierten Doppelungen (alle Trigramm Wiederholungen):
+            </h5>
             <div class="flex items-center gap-2">
-              <button
-                class="px-2 py-1 hover:bg-gray-200 rounded transition-colors text-sm"
-                title="Geheimtext kopieren"
-                @click="copyToClipboard(crackCiphertext)"
-              >
-                📋
-              </button>
               <button
                 :disabled="currentRepeatIndex === 0"
                 class="px-3 py-1 bg-purple-500 text-white rounded hover:bg-purple-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-sm font-semibold"
@@ -195,9 +248,9 @@
             </div>
           </div>
           <div
-            class="bg-white border-2 border-purple-300 rounded-lg p-4 font-mono text-sm leading-relaxed"
+            class="relative bg-white border-2 border-purple-300 rounded-lg p-4 font-mono text-sm leading-relaxed min-h-[8rem]"
           >
-            <div class="whitespace-pre-wrap break-words">
+            <div class="whitespace-pre-wrap break-words pr-10">
               <span
                 v-for="(char, index) in crackCiphertext"
                 :key="'char-' + index"
@@ -206,6 +259,13 @@
                 >{{ char }}</span
               >
             </div>
+            <button
+              class="absolute right-3 top-3 p-2 hover:bg-purple-200 rounded transition-colors text-lg"
+              title="Geheimtext kopieren"
+              @click="copyToClipboard(crackCiphertext)"
+            >
+              📋
+            </button>
           </div>
           <div
             v-if="currentRepeat"
@@ -224,7 +284,7 @@
                 </p>
                 <p><strong>Abstände:</strong> {{ currentRepeat.spacings.join(', ') }}</p>
                 <p>
-                  <strong>Mögliche Schlüssellängen (Annahme Schlüssellänge < 30):</strong>
+                  <strong>Mögliche Schlüssellängen: </strong>
                   <span class="font-mono font-semibold text-green-700">{{
                     currentRepeat.factors.join(', ')
                   }}</span>
@@ -234,7 +294,7 @@
           </div>
         </div>
 
-        <div v-if="crackCiphertext.length > 20" class="mt-4">
+        <div v-if="crackCiphertext.length > 3" class="mt-4">
           <h5 class="font-bold text-gray-700 mb-2">
             🔍 Alle gefundenen Wiederholungen ({{ kasiskiRepeats.length }}):
           </h5>
@@ -257,15 +317,84 @@
                 >
               </button>
             </div>
-            <div class="bg-green-50 border border-green-300 rounded-lg p-3 mt-3">
-              <p class="font-bold text-green-800 mb-2">
-                💡 Wahrscheinlichste Schlüssellänge: {{ estimatedKeyLength }}
+
+            <!-- Teiler-Tabelle -->
+            <div class="bg-white border border-gray-300 rounded-lg p-3 mt-3 overflow-x-auto">
+              <h6 class="font-bold text-gray-800 mb-2 text-sm">
+                📊 Teiler-Übersicht (der Abstände zwischen Wiederholungen):
+              </h6>
+              <table class="w-full text-xs">
+                <thead>
+                  <tr class="border-b-2 border-gray-300">
+                    <th class="text-left py-2 px-2 bg-gray-100 font-bold sticky left-0 z-10">
+                      Trigramm
+                    </th>
+                    <th
+                      v-for="divisor in allPossibleDivisors"
+                      :key="'div-' + divisor"
+                      :class="[
+                        'text-center py-2 px-1 font-bold',
+                        divisor === estimatedKeyLength ? 'bg-green-200' : 'bg-gray-50',
+                      ]"
+                    >
+                      {{ divisor }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(repeat, index) in kasiskiRepeats"
+                    :key="'row-' + index"
+                    :class="[
+                      'border-b border-gray-200 hover:bg-purple-50 cursor-pointer',
+                      currentRepeatIndex === index ? 'bg-purple-100' : '',
+                    ]"
+                    @click="currentRepeatIndex = index"
+                  >
+                    <td class="py-2 px-2 font-mono font-bold sticky left-0 bg-white z-10">
+                      {{ repeat.sequence }}
+                    </td>
+                    <td
+                      v-for="divisor in allPossibleDivisors"
+                      :key="'cell-' + index + '-' + divisor"
+                      :class="[
+                        'text-center py-2 px-1',
+                        divisor === estimatedKeyLength ? 'bg-green-50' : '',
+                      ]"
+                    >
+                      <span
+                        v-if="repeat.factors.includes(divisor)"
+                        class="text-green-600 font-bold text-base"
+                        >✓</span
+                      >
+                    </td>
+                  </tr>
+                  <!-- Sum row -->
+                  <tr class="border-t-2 border-gray-400 bg-gray-100 font-bold">
+                    <td class="py-2 px-2 sticky left-0 bg-gray-100 z-10">Summe</td>
+                    <td
+                      v-for="divisor in allPossibleDivisors"
+                      :key="'sum-' + divisor"
+                      :class="[
+                        'text-center py-2 px-1',
+                        divisor === estimatedKeyLength ? 'bg-green-200 text-green-800' : '',
+                      ]"
+                    >
+                      {{ countDivisorOccurrences(divisor) }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-xs text-gray-600 mt-2">
+                💡 Die grün markierte Spalte zeigt die wahrscheinlichste Schlüssellänge ({{
+                  estimatedKeyLength
+                }}), da sie sehr häufig als Teiler vorkommt.
               </p>
-              <p class="text-xs text-gray-700">
-                <strong>Erklärung:</strong> Diese Zahl erscheint als Teiler bei den meisten
-                Wiederholungen.<br />
-                Dies bedeutet, dass sich das Schlüsselwort wahrscheinlich alle
-                {{ estimatedKeyLength }} Buchstaben wiederholt.
+            </div>
+
+            <div class="bg-green-50 border border-green-300 rounded-lg p-3 mt-3">
+              <p class="font-bold text-green-800">
+                Wahrscheinlichste Schlüssellänge: {{ estimatedKeyLength }}
               </p>
             </div>
           </div>
@@ -310,12 +439,15 @@
           <!-- Visual hint -->
           <div class="bg-blue-50 border border-blue-300 rounded-lg p-3 text-sm text-gray-700">
             <p class="mb-2">
-              <strong>💡 Wichtig:</strong> Jede Position zeigt ein
-              <strong>typisches Caesar-Muster</strong> mit klaren Spitzen!
+              <strong>💡 Wichtig:</strong> Damit die Kryptoanalyse funktioniert, muss jede Position
+              ein <strong>typisches Caesar-Muster</strong> mit klaren Spitzen aufweisen! Dann können
+              wir einfach den häufigsten Geheimtextbuchstaben als verschlüsseltes "E" interpretieren
+              und somit die Verschiebung (Schlüssel) rekonstruieren.
             </p>
             <p>
-              Das beweist, dass Vigenère nur mehrere Caesar-Verschlüsselungen kombiniert. Wenn wir
-              die Schlüssellänge kennen, können wir jede einzelne durch Häufigkeitsanalyse knacken.
+              Am Ende ist Vigenère nur eine Kombination von mehreren Caesar-Verschlüsselungen. Wenn
+              wir die Schlüssellänge kennen, können wir jede einzelne durch Häufigkeitsanalyse
+              knacken.
             </p>
           </div>
 
@@ -349,7 +481,9 @@
                 <p class="font-mono font-bold text-purple-700 text-xl">{{ result.mostCommon }}</p>
               </div>
               <div class="bg-green-50 border border-green-200 rounded p-3">
-                <p class="text-gray-600 mb-1">Vermuteter Schlüsselbuchstabe:</p>
+                <p class="text-gray-600 mb-1">
+                  Vermuteter Schlüsselbuchstabe (durch Kasiski-Test):
+                </p>
                 <p class="font-mono font-bold text-green-700 text-xl">{{ result.keyLetter }}</p>
                 <p class="text-xs text-gray-500 mt-1">
                   (Annahme: {{ result.mostCommon }} = E verschlüsselt)
@@ -362,44 +496,31 @@
             class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-400 rounded-lg p-4"
           >
             <h5 class="font-bold text-gray-800 mb-2">🔑 Rekonstruierter Schlüssel:</h5>
-            <div class="relative bg-white rounded p-3 mb-3">
-              <p class="font-mono text-2xl font-bold text-purple-700 pr-10">
+            <div
+              class="relative bg-white rounded-lg border border-gray-300 p-4 min-h-[4rem] flex items-center"
+            >
+              <p class="font-mono text-2xl font-bold text-purple-700 pr-12 flex-1">
                 {{ crackedKey }}
               </p>
               <button
                 v-if="crackedKey"
-                class="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:bg-gray-200 rounded transition-colors"
+                class="absolute right-3 top-1/2 -translate-y-1/2 p-2 hover:bg-gray-200 rounded transition-colors text-lg"
                 title="Schlüssel kopieren"
                 @click="copyToClipboard(crackedKey)"
               >
                 📋
               </button>
             </div>
-            <button
-              class="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors"
-              @click="applyCrackedKey"
-            >
-              ✅ Schlüssel testen
-            </button>
           </div>
 
-          <div v-if="crackedPlaintext" class="bg-blue-50 border-2 border-blue-400 rounded-lg p-4">
-            <div class="flex items-center justify-between mb-2">
-              <h5 class="font-bold text-gray-800">📝 Entschlüsselter Text:</h5>
-              <button
-                class="px-2 py-1 hover:bg-blue-200 rounded transition-colors text-sm"
-                title="Klartext kopieren"
-                @click="copyToClipboard(crackedPlaintext)"
-              >
-                📋
-              </button>
-            </div>
+          <div v-if="crackedPlaintext" class="space-y-2">
+            <h5 class="font-bold text-gray-800">📝 Entschlüsselter Text:</h5>
 
             <!-- Decrypted text with highlights -->
             <div
-              class="bg-white border-2 border-blue-300 rounded-lg p-4 font-mono text-sm leading-relaxed mb-4"
+              class="relative bg-blue-50 border-2 border-blue-300 rounded-lg p-4 font-mono text-sm leading-relaxed min-h-[8rem]"
             >
-              <div class="whitespace-pre-wrap break-words">
+              <div class="whitespace-pre-wrap break-words pr-10">
                 <span
                   v-for="(char, index) in crackedPlaintext"
                   :key="'plain-' + index"
@@ -408,9 +529,16 @@
                   >{{ char }}</span
                 >
               </div>
+              <button
+                class="absolute right-3 top-3 p-2 hover:bg-blue-200 rounded transition-colors text-lg"
+                title="Klartext kopieren"
+                @click="copyToClipboard(crackedPlaintext)"
+              >
+                📋
+              </button>
             </div>
 
-            <p class="text-sm text-gray-600 mt-2">
+            <p class="text-sm text-gray-600">
               💡 Markierte Stellen zeigen, wo im Geheimtext Wiederholungen waren. Sieht das sinnvoll
               aus? Falls nicht, könnte die Schlüssellänge falsch sein oder der Text ist zu kurz für
               eine genaue Analyse.
@@ -418,20 +546,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Info Box -->
-    <div
-      class="bg-gradient-to-r from-orange-50 to-red-50 border-l-4 border-orange-500 p-4 rounded-r"
-    >
-      <h4 class="font-bold text-gray-800 mb-2">🎓 Was lernen wir daraus?</h4>
-      <ul class="list-disc list-inside space-y-1 text-gray-700 text-sm">
-        <li
-          v-for="(learning, index) in VIGENERE_KASISKI.learnings"
-          :key="'learning-' + index"
-          v-html="learning"
-        ></li>
-      </ul>
     </div>
   </section>
 </template>
@@ -450,9 +564,157 @@ const {
   kasiskiRepeats,
   estimatedKeyLength,
   analyzeFrequencies,
-  applyCrackedKey,
   loadExampleFromPublicTextFile,
 } = useKasiskiTest();
+
+// Example data for demonstration
+const exampleKey = 'WOIN';
+const examplePlaintext = 'HABEEINENKLEINENESELIMSTALLGESEHEN';
+const exampleCiphertext = 'DOJRAWVRJYTREBMAAGMYEAAGWZTTAGMUAB';
+
+// Define special highlighting patterns
+// ESE appears at positions 14-16 and 24-26 in plaintext -> AGM in ciphertext at same positions
+// EIN appears at positions 5-7 and 15-17 in plaintext -> different in ciphertext
+// AAG appears at positions 18-20 in ciphertext -> random coincidence
+
+const highlightPatterns = {
+  // Green: Plaintext repetition that IS visible in ciphertext (same key position)
+  green: {
+    plaintext: [
+      { start: 16, end: 18, text: 'ESE' }, // First ESE
+      { start: 28, end: 30, text: 'ESE' }, // Second ESE
+    ],
+    ciphertext: [
+      { start: 16, end: 18, text: 'AGM' }, // First AGM
+      { start: 28, end: 30, text: 'AGM' }, // Second AGM (this one overlaps with pink AAG)
+    ],
+  },
+  // Yellow: Plaintext repetition that is NOT visible in ciphertext (different key position)
+  yellow: {
+    plaintext: [
+      { start: 4, end: 6, text: 'EIN' }, // First EIN
+      { start: 11, end: 13, text: 'EIN' }, // Second EIN
+    ],
+    ciphertext: [],
+  },
+  // Pink: Random ciphertext repetition that doesn't exist in plaintext
+  pink: {
+    plaintext: [],
+    ciphertext: [
+      { start: 21, end: 23, text: 'AAG' }, // First AAG
+      { start: 15, end: 17, text: 'AAG' }, // Second AAG (overlaps with green AGM)
+    ],
+  },
+};
+
+// Function to get all matching patterns for a position (for overlaps)
+const getAllMatchingPatterns = (index: number, rowType: 'plaintext' | 'ciphertext'): string[] => {
+  const matches: string[] = [];
+
+  // Check green patterns
+  for (const pattern of highlightPatterns.green[rowType]) {
+    if (index >= pattern.start && index <= pattern.end) {
+      matches.push('green');
+      break;
+    }
+  }
+
+  // Check yellow patterns
+  for (const pattern of highlightPatterns.yellow[rowType]) {
+    if (index >= pattern.start && index <= pattern.end) {
+      matches.push('yellow');
+      break;
+    }
+  }
+
+  // Check pink patterns
+  for (const pattern of highlightPatterns.pink[rowType]) {
+    if (index >= pattern.start && index <= pattern.end) {
+      matches.push('pink');
+      break;
+    }
+  }
+
+  return matches;
+};
+
+// Function to get highlight class for special patterns (supports overlaps)
+const getHighlightForPattern = (
+  index: number,
+  rowType: 'plaintext' | 'ciphertext'
+): string | null => {
+  const matches = getAllMatchingPatterns(index, rowType);
+
+  if (matches.length === 0) {
+    return null;
+  }
+
+  // Handle overlapping patterns with striped backgrounds
+  if (matches.length > 1) {
+    if (matches.includes('green') && matches.includes('pink')) {
+      // Green + Pink overlap: use gradient or striped pattern
+      return 'bg-gradient-to-br from-green-200 via-green-200 to-pink-200 border-purple-600 font-bold shadow-[inset_0_-2px_0_0_rgba(236,72,153,0.5)]';
+    }
+    // Add more overlap combinations if needed
+  }
+
+  // Single pattern
+  if (matches.includes('green')) {
+    return 'bg-green-200 border-green-600 font-bold';
+  }
+  if (matches.includes('yellow')) {
+    return 'bg-yellow-200 border-yellow-600 font-bold';
+  }
+  if (matches.includes('pink')) {
+    return 'bg-pink-200 border-pink-600 font-bold';
+  }
+
+  return null;
+};
+
+// Function to get alternating background colors based on key position
+const getKeyPositionClass = (index: number, color: 'purple' | 'blue' | 'red' | 'gray'): string => {
+  // Check for special highlighting first
+  const rowType = color === 'purple' ? 'plaintext' : color === 'red' ? 'ciphertext' : null;
+  if (rowType) {
+    const highlight = getHighlightForPattern(index, rowType);
+    if (highlight) {
+      return highlight;
+    }
+  }
+
+  // Alle Positionen mit gleichem Modulo 4 haben die gleiche Helligkeit
+  const position = index % exampleKey.length;
+
+  const colorClasses = {
+    gray: [
+      'bg-gray-100', // Position 0, 4, 8, 12... (W)
+      'bg-gray-100', // Position 1, 5, 9, 13... (O)
+      'bg-gray-100', // Position 2, 6, 10, 14... (I)
+      'bg-gray-100', // Position 3, 7, 11, 15... (N)
+    ],
+    purple: [
+      'bg-purple-100', // Position 0, 4, 8, 12... (W)
+      'bg-purple-100', // Position 1, 5, 9, 13... (O)
+      'bg-purple-100', // Position 2, 6, 10, 14... (I)
+      'bg-purple-100', // Position 3, 7, 11, 15... (N)
+    ],
+    blue: [
+      'bg-blue-100', // Position 0, 4, 8, 12... (W)
+      'bg-blue-100', // Position 1, 5, 9, 13... (O)
+      'bg-blue-100', // Position 2, 6, 10, 14... (I)
+      'bg-blue-100', // Position 3, 7, 11, 15... (N)
+    ],
+    red: [
+      'bg-red-100', // Position 0, 4, 8, 12... (W)
+      'bg-red-100', // Position 1, 5, 9, 13... (O)
+      'bg-red-100', // Position 2, 6, 10, 14... (I)
+      'bg-red-100', // Position 3, 7, 11, 15... (N)
+    ],
+  };
+
+  return colorClasses[color][position];
+};
 
 // Load example on component mount
 onMounted(() => {
@@ -471,6 +733,20 @@ const currentRepeat = computed(() => {
   const validIndex = Math.min(currentRepeatIndex.value, kasiskiRepeats.value.length - 1);
   return kasiskiRepeats.value[validIndex];
 });
+
+// Get all unique divisors from all repeats (sorted)
+const allPossibleDivisors = computed(() => {
+  const divisorsSet = new Set<number>();
+  kasiskiRepeats.value.forEach(repeat => {
+    repeat.factors.forEach(factor => divisorsSet.add(factor));
+  });
+  return Array.from(divisorsSet).sort((a, b) => a - b);
+});
+
+// Count how many times a divisor appears across all repeats
+const countDivisorOccurrences = (divisor: number): number => {
+  return kasiskiRepeats.value.filter(repeat => repeat.factors.includes(divisor)).length;
+};
 
 // Text length hint message
 const textLengthHint = computed(() => {

@@ -387,7 +387,7 @@ N I S</pre>
             <div v-if="tobleroneIsCorrect" class="bg-green-100 border-2 border-green-500 p-4 rounded-lg">
               <p class="text-green-800 font-bold text-lg flex items-center gap-2">
                 <span class="text-2xl">✅</span>
-                Perfekt! Du hast das Skytale-Spalten-Transpositionsgitter richtig ausgefüllt!
+                Sehr gut! Du hast das Skytale-Spalten-Transpositionsgitter richtig ausgefüllt!
               </p>
             </div>
             <div v-else class="bg-red-100 border-2 border-red-400 p-4 rounded-lg">

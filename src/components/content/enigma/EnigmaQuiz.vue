@@ -2,7 +2,7 @@
   <section id="quiz" class="mb-16 scroll-mt-24">
     <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
       <span class="text-4xl">✅</span>
-      Wissenstest: ENIGMA
+      Quiz: ENIGMA
     </h2>
 
     <div class="space-y-6">
