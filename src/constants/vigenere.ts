@@ -86,7 +86,7 @@ export const VIGENERE_COMPARISON = {
   defaultCaesarShift: 3,
   defaultVigenereKey: 'TOR',
   caesarProblem:
-    '<strong>Monoalphabetische Tatsache:</strong> Gleiche Buchstaben werden immer mit der <em>glich</em> verschlüsselt.',
+    '<strong>Monoalphabetische Tatsache:</strong> Gleiche Buchstaben werden immer <em>gleich</em> verschlüsselt.',
   vigenereAdvantage:
     '<strong>Polyalphabetische Tatsache:</strong> Gleiche Buchstaben werden <em>unterschiedlich</em> verschlüsselt!',
 };
@@ -137,7 +137,6 @@ export const VIGENERE_KASISKI = {
         '✅ <strong>Gut!</strong> Textlänge: {length} Buchstaben. Das ist ausreichend für eine zuverlässige Kryptoanalyse. Bei dieser Länge sollten wir aussagekräftige Muster erkennen können.',
     },
   },
-  
 };
 
 // ============================================
