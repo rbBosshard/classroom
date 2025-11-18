@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "🚀 Vue: Chrome (Launch)",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*",
+        "webpack:///./*": "${webRoot}/*"
+      },
+      "runtimeArgs": [
+        "--auto-open-devtools-for-tabs"
+      ]
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "🌐 Vue: Chrome (Simple)",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

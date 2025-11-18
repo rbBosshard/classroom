@@ -1,0 +1,9 @@
+# Ignore build output
+/dist
+/build
+
+# Ignore local configuration files
+.idea/
+
+# Ignore dependency directories
+/node_modules
