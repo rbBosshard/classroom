@@ -63,4 +63,12 @@ export const MODERN_CRYPTO_SOURCES: Source[] = [
     url: 'https://de.wikipedia.org/wiki/Advanced_Encryption_Standard',
     description: 'Umfassender Artikel zum AES-Standard',
   },
+  {
+    id: 'one-time-pad-used-twice',
+    title: 'Warum darf ein One-Time-Pad Schlüssel nicht zweimal verwendet werden?',
+    type: 'image',
+    url: 'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*tJIwnuj8k6MVB6X7FmVDiQ.png',
+    description:
+      'Erklärung, warum die Wiederverwendung eines One-Time-Pad Schlüssels die Sicherheit gefährdet',
+  },
 ];
