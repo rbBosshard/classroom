@@ -1,11 +1,12 @@
 <template>
   <section class="mb-8">
     <h3 class="text-xl font-bold text-gray-800 mb-4 mt-10">
-      🔒 Moderne Block Ciphers (Blockverschlüsselung): AES
+      🔒🧱 Moderne Block Ciphers (Blockverschlüsselung): AES
     </h3>
 
     <p class="pb-4">
-      Auftrag: Lese die Theorie zur Blockverschlüsselung und beantworte am Schluss die Fragen.
+      <strong>Auftrag:</strong> Lese die Theorie zur Blockverschlüsselung und beantworte am Schluss
+      die Fragen.
     </p>
 
     <div class="bg-indigo-50 border-l-4 border-indigo-400 p-4 mb-6 rounded-r">
