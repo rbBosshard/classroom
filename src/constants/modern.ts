@@ -67,7 +67,7 @@ export const MODERN_CRYPTO_SOURCES: Source[] = [
     id: 'one-time-pad-used-twice',
     title: 'Warum darf ein One-Time-Pad Schlüssel nicht zweimal verwendet werden?',
     type: 'image',
-    url: 'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*tJIwnuj8k6MVB6X7FmVDiQ.png',
+    url: 'https://crypto.stackexchange.com/questions/59/taking-advantage-of-one-time-pad-key-reuse',
     description:
       'Erklärung, warum die Wiederverwendung eines One-Time-Pad Schlüssels die Sicherheit gefährdet',
   },

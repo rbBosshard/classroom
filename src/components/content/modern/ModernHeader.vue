@@ -1,7 +1,7 @@
 <template>
   <header class="mb-6 sm:mb-8">
     <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-3 sm:mb-4">
-      🔐 Moderne Verschlüsselung
+      🚀 Moderne Verschlüsselung
     </h2>
 
     <div
@@ -9,8 +9,8 @@
     >
       <p class="text-gray-800 text-lg pb-2">
         Im Gegensatz zu historischen Methoden (z. B. Skytale, Caesar, Vigenère oder Enigma) arbeiten
-        moderne Verschlüsselungsverfahren nicht mehr mit einzelnen Buchstaben, sondern direkt mit
-        <strong>Bits</strong>.
+        <strong>moderne Verschlüsselungsverfahren</strong> nicht mehr mit einzelnen Buchstaben,
+        sondern direkt mit <strong>Bits</strong>.
       </p>
       <p>
         Da sich sämtliche digitale Informationen in Bits codieren lassen, können moderne Verfahren
@@ -198,32 +198,51 @@
 
         <p class="text-gray-700 mb-4">
           Um Bits miteinander zu <strong>verknüpfen</strong> und zu verschlüsseln, verwenden moderne
-          Verfahren die <strong>XOR-Operation</strong> (ausgesprochen "Ex-Or", Symbol: ⊕). XOR steht
-          für "Exclusive OR" und ist eine mathematisch logische Operation, die zwei Bits miteinander
-          vergleicht:
+          Verfahren die <strong>XOR-Operation</strong> (Symbol: ⊕). XOR steht für "Exclusive OR" und
+          ist eine mathematisch logische Operation, die zwei Bits miteinander vergleicht:
         </p>
 
         <div class="bg-white rounded-lg p-4 mb-4 border-2 border-orange-300">
           <h5 class="font-bold text-gray-800 mb-3">XOR-Wahrheitstabelle:</h5>
-          <div class="grid grid-cols-3 gap-2 max-w-xs mx-auto">
-            <div class="font-bold text-center bg-gray-100 p-2 rounded">Bit A</div>
-            <div class="font-bold text-center bg-gray-100 p-2 rounded">Bit B</div>
-            <div class="font-bold text-center bg-orange-100 p-2 rounded">A ⊕ B</div>
+          <div class="max-w-md mx-auto">
+            <!-- Header Row -->
+            <div class="flex items-center gap-3 mb-3">
+              <div class="flex-1 font-bold text-center bg-gray-100 p-2 rounded">Bit A</div>
+              <div class="flex-1 font-bold text-center bg-gray-100 p-2 rounded">Bit B</div>
+              <div class="text-2xl text-gray-400 px-2">→</div>
+              <div class="flex-1 font-bold text-center bg-orange-100 p-2 rounded">A ⊕ B</div>
+            </div>
 
-            <div class="text-center p-2 border rounded">0</div>
-            <div class="text-center p-2 border rounded">0</div>
-            <div class="text-center p-2 border rounded font-bold">0</div>
+            <!-- Data Rows with arrows -->
+            <div class="space-y-2">
+              <div class="flex items-center gap-3">
+                <div class="flex-1 text-center p-2 border rounded bg-white">0</div>
+                <div class="flex-1 text-center p-2 border rounded bg-white">0</div>
+                <div class="text-2xl text-orange-400 px-2">→</div>
+                <div class="flex-1 text-center p-2 border rounded bg-orange-50 font-bold">0</div>
+              </div>
 
-            <div class="text-center p-2 border rounded">0</div>
-            <div class="text-center p-2 border rounded">1</div>
-            <div class="text-center p-2 border rounded font-bold">1</div>
+              <div class="flex items-center gap-3">
+                <div class="flex-1 text-center p-2 border rounded bg-white">0</div>
+                <div class="flex-1 text-center p-2 border rounded bg-white">1</div>
+                <div class="text-2xl text-orange-400 px-2">→</div>
+                <div class="flex-1 text-center p-2 border rounded bg-orange-50 font-bold">1</div>
+              </div>
 
-            <div class="text-center p-2 border rounded">1</div>
-            <div class="text-center p-2 border rounded">0</div>
-            <div class="text-center p-2 border rounded font-bold">1</div>
-            <div class="text-center p-2 border rounded">1</div>
-            <div class="text-center p-2 border rounded">1</div>
-            <div class="text-center p-2 border rounded font-bold">0</div>
+              <div class="flex items-center gap-3">
+                <div class="flex-1 text-center p-2 border rounded bg-white">1</div>
+                <div class="flex-1 text-center p-2 border rounded bg-white">0</div>
+                <div class="text-2xl text-orange-400 px-2">→</div>
+                <div class="flex-1 text-center p-2 border rounded bg-orange-50 font-bold">1</div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="flex-1 text-center p-2 border rounded bg-white">1</div>
+                <div class="flex-1 text-center p-2 border rounded bg-white">1</div>
+                <div class="text-2xl text-orange-400 px-2">→</div>
+                <div class="flex-1 text-center p-2 border rounded bg-orange-50 font-bold">0</div>
+              </div>
+            </div>
           </div>
         </div>
 

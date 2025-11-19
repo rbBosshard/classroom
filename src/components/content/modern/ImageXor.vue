@@ -291,9 +291,18 @@
       </div>
 
       <p class="text-gray-700 mt-4">
-        💡 Durch die Analyse des XOR-Ergebnisses können Angreifer Muster erkennen und beide
-        Nachrichten entschlüsseln! Deshalb ist es entscheidend, dass ein One-Time-Pad-Schlüssel nur
-        einmal verwendet wird.
+        💡 Unter diesem
+        <a
+          href="https://www.douglas.stebila.ca/teaching/visual-one-time-pad/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-600 hover:text-blue-800 underline font-medium"
+        >
+          Link
+        </a>
+        kannst du selbst ein interaktives Beispiel ausprobieren, das zeigt, was passiert, wenn
+        derselbe OTP-Schlüssel fälschlicherweise für zwei verschiedene Nachrichten verwendet wird –
+        und wie ein Angreifer daraus Informationen gewinnen kann!
       </p>
     </div>
 
