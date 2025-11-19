@@ -2,6 +2,8 @@
 // ALPHABET & SECTIONS
 // ============================================
 
+import type { Source } from '@/types/curriculum';
+
 export const VIGENERE_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 export const VIGENERE_SECTIONS = [
@@ -302,3 +304,23 @@ export const VIGENERE_QUIZ_RESULTS = {
     },
   },
 };
+
+/**
+ * Quellenangaben für Vigenère-Verschlüsselung
+ */
+export const VIGENERE_SOURCES: Source[] = [
+  {
+    id: 'vigenere-wikipedia',
+    title: 'Vigenère-Verschlüsselung',
+    type: 'wikipedia',
+    url: 'https://de.wikipedia.org/wiki/Vigen%C3%A8re-Verschl%C3%BCsselung',
+    description: 'Wikipedia',
+  },
+  {
+    id: 'kasiski-test',
+    title: 'Kasiski-Test',
+    type: 'wikipedia',
+    url: 'https://de.wikipedia.org/wiki/Kasiski-Test',
+    description: 'Wikipedia: Methode zur Kryptoanalyse der Vigenère-Verschlüsselung',
+  },
+];

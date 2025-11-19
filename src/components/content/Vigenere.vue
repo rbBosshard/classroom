@@ -26,8 +26,6 @@
       </div>
     </nav>
 
-
-
     <!-- Section 1: Tabula Recta -->
     <VigenereTabulaRecta />
 
@@ -39,6 +37,9 @@
 
     <!-- Section 5: Quiz -->
     <VigenereQuiz />
+
+    <!-- Sources -->
+    <Sources :sources="VIGENERE_SOURCES" />
   </div>
 </template>
 
@@ -51,7 +52,8 @@ import VigenereEncryptDecrypt from './vigenere/VigenereEncryptDecrypt.vue';
 import VigenereKasiski from './vigenere/VigenereKasiski.vue';
 import VigenereQuiz from './vigenere/VigenereQuiz.vue';
 import ModuloExplanation from '@/components/ui/ModuloExplanation.vue';
-import { VIGENERE_SECTIONS } from '@/constants/vigenere';
+import Sources from '@/components/ui/Sources.vue';
+import { VIGENERE_SECTIONS, VIGENERE_SOURCES } from '@/constants/vigenere';
 
 const sections = VIGENERE_SECTIONS;
 const currentSectionIndex = ref(0);

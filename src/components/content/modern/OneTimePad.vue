@@ -3,7 +3,6 @@
     <h3 class="text-xl font-bold text-gray-800 mb-4">🎲 One-Time-Pad (OTP)</h3>
 
     <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6 rounded-r">
-
       <p class="text-gray-700 mb-3">
         Das <strong>One-Time-Pad</strong> ist das einzige mathematisch beweisbar
         <strong>unknackbare</strong>
@@ -41,7 +40,7 @@
           <div class="flex items-start gap-3">
             <span class="text-2xl flex-shrink-0">📏</span>
             <div>
-              <p class="font-bold text-gray-800 mb-1">2. Schlüssel = Nachricht</p>
+              <p class="font-bold text-gray-800 mb-1">2. Schlüssellänge = Nachrichtlänge</p>
               <p class="text-gray-700">
                 Der Schlüssel muss <strong>genau so lang</strong> wie die Nachricht sein.
               </p>
@@ -135,6 +134,7 @@
                 <input
                   v-for="bitIndex in 8"
                   :key="bitIndex"
+                  :ref="el => setInputRef(el, charIndex, bitIndex - 1)"
                   v-model="decryptAscii[charIndex][bitIndex - 1]"
                   type="text"
                   maxlength="1"
@@ -148,7 +148,7 @@
             <!-- Text Verification -->
             <div v-if="isDecryptAsciiComplete" class="mt-4 pt-4 border-t border-gray-300">
               <div class="text-sm text-gray-600 mb-2">
-                Klartext (Text) Schlage die ASCII Codierung z. B.
+                (Klartext) Schlage die ASCII Codierung z. B.
                 <a
                   href="https://mint.gymburgdorf.ch/BitsAndBytes/encoding_text.html"
                   target="_blank"
@@ -164,7 +164,7 @@
                   type="text"
                   maxlength="3"
                   placeholder="???"
-                  class="px-4 py-2 text-lg font-bold border-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500 uppercase text-center"
+                  class="px-4 py-2 text-lg font-bold border-2 rounded focus:outline-none focus:ring-2 text-center"
                   :class="getDecryptedWordClass()"
                   @input="validateDecryptedWord"
                 />
@@ -192,7 +192,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, type ComponentPublicInstance } from 'vue';
 
 /**
  * One-Time-Pad Interactive Component
@@ -201,8 +201,24 @@ import { ref, computed } from 'vue';
 // ===== DECRYPTION EXERCISE =====
 const decryptTask = {
   plaintext: 'Bob',
-  encrypted: ['10010010', '00111110', '10011011'],
-  key: ['11010000', '01010001', '10011001'],
+  encrypted: ['10010010', '00111110', '11010110'],
+  key: ['11010000', '01010001', '10110100'],
+};
+
+// Refs for input elements
+const inputRefs = ref<(HTMLInputElement | null)[][]>([]);
+const setInputRef = (
+  el: Element | ComponentPublicInstance | null,
+  charIndex: number,
+  bitIndex: number
+) => {
+  if (!inputRefs.value[charIndex]) {
+    inputRefs.value[charIndex] = [];
+  }
+  if (!inputRefs.value[charIndex][bitIndex]) {
+    inputRefs.value[charIndex][bitIndex] = null;
+  }
+  inputRefs.value[charIndex][bitIndex] = el as HTMLInputElement | null;
 };
 
 // Calculate correct decrypted ASCII
@@ -226,6 +242,19 @@ const validateDecryptAscii = (charIndex: number, bitIndex: number) => {
   const value = decryptAscii.value[charIndex][bitIndex];
   if (value !== '' && value !== '0' && value !== '1') {
     decryptAscii.value[charIndex][bitIndex] = '';
+    return;
+  }
+
+  // Auto-focus next input if valid input was entered
+  if (value === '0' || value === '1') {
+    // Move to next bit in same character
+    if (bitIndex < 7) {
+      inputRefs.value[charIndex]?.[bitIndex + 1]?.focus();
+    }
+    // Move to first bit of next character
+    else if (charIndex < 2) {
+      inputRefs.value[charIndex + 1]?.[0]?.focus();
+    }
   }
 };
 
@@ -261,7 +290,7 @@ const isDecryptAsciiComplete = computed(() => {
 
 // Validate decrypted word
 const validateDecryptedWord = () => {
-  decryptedWord.value = decryptedWord.value.toUpperCase().replace(/[^A-Z]/g, '');
+  decryptedWord.value = decryptedWord.value.replace(/[^A-Za-z]/g, '');
 };
 
 // Get decrypted word class

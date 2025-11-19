@@ -1,13 +1,6 @@
 // Hierarchische Themenstruktur
 
-export type MaterialType =
-  | "pdf"
-  | "powerpoint"
-  | "onenote"
-  | "word"
-  | "text"
-  | "link"
-  | "video";
+export type MaterialType = 'pdf' | 'powerpoint' | 'onenote' | 'word' | 'text' | 'link' | 'video';
 
 export interface Material {
   id: string;
@@ -21,13 +14,27 @@ export interface Material {
   canEdit?: boolean; // Für OneNote-Links: Kann der Lehrer bearbeiten?
 }
 
+export type SourceType = 'book' | 'article' | 'website' | 'video' | 'wikipedia' | 'image' | 'other';
+
+export interface Source {
+  id: string;
+  title: string;
+  type: SourceType;
+  url?: string; // Optional: Link zur Quelle
+  author?: string; // Optional: Autor(en)
+  year?: string; // Optional: Erscheinungsjahr
+  description?: string; // Optional: Kurze Beschreibung
+  license?: string; // Optional: Lizenz (z.B. "CC BY-SA 4.0", "Public Domain", "Fair Use")
+  imagePath?: string; // Optional: Pfad zum Bild (für Bildquellen)
+}
+
 /**
  * Verschiedene Arten von Inhalten
  * - interactive: Vue-Komponente mit Interaktivität (Übungen, Quizzes, Spiele)
  * - text: Reiner Text-Inhalt (wird direkt im Topic angezeigt)
  * - mixed: Kombination aus Text und interaktiven Elementen
  */
-export type ContentType = "interactive" | "text" | "mixed";
+export type ContentType = 'interactive' | 'text' | 'mixed';
 
 export interface Topic {
   id: string;

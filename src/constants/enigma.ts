@@ -1,4 +1,5 @@
 import type { AvailableRotor, EnigmaSection } from '@/types/enigma';
+import type { Source } from '@/types/curriculum';
 
 /**
  * Historische ENIGMA-Rotoren (Wehrmacht M3)
@@ -211,5 +212,72 @@ export const ENIGMA_QUIZ_QUESTIONS = [
     correctIndex: 3,
     explanation:
       'Durch tägliches Ändern der Einstellungen (Tageschlüssel) wurde sichergestellt, dass selbst wenn ein Tageschlüssel geknackt wurde, nur die Nachrichten dieses einen Tages gelesen werden konnten. Am nächsten Tag musste die Kryptoanalyse von vorne beginnen.',
+  },
+];
+
+/**
+ * Quellenangaben für Enigma
+ */
+export const ENIGMA_SOURCES: Source[] = [
+  {
+    id: 'enigma-wikipedia',
+    title: 'Enigma (Maschine)',
+    type: 'wikipedia',
+    url: 'https://de.wikipedia.org/wiki/Enigma_(Maschine)',
+    description: 'Wikipedia',
+  },
+  {
+    id: 'turing-bombe',
+    title: 'Turing-Bombe',
+    type: 'wikipedia',
+    url: 'https://de.wikipedia.org/wiki/Turing-Bombe',
+    description: 'Wikipedia',
+  },
+  {
+    id: 'enigma-simulator',
+    title: 'ENIGMA Simulator',
+    type: 'website',
+    url: 'https://www.101computing.net/enigma-machine-emulator/',
+    description: 'Online-Simulator der ENIGMA-Maschine',
+  },
+  {
+    id: 'image-enigma-machine',
+    title: 'ENIGMA M3 Chiffriermaschine',
+    type: 'image',
+    description: 'Historisches Foto der ENIGMA M3 (Wehrmacht)',
+    license: 'Public Domain / Wikipedia Commons',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Enigma_%28crittografia%29_-_Museo_scienza_e_tecnologia_Milano.jpg',
+  },
+  {
+    id: 'image-enigma-colored',
+    title: 'ENIGMA Schema (farbig)',
+    type: 'image',
+    description: 'Farbiges Diagramm der ENIGMA-Komponenten',
+    license: 'Fair Use für Bildungszwecke',
+    url: 'https://hackaday.com/wp-content/uploads/2017/08/enigma.jpg?w=800',
+  },
+  {
+    id: 'image-enigma-circuit',
+    title: 'ENIGMA Stromkreis-Diagramm',
+    type: 'image',
+    description: 'Darstellung des elektrischen Signalwegs in der ENIGMA',
+    license: 'Fair Use für Bildungszwecke',
+    url: 'https://www.researchgate.net/profile/Mohammed-Ameer-Abed-Alahmed/publication/331608823/figure/fig5/AS:734291445170177@1552080131465/Enigma-Machine-Internal-Diagram-30.ppm',
+  },
+  {
+    id: 'image-enigma-rotor',
+    title: 'ENIGMA Rotor-Mechanismus',
+    type: 'image',
+    description: 'Detailansicht der Rotor-Verdrahtung',
+    license: 'Fair Use für Bildungszwecke',
+    url: 'https://enigma.virtualcolossus.co.uk/img/wheel_exploded.svg',
+  },
+  {
+    id: 'image-turing-bombe',
+    title: 'Turing-Bombe',
+    type: 'image',
+    description: 'Foto der von Alan Turing entwickelten Entschlüsselungsmaschine',
+    license: 'Public Domain / Wikipedia Commons',
+    url: 'https://i.ytimg.com/vi/8V_6Uxqj0IQ/maxresdefault.jpg',
   },
 ];

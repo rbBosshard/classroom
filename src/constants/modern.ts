@@ -1,7 +1,8 @@
-
 /**
  * Constants für moderne Verschlüsselung
  */
+
+import type { Source } from '@/types/curriculum';
 
 export const BINARY_XOR_EXAMPLES = [
   {
@@ -17,7 +18,6 @@ export const BINARY_XOR_EXAMPLES = [
     description: 'XOR wird in der Kryptographie zum Verschlüsseln verwendet',
   },
 ];
-
 
 export const OTP_FACTS = [
   'One-Time-Pad ist mathematisch beweisbar unknackbar',
@@ -42,5 +42,25 @@ export const AES_FACTS = [
   {
     title: 'Verwendung',
     description: 'HTTPS, WLAN (WPA2/WPA3), verschlüsselte Festplatten, etc.',
+  },
+];
+
+/**
+ * Quellenangaben für moderne Kryptographie
+ */
+export const MODERN_CRYPTO_SOURCES: Source[] = [
+  {
+    id: 'one-time-pad-wikipedia',
+    title: 'One-Time-Pad',
+    type: 'wikipedia',
+    url: 'https://de.wikipedia.org/wiki/One-Time-Pad',
+    description: 'Artikel über die unknackbare Verschlüsselungsmethode',
+  },
+  {
+    id: 'aes-wikipedia',
+    title: 'Advanced Encryption Standard',
+    type: 'wikipedia',
+    url: 'https://de.wikipedia.org/wiki/Advanced_Encryption_Standard',
+    description: 'Umfassender Artikel zum AES-Standard',
   },
 ];

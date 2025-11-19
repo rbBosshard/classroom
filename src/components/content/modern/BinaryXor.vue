@@ -18,7 +18,7 @@
           <div class="overflow-x-auto">
             <div class="font-mono bg-gray-50 p-4 rounded inline-block min-w-fit">
               <div class="space-y-1">
-                <!-- Input 1 -->
+                <!-- Input -->
                 <div class="flex items-center gap-2">
                   <div class="flex gap-1">
                     <span
@@ -59,6 +59,7 @@
                     <input
                       v-for="(_bit, i) in exercise.input1.length"
                       :key="`input-${i}`"
+                      :ref="el => setInputRef(el, index, i)"
                       v-model="exerciseBitAnswers[index][i]"
                       type="text"
                       maxlength="1"
@@ -108,7 +109,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, type ComponentPublicInstance } from 'vue';
 
 /**
  * Binary XOR Interactive Component
@@ -127,12 +128,35 @@ const exercises = [
 // Initialize bit answers for each exercise
 const exerciseBitAnswers = ref<string[][]>(exercises.map(ex => Array(ex.input1.length).fill('')));
 
+// Refs for input elements
+const inputRefs = ref<(HTMLInputElement | null)[][]>([]);
+const setInputRef = (
+  el: Element | ComponentPublicInstance | null,
+  exerciseIndex: number,
+  bitIndex: number
+) => {
+  if (!inputRefs.value[exerciseIndex]) {
+    inputRefs.value[exerciseIndex] = [];
+  }
+  inputRefs.value[exerciseIndex][bitIndex] = el as HTMLInputElement | null;
+};
+
 // Validate single bit input (only allow 0 or 1)
 const validateBitInput = (exerciseIndex: number, bitIndex: number) => {
   const value = exerciseBitAnswers.value[exerciseIndex][bitIndex];
   // Only allow 0, 1, or empty
   if (value !== '' && value !== '0' && value !== '1') {
     exerciseBitAnswers.value[exerciseIndex][bitIndex] = '';
+    return;
+  }
+
+  // Auto-focus next input if valid input was entered
+  if (value === '0' || value === '1') {
+    const exerciseLength = exercises[exerciseIndex].input1.length;
+    // Move to next bit if not at the end
+    if (bitIndex < exerciseLength - 1) {
+      inputRefs.value[exerciseIndex]?.[bitIndex + 1]?.focus();
+    }
   }
 };
 

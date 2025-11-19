@@ -42,6 +42,9 @@
 
     <!-- Section 8: Quiz -->
     <EnigmaQuiz />
+
+    <!-- Sources -->
+    <Sources :sources="ENIGMA_SOURCES" />
   </div>
 </template>
 
@@ -55,7 +58,8 @@ import EnigmaPlugboard from './enigma/EnigmaPlugboard.vue';
 import EnigmaSimulator from './enigma/EnigmaSimulator.vue';
 import EnigmaCryptanalysis from './enigma/EnigmaCryptanalysis.vue';
 import EnigmaQuiz from './enigma/EnigmaQuiz.vue';
-import { ENIGMA_SECTIONS } from '@/constants/enigma';
+import Sources from '@/components/ui/Sources.vue';
+import { ENIGMA_SECTIONS, ENIGMA_SOURCES } from '@/constants/enigma';
 
 const sections = ENIGMA_SECTIONS;
 const currentSectionIndex = ref(0);

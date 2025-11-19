@@ -5,6 +5,7 @@
     <OneTimePad />
     <ImageXor />
     <BlockCiphers />
+    <Sources :sources="MODERN_CRYPTO_SOURCES" />
   </div>
 </template>
 
@@ -26,4 +27,6 @@ import BinaryXor from './modern/BinaryXor.vue';
 import OneTimePad from './modern/OneTimePad.vue';
 import ImageXor from './modern/ImageXor.vue';
 import BlockCiphers from './modern/BlockCiphers.vue';
+import Sources from '@/components/ui/Sources.vue';
+import { MODERN_CRYPTO_SOURCES } from '@/constants/modern';
 </script>

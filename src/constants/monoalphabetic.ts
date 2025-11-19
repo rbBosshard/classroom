@@ -3,6 +3,8 @@
  * Includes frequency data and example texts for frequency analysis
  */
 
+import type { Source } from '@/types/curriculum';
+
 // German letter frequencies (based on typical German texts)
 export const GERMAN_FREQUENCIES = {
   E: 17.4,
@@ -133,3 +135,30 @@ export const ENGLISH_EXAMPLE = {
 } as const;
 
 export const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+/**
+ * Quellenangaben für monoalphabetische Substitution
+ */
+export const MONOALPHABETIC_SOURCES: Source[] = [
+  {
+    id: 'letter-frequency',
+    title: 'Buchstabenhäufigkeit',
+    type: 'wikipedia',
+    url: 'https://de.wikipedia.org/wiki/Buchstabenh%C3%A4ufigkeit',
+    description: 'Statistische Häufigkeitsverteilung von Buchstaben',
+  },
+  {
+    id: 'frequency-analysis-wikipedia',
+    title: 'Häufigkeitsanalyse',
+    type: 'wikipedia',
+    url: 'https://de.wikipedia.org/wiki/H%C3%A4ufigkeitsanalyse',
+    description: 'Methode zur Kryptoanalyse monoalphabetischer Verschlüsselungen',
+  },
+  {
+    id: 'substitution-cipher',
+    title: 'Monoalphabetische Substitution',
+    type: 'wikipedia',
+    url: 'https://de.wikipedia.org/wiki/Monoalphabetische_Substitution',
+    description: 'Wikipedia',
+  },
+];

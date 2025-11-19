@@ -50,7 +50,7 @@
           Blöcke aufgeteilt (je 128 Bit = 16 Bytes), und jeder Block wird einzeln mit dem gleichen
           Schlüssel verschlüsselt.
         </p>
-        <div class="bg-gray-50 rounded p-3 font-mono text-xs">
+        <div class="bg-gray-50 rounded p-3 font-mono">
           <p class="text-gray-600 mb-2">Beispiel: 48-Byte-Nachricht mit 16-Byte-Schlüssel:</p>
           <p class="text-blue-600">
             Nachricht: [Block 1: 16 Bytes] [Block 2: 16 Bytes] [Block 3: 16 Bytes]
@@ -134,7 +134,7 @@
 
         <div class="bg-green-50 rounded-lg p-4">
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-2xl">📱</span>
+            <span class="text-2xl">🛜</span>
             <h5 class="font-bold text-gray-800">WLAN</h5>
           </div>
           <p class="text-sm text-gray-600">
@@ -269,41 +269,95 @@
           </p>
         </div>
 
-        <!-- AES Online Demo, add link -->
-        <div class="bg-white p-4 rounded-lg border border-gray-200">
-          <h5 class="font-bold text-gray-800 mb-2">
-            🔗 Bonus: Weiterführende Links zur AES Verschlüsselung (Demos)
-          </h5>
-          <ul>
-            <li>
-              <p class="text-sm text-gray-600 mb-2">
-                <a
-                  href="https://jrvidal.github.io/aes-demo/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-blue-600 underline"
+        <!-- AES Online Demo Links -->
+        <div
+          class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border-2 border-blue-200 p-6 mt-6"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">🔗</span>
+            <h5 class="text-lg font-bold text-gray-800">
+              Bonus: Interaktive AES-Demos & Visualisierungen
+            </h5>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Demo 1 -->
+            <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-start gap-3">
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold"
                 >
-                  1. Schritt-für-Schritt Visualisierung:
-                </a>
-                Jedes Byte entspricht einem Feld in der Matrix und ist hexadezimal codiert: Bytes
-                0000000 - 1111111 entsprechen im Hexadezimalsystem: 00 - ff). Klicke auf der Seite
-                auf
-                <i>Random</i>, um ein Beispiel zu sehen.
-              </p>
-            </li>
-            <li>
-              <p class="text-sm text-gray-600">
-                <a
-                  href="https://www.youtube.com/watch?v=gP4PqVGudtg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-blue-600 underline"
+                  1
+                </div>
+                <div class="flex-1">
+                  <a
+                    href="https://jrvidal.github.io/aes-demo/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-blue-600 hover:text-blue-800 font-semibold text-base inline-flex items-center gap-2 mb-2"
+                  >
+                    Schritt-für-Schritt Visualisierung
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                  <p class="text-sm text-gray-600 leading-relaxed">
+                    Bemerkung: Jedes Byte entspricht einem Feld in der Matrix und ist
+                    <a
+                      href="https://de.wikipedia.org/wiki/Hexadezimalsystem"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-blue-600 hover:text-blue-800 underline font-medium"
+                    >
+                      hexadezimal
+                    </a>
+                    codiert (00-FF).
+                    <span class="font-medium text-gray-700">💡 Tipp:</span> Klicke auf
+                    <span class="bg-gray-100 px-2 py-0.5 rounded font-mono text-xs">Random</span>,
+                    um ein Beispiel zu generieren.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Demo 2 -->
+            <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-start gap-3">
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center font-bold"
                 >
-                  2. Detaillierte Erklärung der AES Verschlüsselung mit Animationen.
-                </a>
-              </p>
-            </li>
-          </ul>
+                  2
+                </div>
+                <div class="flex-1">
+                  <a
+                    href="https://www.youtube.com/watch?v=gP4PqVGudtg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-blue-600 hover:text-blue-800 font-semibold text-base inline-flex items-center gap-2 mb-2"
+                  >
+                    Video-Tutorial mit Animationen
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                  <p class="text-sm text-gray-600 leading-relaxed">
+                    Detaillierte Erklärung der AES-Verschlüsselung mit anschaulichen Animationen.
+                    Perfekt, um das Zusammenspiel der vier Operationen zu verstehen.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

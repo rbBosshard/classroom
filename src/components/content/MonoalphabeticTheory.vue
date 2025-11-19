@@ -185,6 +185,9 @@
     <!-- Interactive Frequency Analysis -->
     <FrequencyAnalysis />
 
+    <!-- Sources -->
+    <Sources :sources="MONOALPHABETIC_SOURCES" />
+
     <!-- Weiter Button -->
     <div class="flex justify-center mt-8">
       <button
@@ -201,6 +204,8 @@
 import { ref, computed } from 'vue';
 import MaterialList from '../ui/MaterialList.vue';
 import FrequencyAnalysis from './monoalphabetic/FrequencyAnalysis.vue';
+import Sources from '../ui/Sources.vue';
+import { MONOALPHABETIC_SOURCES } from '@/constants/monoalphabetic';
 import type { Topic } from '../../types/curriculum';
 
 defineProps<{
