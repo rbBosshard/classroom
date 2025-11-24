@@ -97,7 +97,7 @@ import type { Source, SourceType } from '@/types/curriculum';
 
 interface Props {
   sources: Source[];
-  defaultOpen?: boolean; // Optional: Standardmäßig eingeklappt (false) oder ausgeklappt (true)
+  defaultOpen?: boolean; // Optional: Standardmässig eingeklappt (false) oder ausgeklappt (true)
 }
 
 withDefaults(defineProps<Props>(), {

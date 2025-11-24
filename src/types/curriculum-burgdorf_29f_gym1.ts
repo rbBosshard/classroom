@@ -1,5 +1,4 @@
 import type { Topic } from './curriculum';
-import { gym1Materials } from '../constants/materials';
 
 export const curriculumTree_BURGDORF_29F_GYM1: Topic = {
   id: 'root',
@@ -120,6 +119,14 @@ export const curriculumTree_BURGDORF_29F_GYM1: Topic = {
                 },
               ],
             },
+            // {
+            //   id: 'asymmetrisch',
+            //   title: 'Asymmetrische Verschlüsselung',
+            //   icon: '🔐',
+            //   description: 'Public-Key-Kryptographie: Zwei Schlüssel statt einem',
+            //   level: 3,
+            //   content: 'AsymmetricCryptography',
+            // },
           ],
         },
       ],

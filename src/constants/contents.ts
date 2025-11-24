@@ -30,6 +30,7 @@ export const CONTENT_COMPONENTS: Record<string, () => Promise<Component>> = {
   TranspositionTheory: () => import('../components/content/TranspositionTheory.vue'),
   MonoalphabeticTheory: () => import('../components/content/MonoalphabeticTheory.vue'),
   ModernCryptography: () => import('../components/content/ModernCryptography.vue'),
+  AsymmetricCryptography: () => import('../components/content/AsymmetricCryptography.vue'),
 } as const;
 
 export type ContentName = keyof typeof CONTENT_COMPONENTS;
