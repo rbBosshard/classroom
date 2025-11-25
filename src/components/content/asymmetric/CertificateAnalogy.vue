@@ -2,8 +2,7 @@
   <!-- Analogie zu herkömmlichen Zertifikaten -->
   <div class="bg-purple-50 border-2 border-purple-300 rounded-lg p-5 mb-6">
     <h3 class="text-xl font-semibold text-purple-900 mb-3 flex items-center gap-2">
-      <span>🎓</span>
-      <span>Warm-Up: Was bedeutet "Zertifikat" eigentlich?</span>
+      <span>Warm-Up: Was bedeutet "Zertifikat" eigentlich (im herkömmlichen Sinn)?</span>
     </h3>
     <p class="text-purple-800 mb-4">
       Bevor wir zu <strong>digitalen Zertifikaten</strong> kommen, schauen wir uns an, was
@@ -12,11 +11,9 @@
     </p>
 
     <div class="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4 mb-4">
-      <p class="font-semibold text-yellow-900 mb-3">
-        📝 Aufgabe: Ordne die Zertifikate den vertrauenswürdigen Stellen zu
-      </p>
-      <p class="text-yellow-800 text-sm mb-3">
-        Welche Stelle ist für welches Zertifikat verantwortlich? Wähle die richtige Zuordnung!
+      <p class="text-yellow-900">
+        📝 Aufgabe: Ordne diese <strong>herkömmlichen Zertifikate</strong> aus dem Alltagsleben den
+        <strong>vertrauenswürdigen Stellen</strong> zu:
       </p>
     </div>
 

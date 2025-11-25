@@ -337,8 +337,8 @@
               Was passiert, wenn dein Private Key gestohlen wird?
             </summary>
             <p class="mt-2 text-green-700 text-sm">
-              💡 Katastrophe! Bei Wallet: Dein Geld ist weg. Bei E-Mail: Angreifer kann sich als
-              dich ausgeben. Bei SSH: Zugriff auf Server. → Private Keys sind heilig – niemals
+              💡 Katastrophe! Bei E-Mail: Angreifer kann sich als dich ausgeben. Bei Wallet: Dein
+              Geld ist weg. Bei SSH: Zugriff auf Server. → Private Keys sind heilig – niemals
               weitergeben oder unsicher speichern!
             </p>
           </details>

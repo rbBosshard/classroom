@@ -4,6 +4,9 @@
       <h1 class="text-4xl font-bold text-gray-900 mb-4">Asymmetrische Public-Key-Kryptographie</h1>
       <p class="text-xl text-gray-700 mb-8">Wieso brauchen wir asymmetrische Kryptographie? 🤌🏻</p>
 
+      <!-- Lernziele -->
+      <AsymmetricLearningObjectives />
+
       <!-- 1. Das Problem verstehen: Schlüsselaustausch -->
       <KeyExchangeProblem />
 
@@ -36,6 +39,7 @@
 </template>
 
 <script setup lang="ts">
+import AsymmetricLearningObjectives from './asymmetric/AsymmetricLearningObjectives.vue';
 import KeyExchangeProblem from './asymmetric/KeyExchangeProblem.vue';
 import PublicKeyConcept from './asymmetric/PublicKeyConcept.vue';
 import KeyExchangeExercise from './asymmetric/KeyExchangeExercise.vue';

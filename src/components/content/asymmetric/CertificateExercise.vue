@@ -5,7 +5,9 @@
         <div class="flex items-start gap-3">
           <div class="text-3xl">🎯</div>
           <div>
-            <h2 class="text-2xl font-bold text-yellow-900 mb-2">Deine Aufgabe:</h2>
+            <h2 class="text-2xl font-bold text-yellow-900 mb-2">
+              HTTPS-Zertifikat - Deine Aufgabe:
+            </h2>
             <p class="text-yellow-800">
               Untersuche ein echtes HTTPS-Zertifikat einer Website (z.B. https://www.ubs.com,
               https://www.postfinance.ch, https://www.srf.ch oder einer Website deiner Wahl) und
@@ -161,16 +163,6 @@
         <div class="space-y-3">
           <details class="bg-white rounded-lg p-4">
             <summary class="cursor-pointer text-green-800 font-semibold hover:text-green-600">
-              <strong>Vertrauenskette:</strong> Warum ist die Certificate Chain wichtig?
-            </summary>
-            <p class="mt-2 text-green-700 text-sm italic">
-              💡 Vertrauen durch Hierarchie – Die Chain ermöglicht es, dass die Root-CA sicher
-              offline gehalten werden kann, während Intermediate CAs die tägliche Arbeit erledigen.
-            </p>
-          </details>
-
-          <details class="bg-white rounded-lg p-4">
-            <summary class="cursor-pointer text-green-800 font-semibold hover:text-green-600">
               <strong>Ablauf:</strong> Was passiert, wenn ein Zertifikat abgelaufen ist?
             </summary>
             <p class="mt-2 text-green-700 text-sm italic">
@@ -186,8 +178,8 @@
             </summary>
             <p class="mt-2 text-green-700 text-sm italic">
               💡 Unterschiedliche Faktoren spielen eine Rolle: Kosten (Let's Encrypt ist gratis),
-              Vertrauenswürdigkeit, Geschwindigkeit der Ausstellung, zusätzliche Services und
-              regionale Präferenzen.
+              Vertrauenswürdigkeit, Geschwindigkeit der Ausstellung (automatisierter Prozess),
+              zusätzliche Services und regionale Präferenzen.
             </p>
           </details>
 

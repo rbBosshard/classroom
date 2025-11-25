@@ -27,113 +27,212 @@
       <!-- Wie funktioniert's? -->
       <div class="bg-white rounded-lg p-6 shadow-lg mb-6">
         <h3 class="text-2xl font-semibold text-purple-900 mb-4">
-          🔑 Wie funktioniert eine digitale Signatur?
+          ✍️ Wie funktioniert eine digitale Signatur?
         </h3>
 
         <div class="space-y-5">
           <!-- Schritt 1: Signieren (kompakt) -->
-          <div class="bg-purple-50 rounded-lg p-5 border-l-4 border-purple-500">
+          <div
+            class="bg-purple-50 rounded-lg p-5 border-l-4 border-purple-500 hover:shadow-md transition-shadow cursor-pointer"
+            @click="step1Expanded = !step1Expanded"
+          >
             <div class="flex items-start gap-3">
               <div class="text-2xl font-bold text-purple-700 min-w-[2rem]">1️⃣</div>
               <div class="flex-1">
-                <h4 class="text-lg font-semibold text-purple-900 mb-2">Alice signiert</h4>
+                <h4 class="text-lg font-semibold text-purple-900 mb-2 flex items-center gap-2">
+                  Alice signiert
+                  <span class="text-sm text-purple-600">{{ step1Expanded ? '▼' : '▶' }}</span>
+                </h4>
                 <p class="text-purple-800 mb-2">
                   Mit ihrem <strong>privaten Schlüssel</strong> erzeugt Alice die Signatur.
                 </p>
-                <div class="bg-white rounded-lg p-4 mt-3 shadow-sm">
-                  <div class="flex items-center gap-3 text-sm">
-                    <span class="font-mono bg-gray-100 px-3 py-2 rounded">📄 Nachricht</span>
-                    <span class="text-purple-600">+</span>
-                    <span class="font-mono bg-purple-100 px-3 py-2 rounded">Private Key</span>
-                    <span class="text-purple-600">→</span>
-                    <span class="font-mono bg-purple-200 px-3 py-2 rounded font-bold"
+                <div
+                  class="bg-white rounded-lg p-4 mt-3 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div class="flex items-center gap-3 text-sm flex-wrap">
+                    <span
+                      class="font-mono bg-gray-100 px-3 py-2 rounded hover:bg-gray-200 transition-colors"
+                      >📄 Nachricht</span
+                    >
+                    <span class="text-purple-600 font-bold">+</span>
+                    <span
+                      class="font-mono bg-purple-100 px-3 py-2 rounded hover:bg-purple-200 transition-colors"
+                      >🔐 Private Key</span
+                    >
+                    <span class="text-purple-600 font-bold">→</span>
+                    <span
+                      class="font-mono bg-purple-200 px-3 py-2 rounded font-bold hover:bg-purple-300 transition-colors"
                       >✍️ Signatur</span
                     >
                   </div>
                 </div>
-                <p class="text-purple-700 mt-2 italic">
-                  (Technisch: Hash (eindeutige Prüfsumme) der Nachricht, verschlüsselt mit privatem
-                  Schlüssel)
-                </p>
+                <div v-if="step1Expanded" class="mt-3 bg-purple-100 rounded-lg p-3 animate-fadeIn">
+                  <p class="text-purple-800 text-sm">
+                    💡 <strong>Technisch im Detail:</strong> Die Nachricht wird zuerst durch eine
+                    Hash-Funktion (z.B. SHA-256) geschickt. Der Hash ist wie ein eindeutiger
+                    "Fingerabdruck" der Nachricht. Dieser Hash wird dann mit dem privaten Schlüssel
+                    verschlüsselt – das Ergebnis ist die Signatur!
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Schritt 2: Übertragen (kompakt) -->
-          <div class="bg-purple-50 rounded-lg p-5 border-l-4 border-purple-500">
+          <div
+            class="bg-purple-50 rounded-lg p-5 border-l-4 border-purple-500 hover:shadow-md transition-shadow cursor-pointer"
+            @click="step2Expanded = !step2Expanded"
+          >
             <div class="flex items-start gap-3">
               <div class="text-2xl font-bold text-purple-700 min-w-[2rem]">2️⃣</div>
               <div class="flex-1">
-                <h4 class="text-lg font-semibold text-purple-900 mb-2">Senden</h4>
+                <h4 class="text-lg font-semibold text-purple-900 mb-2 flex items-center gap-2">
+                  Senden
+                  <span class="text-sm text-purple-600">{{ step2Expanded ? '▼' : '▶' }}</span>
+                </h4>
                 <p class="text-purple-800">
                   Alice schickt <strong>Nachricht</strong> und <strong>Signatur</strong> an Bob.
                 </p>
-                <div class="bg-white rounded-lg p-4 mt-3 shadow-sm">
-                  <div class="flex items-center justify-center gap-4 text-sm">
+                <div
+                  class="bg-white rounded-lg p-4 mt-3 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div class="flex items-center justify-center gap-4 text-sm flex-wrap">
                     <span class="font-semibold text-purple-900">👩‍💻 Alice</span>
-                    <span class="text-2xl">→</span>
+                    <span class="text-2xl animate-pulse">→</span>
                     <div class="flex flex-col gap-1">
-                      <span class="font-mono bg-gray-100 px-2 py-1 rounded text-xs"
+                      <span
+                        class="font-mono bg-gray-100 px-2 py-1 rounded text-xs hover:bg-gray-200 transition-colors"
                         >📄 Nachricht</span
                       >
-                      <span class="font-mono bg-purple-200 px-2 py-1 rounded text-xs"
+                      <span
+                        class="font-mono bg-purple-200 px-2 py-1 rounded text-xs hover:bg-purple-300 transition-colors"
                         >✍️ Signatur</span
                       >
                     </div>
-                    <span class="text-2xl">→</span>
+                    <span class="text-2xl animate-pulse">→</span>
                     <span class="font-semibold text-purple-900">🧑‍💻 Bob</span>
                   </div>
+                </div>
+                <div v-if="step2Expanded" class="mt-3 bg-purple-100 rounded-lg p-3 animate-fadeIn">
+                  <p class="text-purple-800 text-sm">
+                    🌐 <strong>Wichtig:</strong> Die Nachricht selbst ist NICHT verschlüsselt –
+                    jeder kann sie lesen! Die Signatur beweist nur, dass sie von Alice kommt und
+                    nicht verändert wurde. Für Vertraulichkeit bräuchte man zusätzlich
+                    Verschlüsselung.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Schritt 3: Verifizieren (kompakt) -->
-          <div class="bg-purple-50 rounded-lg p-5 border-l-4 border-purple-500">
+          <div
+            class="bg-purple-50 rounded-lg p-5 border-l-4 border-purple-500 hover:shadow-md transition-shadow cursor-pointer"
+            @click="step3Expanded = !step3Expanded"
+          >
             <div class="flex items-start gap-3">
               <div class="text-2xl font-bold text-purple-700 min-w-[2rem]">3️⃣</div>
               <div class="flex-1">
-                <h4 class="text-lg font-semibold text-purple-900 mb-2">Bob prüft</h4>
+                <h4 class="text-lg font-semibold text-purple-900 mb-2 flex items-center gap-2">
+                  Bob prüft
+                  <span class="text-sm text-purple-600">{{ step3Expanded ? '▼' : '▶' }}</span>
+                </h4>
                 <p class="text-purple-800 mb-2">
                   Bob prüft die Signatur mit Alice’ <strong>öffentlichem Schlüssel</strong>.
                 </p>
-                <div class="bg-white rounded-lg p-4 mt-3 shadow-sm">
-                  <div class="flex items-center gap-3 text-sm">
-                    <span class="font-mono bg-purple-200 px-3 py-2 rounded">✍️ Signatur</span>
-                    <span class="text-purple-600">+</span>
-                    <span class="font-mono bg-purple-100 px-3 py-2 rounded">🔓 Public Key</span>
-                    <span class="text-purple-600">→</span>
-                    <span class="font-mono bg-green-100 px-3 py-2 rounded font-bold"
+                <div
+                  class="bg-white rounded-lg p-4 mt-3 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div class="flex items-center gap-3 text-sm flex-wrap">
+                    <span
+                      class="font-mono bg-purple-200 px-3 py-2 rounded hover:bg-purple-300 transition-colors"
+                      >✍️ Signatur</span
+                    >
+                    <span class="text-purple-600 font-bold">+</span>
+                    <span
+                      class="font-mono bg-purple-100 px-3 py-2 rounded hover:bg-purple-200 transition-colors"
+                      >🔓 Public Key</span
+                    >
+                    <span class="text-purple-600 font-bold">→</span>
+                    <span
+                      class="font-mono bg-green-100 px-3 py-2 rounded font-bold hover:bg-green-200 transition-colors"
                       >✅ Gültig / ❌ Ungültig</span
                     >
                   </div>
+                </div>
+                <div v-if="step3Expanded" class="mt-3 bg-purple-100 rounded-lg p-3 animate-fadeIn">
+                  <p class="text-purple-800 text-sm">
+                    🔍 <strong>So funktioniert's:</strong> Bob entschlüsselt die Signatur mit Alice'
+                    öffentlichem Schlüssel und erhält den Hash. Dann berechnet er selbst den Hash
+                    der Nachricht. Stimmen beide Hashes überein → ✅ gültig! Unterscheiden sie sich
+                    → ❌ manipuliert oder falsche Absenderin!
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Ergebnis -->
-          <div class="bg-purple-100 rounded-lg p-5 border-l-4 border-purple-600">
+          <div
+            class="bg-gradient-to-r from-purple-100 to-green-100 rounded-lg p-5 border-l-4 border-purple-600 shadow-md"
+          >
             <div class="flex items-start gap-3">
               <div class="text-2xl min-w-[2rem]">✅</div>
               <div class="flex-1">
                 <h4 class="text-lg font-semibold text-purple-900 mb-2">Ergebnis</h4>
                 <p class="text-purple-800 mb-2">
-                  Wenn die Signatur gültig ist, weiss Bob mit Sicherheit:
+                  Wenn die Signatur gültig ist und der öffentliche Schlüssel zum Verifizieren der
+                  Signatur wirklich zu Alice gehört, weiss Bob:
                 </p>
-                <ul class="list-disc pl-6 space-y-1 text-purple-800">
-                  <li>
-                    <strong>Authentizität:</strong> Die Nachricht stammt wirklich von Alice (nur sie
-                    hat den privaten Schlüssel)
+                <ul class="list-none space-y-2">
+                  <li class="bg-white rounded-lg p-3 hover:shadow-md transition-shadow">
+                    <span class="text-green-600 font-bold">✓</span>
+                    <strong class="text-purple-900">Authentizität:</strong>
+                    <span class="text-purple-800">
+                      Die Nachricht stammt wirklich von Alice (nur sie hat den privaten Schlüssel)
+                    </span>
                   </li>
-                  <li>
-                    <strong>Integrität:</strong> Die Nachricht wurde nicht verändert (sonst wäre die
-                    Signatur ungültig)
+                  <li class="bg-white rounded-lg p-3 hover:shadow-md transition-shadow">
+                    <span class="text-green-600 font-bold">✓</span>
+                    <strong class="text-purple-900">Integrität:</strong>
+                    <span class="text-purple-800">
+                      Die Nachricht wurde nicht verändert (sonst wäre die Signatur ungültig)
+                    </span>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Was könnte schiefgehen? -->
+      <div class="bg-red-50 border-2 border-red-300 rounded-lg p-5 mb-6">
+        <h3 class="text-xl font-semibold text-red-900 mb-3">🤔 Was könnte schiefgehen?</h3>
+
+        <div class="space-y-3">
+          <details class="bg-white rounded-lg p-4">
+            <summary class="cursor-pointer text-red-800 font-semibold hover:text-red-600">
+              Könnte Mallory eine gefälschte Signatur erstellen?
+            </summary>
+            <p class="mt-3 text-red-700 text-sm">
+              <strong>Nein!</strong> Mallory bräuchte dazu Alice' privaten Schlüssel. Ohne den kann
+              Mallory zwar eine Signatur erstellen, aber sie würde nicht als "von Alice kommend"
+              verifiziert werden, wenn Bob sie mit Alice' öffentlichem Schlüssel prüft.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-lg p-4">
+            <summary class="cursor-pointer text-red-800 font-semibold hover:text-red-600">
+              Könnte Mallory die Nachricht ändern?
+            </summary>
+            <p class="mt-3 text-red-700 text-sm">
+              <strong>Ja, aber...</strong> Mallory könnte die Nachricht abfangen und ändern. ABER:
+              Die Signatur würde dann nicht mehr passen! Bob würde sofort merken, dass die Nachricht
+              manipuliert wurde (ungültige Verifizierung mit dem öffentlichen Schlüssel). Die
+              Signatur funktioniert nur mit der originalen Nachricht.
+            </p>
+          </details>
         </div>
       </div>
 
@@ -379,46 +478,6 @@
         </div>
       </div>
 
-      <!-- Was könnte schiefgehen? -->
-      <div class="bg-red-50 border-2 border-red-300 rounded-lg p-5 mb-6">
-        <h3 class="text-xl font-semibold text-red-900 mb-3">🤔 Was könnte schiefgehen?</h3>
-
-        <div class="space-y-3">
-          <details class="bg-white rounded-lg p-4">
-            <summary class="cursor-pointer text-red-800 font-semibold hover:text-red-600">
-              Könnte Mallory eine gefäschte Signatur erstellen?
-            </summary>
-            <p class="mt-3 text-red-700 text-sm">
-              <strong>Nein!</strong> Mallory bräuchte dazu Alice' privaten Schlüssel. Ohne den kann
-              Mallory zwar eine Signatur erstellen, aber sie würde nicht als "von Alice kommend"
-              verifiziert werden, wenn Bob sie mit Alice' öffentlichem Schlüssel prüft.
-            </p>
-          </details>
-
-          <details class="bg-white rounded-lg p-4">
-            <summary class="cursor-pointer text-red-800 font-semibold hover:text-red-600">
-              Könnte Mallory die Nachricht ändern?
-            </summary>
-            <p class="mt-3 text-red-700 text-sm">
-              <strong>Ja, aber...</strong> Mallory könnte die Nachricht abfangen und ändern. ABER:
-              Die Signatur würde dann nicht mehr passen! Bob würde sofort merken, dass die Nachricht
-              manipuliert wurde. Die Signatur funktioniert nur mit der originalen Nachricht.
-            </p>
-          </details>
-
-          <details class="bg-white rounded-lg p-4">
-            <summary class="cursor-pointer text-red-800 font-semibold hover:text-red-600">
-              Woher weiss Bob, dass der öffentliche Schlüssel wirklich Alice gehört?
-            </summary>
-            <p class="mt-3 text-red-700 text-sm">
-              <strong>Gute Frage!</strong> Das ist genau das Problem, das wir als nächstes lösen
-              werden: Wie können wir sicher sein, dass ein öffentlicher Schlüssel wirklich zu der
-              Person oder Organisation gehört, die wir denken?
-            </p>
-          </details>
-        </div>
-      </div>
-
       <!-- Überleitung zu PKI -->
       <div
         class="bg-gradient-to-r from-purple-100 to-green-100 rounded-lg p-5 border-2 border-purple-300"
@@ -432,11 +491,9 @@
           <p class="text-yellow-900 font-semibold mb-1">❓ Die letzte Herausforderung:</p>
           <p class="text-yellow-800">
             <strong
-              >Wie können wir sicher sein, dass ein öffentlicher Schlüssel wirklich zu Alice
-              gehört?</strong
+              >Wie kann sich Bob sicher sein, dass ein öffentlicher Schlüssel wirklich zu Alice
+              gehört, den Bob zum Verifizieren von Alices Signatur verwendet?</strong
             >
-            Was verhindert, dass Mallory einfach behauptet: "Hier ist mein Schlüssel, ich bin
-            Alice!"?
           </p>
         </div>
         <p class="text-purple-800 mt-3">
@@ -463,6 +520,11 @@ interface Answers {
   verifyPerson: string;
   signGoal: string;
 }
+
+// Expandable steps state
+const step1Expanded = ref(false);
+const step2Expanded = ref(false);
+const step3Expanded = ref(false);
 
 // Antworten der Schüler
 const answers: Ref<Answers> = ref({
@@ -536,3 +598,20 @@ const resetAnswers = () => {
   showResult.value = false;
 };
 </script>
+
+<style scoped>
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+</style>

@@ -5,116 +5,44 @@
 import type { Source } from '@/types/curriculum';
 
 /**
- * Probleme der symmetrischen Kryptographie
+ * Lernziele
  */
-export const KEY_DISTRIBUTION_SCENARIOS = [
+export const ASYMMETRIC_LEARNING_OBJECTIVES = [
   {
-    title: 'Zwei Personen',
-    users: 2,
-    keys: 1,
-    description: 'Alice und Bob brauchen 1 gemeinsamen Schlüssel',
+    icon: '✓',
+    text: 'Das <strong>Schlüsselaustauschproblem</strong> der symmetrischen Kryptographie verstehen und erklären können',
   },
   {
-    title: 'Drei Personen',
-    users: 3,
-    keys: 3,
-    description: 'Alice, Bob und Charlie brauchen 3 verschiedene Schlüssel',
+    icon: '✓',
+    text: 'Das Konzept von <strong>öffentlichem und privatem Schlüssel</strong> (Public-Key-Kryptographie) verstehen',
   },
   {
-    title: 'Zehn Personen',
-    users: 10,
-    keys: 45,
-    description: '10 Personen brauchen bereits 45 verschiedene Schlüssel!',
+    icon: '✓',
+    text: 'Den Unterschied zwischen <strong>Verschlüsselung</strong> (Vertraulichkeit) und <strong>Signierung</strong> (Authentizität) erklären',
   },
   {
-    title: '100 Personen',
-    users: 100,
-    keys: 4950,
-    description: "100 Personen brauchen 4'950 verschiedene Schlüssel!",
-  },
-];
-
-/**
- * Vorteile der asymmetrischen Kryptographie
- */
-export const ASYMMETRIC_ADVANTAGES = [
-  {
-    id: 'key-exchange',
-    title: 'Schlüsselaustauschproblem gelöst',
-    description:
-      'Kein gemeinsamer geheimer Schlüssel muss vorher über einen sicheren Kanal ausgetauscht werden',
-    icon: '🔓',
+    icon: '✓',
+    text: 'Das Prinzip <strong>digitaler Signaturen</strong> verstehen und ihre Bedeutung für die Authentifizierung erklären',
   },
   {
-    id: 'authentication',
-    title: 'Authentifizierung möglich',
-    description:
-      'Digitale Signaturen ermöglichen es zu beweisen, wer eine Nachricht erstellt oder ein Dokument signiert hat',
-    icon: '✍️',
+    icon: '✓',
+    text: 'Die Funktionsweise einer <strong>Public Key Infrastructure (PKI)</strong> mit Zertifizierungsstellen beschreiben',
   },
   {
-    id: 'scalability',
-    title: 'Bessere Skalierbarkeit',
-    description:
-      'Jede Person braucht nur ein Schlüsselpaar, nicht einen Schlüssel pro Kommunikationspartner',
-    icon: '📈',
+    icon: '✓',
+    text: '<strong>Digitale Zertifikate</strong> untersuchen und ihre Bestandteile identifizieren können',
   },
   {
-    id: 'non-repudiation',
-    title: 'Nicht-Abstreitbarkeit',
-    description:
-      'Der Absender kann nicht abstreiten, eine Nachricht signiert zu haben (rechtliche Verbindlichkeit)',
-    icon: '⚖️',
-  },
-];
-
-export const PUBLIC_KEY_BENEFITS = [
-  {
-    title: 'Keine geheime Schlüsselübertragung',
-    description: 'Der öffentliche Schlüssel kann über unsichere Kanäle verteilt werden',
-    icon: '🔓',
+    icon: '✓',
+    text: 'Die <strong>Vertrauenskette</strong> von Root-CAs über Intermediate-CAs zu End-Zertifikaten nachvollziehen',
   },
   {
-    title: 'Skalierbarkeit',
-    description: 'Jede Person braucht nur ein Schlüsselpaar, nicht einen Schlüssel pro Partner',
-    icon: '📈',
+    icon: '✓',
+    text: 'Praktische <strong>Anwendungsfälle</strong> asymmetrischer Kryptographie kennen (HTTPS, E-Mail-Verschlüsselung, SSH)',
   },
   {
-    title: 'Authentizität',
-    description: 'Digitale Signaturen beweisen, wer eine Nachricht erstellt hat',
-    icon: '✍️',
-  },
-  {
-    title: 'Nicht-Abstreitbarkeit',
-    description: 'Der Absender kann nicht abstreiten, eine Nachricht signiert zu haben',
-    icon: '⚖️',
-  },
-];
-
-export const RSA_KEY_SIZES = [
-  {
-    bits: 1024,
-    status: 'unsicher',
-    description: 'Gilt seit 2010 als unsicher',
-    color: 'red',
-  },
-  {
-    bits: 2048,
-    status: 'standard',
-    description: 'Aktueller Mindeststandard',
-    color: 'green',
-  },
-  {
-    bits: 3072,
-    status: 'empfohlen',
-    description: 'Empfohlen für höhere Sicherheit',
-    color: 'blue',
-  },
-  {
-    bits: 4096,
-    status: 'sehr sicher',
-    description: 'Hohe Sicherheit für langfristige Anwendungen',
-    color: 'purple',
+    icon: '✓',
+    text: '<strong>Vor- und Nachteile</strong> asymmetrischer Verschlüsselung im Vergleich zu symmetrischen Verfahren nennen',
   },
 ];
 
@@ -128,6 +56,13 @@ export const ASYMMETRIC_CRYPTO_SOURCES: Source[] = [
     type: 'wikipedia',
     url: 'https://de.wikipedia.org/wiki/Asymmetrisches_Kryptosystem',
     description: 'Überblick über Public-Key-Kryptographie',
+  },
+  {
+    id: 'AsymmetricCryptographyGBSL',
+    title: 'Asymmetrische Kryptographie',
+    type: 'website',
+    url: 'https://inf.gbsl.website',
+    description: 'Kryptographie Kapitel der GBSL Informatik Webseite',
   },
   {
     id: 'rsa-wikipedia',

@@ -1,10 +1,6 @@
 <template>
   <section class="mb-12">
     <div class="bg-green-50 border-2 border-green-400 rounded-lg p-6">
-      <h2 class="text-3xl font-bold text-green-800 mb-4">
-        ✅ Die Lösung: Public Key Infrastruktur (PKI)
-      </h2>
-
       <!-- Die Ausgangslage -->
       <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-5 mb-6">
         <h3 class="text-xl font-semibold text-blue-900 mb-3">🎭 Die Ausgangslage</h3>
@@ -32,6 +28,10 @@
           </div>
         </div>
       </div>
+
+      <h2 class="text-3xl font-bold text-green-800 mb-4">
+        ✅ Die Lösung: Public Key Infrastruktur (PKI)
+      </h2>
 
       <div class="bg-white rounded-lg p-6 shadow-lg mb-6">
         <h3 class="text-2xl font-semibold text-green-900 mb-4">🏗️ Wie funktioniert PKI?</h3>
@@ -64,12 +64,6 @@
                 </p>
               </div>
             </div>
-            <div class="bg-blue-100 rounded p-3">
-              <p class="text-blue-800 font-semibold">✅ Verhindert Man-in-the-Middle-Angriffe</p>
-              <p class="text-xs text-blue-700 mt-1">
-                Angreifer können keine gültigen Zertifikate fälschen
-              </p>
-            </div>
           </div>
         </div>
 
@@ -85,14 +79,14 @@
             <div class="flex items-start gap-3">
               <div class="text-2xl font-bold text-green-700 min-w-[2rem]">1️⃣</div>
               <div class="flex-1">
-                <h4 class="text-lg font-semibold text-green-900 mb-2">Zertifikat erhalten</h4>
+                <h4 class="text-lg font-semibold text-green-900 mb-2">Bob erhält ein Zertifikat</h4>
                 <p class="text-green-800 mb-3">
                   Bob (der Betreiber des UBS-Servers ubs.com) geht zu einer
-                  <strong>vertrauenswürdigen dritten Stelle</strong>. Im Internet heissen diese
+                  <strong>vertrauenswürdigen dritten Stelle</strong> - im Internet heissen diese
                   <strong>Zertifizierungsstellen</strong> oder auf Englisch:
                   <strong>Certificate Authorities (CAs)</strong> (z.B. Let's Encrypt, SwissSign,
-                  DigiCert). Die CA überprüft Bobs Identität und stellt ein
-                  <strong>digitales Zertifikat</strong> aus.
+                  DigiCert). Die CA überprüft Bobs Identität (ob die Domain ubs.com tatsächlich der Organisation UBS gehört) und stellt
+                  ein <strong>digitales Zertifikat</strong> aus.
                 </p>
                 <details class="mt-3">
                   <summary class="cursor-pointer text-blue-700 font-semibold hover:underline">
@@ -119,7 +113,9 @@
             <div class="flex items-start gap-3">
               <div class="text-2xl font-bold text-green-700 min-w-[2rem]">2️⃣</div>
               <div class="flex-1">
-                <h4 class="text-lg font-semibold text-green-900 mb-2">Zertifikat weitergeben</h4>
+                <h4 class="text-lg font-semibold text-green-900 mb-2">
+                  Bob gibt Zertifikat weiter
+                </h4>
                 <p class="text-green-800">
                   Wenn Alice mit ihrem Browser ubs.com besucht, schickt Bob (der UBS-Server) nicht
                   nur seinen öffentlichen Schlüssel, sondern sein
@@ -134,10 +130,13 @@
             <div class="flex items-start gap-3">
               <div class="text-2xl font-bold text-green-700 min-w-[2rem]">3️⃣</div>
               <div class="flex-1">
-                <h4 class="text-lg font-semibold text-green-900 mb-2">Zertifikat verifizieren</h4>
+                <h4 class="text-lg font-semibold text-green-900 mb-2">
+                  Alice verifiziert Zertifikat
+                </h4>
                 <p class="text-green-800 mb-3">
-                  Alice's Browser prüft automatisch die <strong>CA-Signatur</strong> auf dem
-                  Zertifikat mit dem <strong>öffentlichen Schlüssel der CA</strong>.
+                  Der Browser von Alice prüft automatisch die
+                  <strong>Signatur der Zertifizierungsstelle (CA)</strong> auf dem Zertifikat –
+                  mithilfe des <strong>öffentlichen Schlüssels der CA</strong>.
                 </p>
                 <details class="mt-3">
                   <summary class="cursor-pointer text-blue-700 font-semibold hover:underline">
@@ -145,8 +144,8 @@
                   </summary>
                   <div class="mt-3 bg-white rounded-lg p-4 shadow-sm">
                     <p class="text-green-800 mb-2">
-                      CAs sind <strong>Root-CAs</strong>, deren öffentliche Schlüssel bereits in
-                      deinem Browser/Betriebssystem vorinstalliert sind! Dies nennt man
+                      Die sogenannten <strong>Root-CAs</strong> sind bereits mit ihren öffentlichen
+                      Schlüsseln im Browser oder Betriebssystem vorinstalliert. Das nennt man den
                       <strong>"Root of Trust"</strong>.
                     </p>
                     <p class="text-sm italic text-green-700 mt-3">
@@ -263,23 +262,7 @@
         </div>
 
         <div class="bg-white rounded-lg p-4">
-          <p class="font-semibold text-yellow-900 mb-2">
-            2. Warum ist die Vertrauenskette (Chain of Trust) wichtig?
-          </p>
-          <details class="mt-2">
-            <summary class="cursor-pointer text-blue-600 text-sm hover:text-blue-800">
-              💡 Antwort anzeigen
-            </summary>
-            <p class="mt-2 text-yellow-800 text-sm">
-              Sie ermöglicht es, das Root-CA-Zertifikat (höchste Vertrauensebene) sicher offline zu
-              halten, während Intermediate CAs die täglichen Zertifikate ausstellen. Dies erhöht die
-              Sicherheit.
-            </p>
-          </details>
-        </div>
-
-        <div class="bg-white rounded-lg p-4">
-          <p class="font-semibold text-yellow-900 mb-2">3. Mini-Szenario: Was passiert hier?</p>
+          <p class="font-semibold text-yellow-900 mb-2">2. Mini-Szenario: Was passiert hier?</p>
           <p class="text-yellow-800 text-sm mb-2">
             Du besuchst "ubs.com", aber dein Browser zeigt eine Warnung: "Zertifikat nicht
             vertrauenswürdig". Welche möglichen Gründe gibt es?
@@ -294,6 +277,34 @@
               <p>• Man-in-the-Middle-Angriff (jemand gibt sich als UBS aus)</p>
               <p>• Zertifikat wurde für eine andere Domain ausgestellt</p>
             </div>
+            <p class="mt-3 text-yellow-700 text-sm">
+              🔬 <strong>Zum Ausprobieren:</strong>
+              <a
+                href="https://badssl.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 hover:text-blue-800 underline"
+              >
+                badssl.com
+              </a>
+              – Eine Testseite mit verschiedenen Zertifikatsproblemen zum Anschauen!
+            </p>
+          </details>
+        </div>
+
+        <div class="bg-white rounded-lg p-4">
+          <p class="font-semibold text-yellow-900 mb-2">
+            3. Warum ist die Vertrauenskette (Chain of Trust) wichtig?
+          </p>
+          <details class="mt-2">
+            <summary class="cursor-pointer text-blue-600 text-sm hover:text-blue-800">
+              💡 Antwort anzeigen
+            </summary>
+            <p class="mt-2 text-yellow-800 text-sm">
+              Sie ermöglicht es, das Root-CA-Zertifikat (höchste Vertrauensebene) sicher offline zu
+              halten, während Intermediate CAs die täglichen Zertifikate ausstellen. Dies erhöht die
+              Sicherheit.
+            </p>
           </details>
         </div>
 
