@@ -20,7 +20,8 @@
         </p>
         <p class="text-purple-800">
           Die Lösung: <strong>Digitale Signaturen</strong> – das digitale Äquivalent einer
-          handschriftlichen Unterschrift, aber viel sicherer!
+          handschriftlichen Unterschrift, aber viel sicherer! Asymmetrische Schlüsselpaare machen es
+          möglich!
         </p>
       </div>
 

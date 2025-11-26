@@ -138,7 +138,7 @@
                 Welcher Algorithmus und welche Schlüssellänge werden verwendet?
               </p>
               <p class="text-gray-600 text-sm italic mb-3">
-                🔍 Hinweis: Suche nach "Public Key", "Subject Public Key Info" oder "Öffentlicher
+                🔍 Hinweis: Suche nach "Zertifikatsignaturalgorithmus", "Public Key", "Subject Public Key Info" oder "Öffentlicher
                 Schlüssel"
               </p>
               <div class="bg-gray-50 rounded p-3">
