@@ -49,7 +49,6 @@
         </div>
       </div>
 
-      
       <div class="mb-6 bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4 mt-6">
         <p class="text-yellow-900">
           <strong>⭐ Probier's aus:</strong> Wie in der Praxis ein RSA-Schlüsselpaar erzeugt wird,
@@ -65,32 +64,34 @@
         </p>
       </div>
 
-      <div class=" border-2 border-green-300 rounded-lg p-4 mb-4">
+      <div class="border-2 border-green-300 rounded-lg p-4 mb-4">
         <h4 class="text-lg font-semibold text-green-900 mb-2">Die mathematische Magie dahinter</h4>
         <p class="text-green-800 mb-3">
           Die Verbindung zwischen öffentlichem und privatem Schlüssel beruht auf einer
           mathematischen <strong>Einwegfunktion</strong>:
-          <br />
-          <ul class="space-y-1 text-green-800 text-sm">
-            <li>
-              ✓ <strong>Vorwärts:</strong> Verschlüsseln mit dem
-          öffentlichen Schlüssel ist einfach.
-            </li>
-            <li>
-              ✗ <strong>Rückwärts:</strong> Entschlüsseln ist nur durch
-          den Besitzer des privaten Schlüssels möglich – für alle anderen ist der Rückweg extrem
-          schwierig.
-            </li>
-          </ul>
         </p>
-        
-     <div class="flex items-center bg-green-200 border-l-4 border-green-500 rounded-md p-3 mb-2 mt-4">
-       <span class="mr-3 text-green-700 text-xl">🧮</span>
-       <span class="text-green-900 font-semibold text-base">
-         Grundlage: Mathematische Probleme, die selbst Supercomputer nicht schnell lösen können<br>
-         <span class="text-green-800 font-normal">(z.B. Primzahlen-Faktorisierung bei RSA, Diskreter Logarithmus bei ECDHE)</span>
-       </span>
-     </div>
+        <ul class="space-y-1 text-green-800 text-sm">
+          <li>
+            ✓ <strong>Vorwärts:</strong> Verschlüsseln mit dem öffentlichen Schlüssel ist einfach.
+          </li>
+          <li>
+            ✗ <strong>Rückwärts:</strong> Entschlüsseln ist nur durch den Besitzer des privaten
+            Schlüssels möglich – für alle anderen ist der Rückweg extrem schwierig.
+          </li>
+        </ul>
+
+        <div
+          class="flex items-center bg-green-200 border-l-4 border-green-500 rounded-md p-3 mb-2 mt-4"
+        >
+          <span class="mr-3 text-green-700 text-xl">🧮</span>
+          <span class="text-green-900 font-semibold text-base">
+            Grundlage: Mathematische Probleme, die selbst Supercomputer nicht schnell lösen
+            können<br />
+            <span class="text-green-800 font-normal"
+              >(z.B. Primzahlen-Faktorisierung bei RSA, Diskreter Logarithmus bei ECDHE)</span
+            >
+          </span>
+        </div>
 
         <OneWayFunctionExercise />
       </div>

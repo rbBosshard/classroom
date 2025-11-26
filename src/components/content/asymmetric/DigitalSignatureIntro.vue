@@ -97,16 +97,16 @@
                 <div
                   class="bg-white rounded-lg p-4 mt-3 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div class="flex items-center justify-center gap-4 text-sm flex-wrap">
+                  <div class="flex items-center justify-center gap-4 text-md flex-wrap">
                     <span class="font-semibold text-purple-900">👩‍💻 Alice</span>
                     <span class="text-2xl animate-pulse">→</span>
                     <div class="flex flex-col gap-1">
                       <span
-                        class="font-mono bg-gray-100 px-2 py-1 rounded text-xs hover:bg-gray-200 transition-colors"
+                        class="font-mono bg-gray-100 px-2 py-1 rounded text-md hover:bg-gray-200 transition-colors"
                         >📄 Nachricht</span
                       >
                       <span
-                        class="font-mono bg-purple-200 px-2 py-1 rounded text-xs hover:bg-purple-300 transition-colors"
+                        class="font-mono bg-purple-200 px-2 py-1 rounded text-md hover:bg-purple-300 transition-colors"
                         >✍️ Signatur</span
                       >
                     </div>
