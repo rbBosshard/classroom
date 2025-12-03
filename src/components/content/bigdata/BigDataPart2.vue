@@ -184,9 +184,7 @@
           <div class="flex items-start">
             <div class="text-3xl mr-4">📁</div>
             <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">
-                Lokales Dateisystem auf deinem Computer
-              </h3>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">Dateisystem</h3>
               <p class="text-gray-700 text-md mb-2">
                 Hierarchische Organisation in Ordnern und Unterordnern – wie auf deinem Laptop oder
                 Smartphone. Ideal für unstrukturierte Daten.
@@ -244,8 +242,8 @@
                   <li class="flex items-start">
                     <span class="mr-2">🔗</span>
                     <span
-                      ><strong>Beziehungen:</strong> Tabellen können miteinander verbunden werden
-                      (z.B. Kunden ↔ Bestellungen)</span
+                      ><strong>Beziehungen (Relationen):</strong> Tabellen können miteinander
+                      verbunden werden (z.B. Kunden ↔ Bestellungen)</span
                     >
                   </li>
                   <li class="flex items-start">
@@ -290,7 +288,7 @@
           <div class="flex items-start">
             <div class="text-3xl mr-4">🏢</div>
             <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">Data Warehouse</h3>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">"Data Warehouse"</h3>
               <p class="text-gray-700 text-md mb-2">
                 Hochoptimierter Speicher für <strong>bereinigte und strukturierte Daten</strong> aus
                 vielen Quellen. Perfekt für Business Intelligence und Reporting.
@@ -307,7 +305,7 @@
           <div class="flex items-start">
             <div class="text-3xl mr-4">🌊</div>
             <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">Data Lake</h3>
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">"Data Lake"</h3>
               <p class="text-gray-700 text-md mb-2">
                 Ein riesiger Speicher für <strong>alle Arten von Rohdaten</strong> (strukturiert und
                 unstrukturiert). Perfekt für Machine Learning und spätere Analysen ("Store now, use

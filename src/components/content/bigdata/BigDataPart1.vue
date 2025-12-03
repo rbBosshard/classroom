@@ -84,60 +84,60 @@
               class="flex items-center justify-between bg-white rounded-lg p-1 shadow-md hover:shadow-emerald-300 transition-shadow"
             >
               <span class="font-semibold text-gray-700">1 Byte (B)</span>
-              <span class="text-sm text-gray-600">8 Bits</span>
-              <span class="text-sm text-gray-500 font-mono">= 1 Byte</span>
+              <span class="text-md text-gray-600">8 Bits</span>
+              <span class="text-md text-gray-600 font-mono">= 1 Byte</span>
             </div>
             <div
               class="flex items-center justify-between bg-white rounded-lg p-1 shadow-md hover:shadow-emerald-300 transition-shadow"
             >
               <span class="font-semibold text-gray-700">1 Kilobyte (KB)</span>
-              <span class="text-sm text-gray-600">≈ 1 Seite Text</span>
-              <span class="text-sm text-gray-500 font-mono">≈ 10<sup>3</sup> Bytes</span>
+              <span class="text-md text-gray-600">≈ 1 Seite Text</span>
+              <span class="text-md text-gray-600 font-mono">≈ 10<sup>3</sup> Bytes</span>
             </div>
             <div
               class="flex items-center justify-between bg-white rounded-lg p-1 shadow-md hover:shadow-emerald-300 transition-shadow"
             >
               <span class="font-semibold text-gray-700">1 Megabyte (MB)</span>
-              <span class="text-sm text-gray-600">≈ 1 Minute MP3-Musik</span>
-              <span class="text-sm text-gray-500 font-mono">≈ 10<sup>6</sup> Bytes</span>
+              <span class="text-md text-gray-600">≈ 1 Minute MP3-Musik</span>
+              <span class="text-md text-gray-600 font-mono">≈ 10<sup>6</sup> Bytes</span>
             </div>
             <div
               class="flex items-center justify-between bg-white rounded-lg p-1 shadow-md hover:shadow-emerald-300 transition-shadow"
             >
               <span class="font-semibold text-gray-700">1 Gigabyte (GB)</span>
-              <span class="text-sm text-gray-600">≈ 1 HD-Film</span>
-              <span class="text-sm text-gray-500 font-mono">≈ 10<sup>9</sup> Bytes</span>
+              <span class="text-md text-gray-600">≈ 1 HD-Film</span>
+              <span class="text-md text-gray-600 font-mono">≈ 10<sup>9</sup> Bytes</span>
             </div>
             <div
               class="flex items-center justify-between bg-white rounded-lg p-1 shadow-md hover:shadow-emerald-300 transition-shadow"
             >
               <span class="font-semibold text-gray-700">1 Terabyte (TB)</span>
-              <span class="text-sm text-gray-600">≈ 200 Filme oder 1 Laptop Festplatte</span>
-              <span class="text-sm text-gray-500 font-mono">≈ 10<sup>12</sup> Bytes</span>
+              <span class="text-md text-gray-600">≈ 200 Filme oder 1 Laptop Festplatte</span>
+              <span class="text-md text-gray-600 font-mono">≈ 10<sup>12</sup> Bytes</span>
             </div>
             <div
               class="flex items-center justify-between bg-white rounded-lg p-1 shadow-md hover:shadow-emerald-300 transition-shadow"
             >
               <span class="font-semibold text-gray-700">1 Petabyte (PB)</span>
-              <span class="text-sm text-gray-600">≈ 1000 Terabyte</span>
-              <span class="text-sm text-gray-500 font-mono">≈ 10<sup>15</sup> Bytes</span>
+              <span class="text-md text-gray-600">≈ 1000 Terabyte</span>
+              <span class="text-md text-gray-600 font-mono">≈ 10<sup>15</sup> Bytes</span>
             </div>
             <div
               class="flex items-center justify-between bg-white rounded-lg p-1 shadow-md hover:shadow-emerald-300 transition-shadow"
             >
               <span class="font-semibold text-gray-700">1 Exabyte (EB)</span>
-              <span class="text-sm text-gray-600">≈ 1000 Petabyte</span>
-              <span class="text-sm text-gray-500 font-mono">≈ 10<sup>18</sup> Bytes </span>
+              <span class="text-md text-gray-600">≈ 1000 Petabyte</span>
+              <span class="text-md text-gray-600 font-mono">≈ 10<sup>18</sup> Bytes </span>
             </div>
             <div
               class="flex items-center justify-between bg-white rounded-lg p-1 shadow-md hover:shadow-emerald-300 transition-shadow"
             >
               <span class="font-semibold text-gray-700">1 Zettabyte (ZB)</span>
-              <span class="text-sm text-gray-700">≈ 1000 Exabyte</span>
-              <span class="text-sm text-gray-600 font-mono">≈ 10<sup>21</sup> Bytes</span>
+              <span class="text-md text-gray-600">≈ 1000 Exabyte</span>
+              <span class="text-md text-gray-600 font-mono">≈ 10<sup>21</sup> Bytes</span>
             </div>
           </div>
-          <p class="text-sm text-gray-600 mt-4 text-center italic">
+          <p class="text-md text-gray-600 mt-4 text-center italic">
             💡 Jede Einheit ist etwa 1000× grösser als die vorherige
           </p>
         </div>
