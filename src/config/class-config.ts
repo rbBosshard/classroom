@@ -1,5 +1,6 @@
 import type { Topic } from '../types/curriculum';
 import { curriculumTree_BURGDORF_29F_GYM1 } from '../types/curriculum-burgdorf_29f_gym1';
+import { curriculumTree_BURGDORF_28E_GYM2 } from '../types/curriculum-burgdorf_28e_gym2';
 
 export type ClassId = string;
 
@@ -31,13 +32,25 @@ export const classes: Record<ClassId, ClassConfig> = {
     description: '',
     color: 'blue',
   },
+  // Gymnasium Burgdorf 28e GYM2
+  BURGDORF_28E_GYM2: {
+    id: 'BURGDORF_28E_GYM2',
+    school: 'BURGDORF',
+    level: 'GYM2',
+    year: 28,
+    class: 'e',
+    displayName: 'Burgdorf 28e GYM2',
+    curriculum: curriculumTree_BURGDORF_28E_GYM2,
+    description: 'Big Data - Doppellektion Informatik',
+    color: 'gray',
+  },
   // Weitere Schulen können hier hinzugefügt werden:
 };
 
 /**
  * ⚠️ Default-Klasse (wenn keine URL-Parameter gesetzt sind) ⚠️
  */
-export const DEFAULT_CLASS_ID: ClassId = 'BURGDORF_29F_GYM1';
+export const DEFAULT_CLASS_ID: ClassId = 'BURGDORF_28E_GYM2';
 
 /**
  * Holt die Klassen-ID aus der URL (?class=...)

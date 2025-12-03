@@ -31,6 +31,9 @@ export const CONTENT_COMPONENTS: Record<string, () => Promise<Component>> = {
   MonoalphabeticTheory: () => import('../components/content/MonoalphabeticTheory.vue'),
   ModernCryptography: () => import('../components/content/ModernCryptography.vue'),
   AsymmetricCryptography: () => import('../components/content/AsymmetricCryptography.vue'),
-} as const;
 
+  // Big Data Components (3 Teile)
+  BigDataPart1: () => import('../components/content/bigdata/BigDataPart1.vue'),
+  BigDataPart2: () => import('../components/content/bigdata/BigDataPart2.vue'),
+} as const;
 export type ContentName = keyof typeof CONTENT_COMPONENTS;
