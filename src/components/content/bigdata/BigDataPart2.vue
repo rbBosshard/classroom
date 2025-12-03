@@ -267,9 +267,7 @@
         </div>
 
         <!-- NoSQL Datenbanken -->
-        <div
-          class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow bg-gray-50"
-        >
+        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
           <div class="flex items-start">
             <div class="text-3xl mr-4">⚡</div>
             <div class="flex-1">
@@ -350,8 +348,8 @@
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
       <h2 class="text-2xl font-bold mb-4 text-gray-800">📺 SQL Erklärvideo</h2>
       <p class="text-gray-700 mb-4">
-        Dieses Video erklärt für Beginners, wie SQL funktioniert (high-level). Überspringen Sie es, wenn
-        Sie schon Erfahrung haben mit SQL.
+        Dieses Video erklärt für Beginners, wie SQL funktioniert (high-level). Überspringen Sie es,
+        wenn Sie schon Erfahrung haben mit SQL.
       </p>
       <div class="border border-gray-300 rounded-lg overflow-hidden" style="height: 480px">
         <iframe
@@ -387,29 +385,11 @@
           kommunizieren und Informationen aus der Datenbank abzufragen.
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div class="bg-green-50 rounded-lg p-4 border border-green-200">
-            <div class="text-2xl mb-2">🎯</div>
-            <h4 class="font-semibold text-green-800 mb-1">Schritt für Schritt</h4>
-            <p class="text-md text-gray-700">Lerne SQL-Grundlagen durch eine geführte Mission</p>
-          </div>
-          <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
-            <div class="text-2xl mb-2">🎮</div>
-            <h4 class="font-semibold text-blue-800 mb-1">Spielerisch lernen</h4>
-            <p class="text-md text-gray-700">Spannende Geschichte mit iterativen Aufgaben</p>
-          </div>
-          <div class="bg-purple-50 rounded-lg p-4 border border-purple-200">
-            <div class="text-2xl mb-2">💪</div>
-            <h4 class="font-semibold text-purple-800 mb-1">Sofort anwendbar</h4>
-            <p class="text-md text-gray-700">Echte SQL-Befehle für reale Datenbanken</p>
-          </div>
-        </div>
-
         <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
           <p class="text-md text-gray-800">
             <strong>💡 Tipp:</strong> Nehmen Sie sich Zeit für jede Aufgabe und probieren Sie
             verschiedene SQL-Befehle aus. Das Spiel gibt Ihnen direktes Feedback und hilft Ihnen
-            beim Lernen! Falls Sie nicht weiterkommen, gibt es auch Lösungen dazu im Internet.
+            beim Lernen!
           </p>
         </div>
       </div>
@@ -428,6 +408,9 @@
       </div>
     </div>
 
+    <!-- Mentimeter Umfrage -->
+    <MentimeterSurvey :learning-objectives="learningObjectives" :mentimeter-url="mentimeterUrl" />
+
     <!-- Abschluss Lernziele -->
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
       <h3 class="text-xl font-semibold mb-4 text-gray-800">🎯 Lernziele Check</h3>
@@ -443,6 +426,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import MentimeterSurvey from '@/components/ui/MentimeterSurvey.vue';
 
 const learningObjectives = [
   'Ich verstehe den Unterschied zwischen strukturierten und unstrukturierten Daten',
@@ -451,6 +435,10 @@ const learningObjectives = [
   'Ich verstehe die Grundprinzipien von SQL und Datenbank-Tabellen',
   'Ich kann einfache SQL-Befehle anwenden',
 ];
+
+// Mentimeter URL (optional)
+// Ersetze mit deiner Mentimeter-URL für Live-Voting
+const mentimeterUrl = ref('https://ahaslides.com/EHXTN');
 
 // H5P Interactive Video URL
 const h5pVideoUrl = ref('https://h5p.zebis.digital/h5p/6682/embed'); // ERSETZEN: Deine H5P-Video-URL hier einfügen

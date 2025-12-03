@@ -308,7 +308,9 @@
 
     <!-- Was versteht man unter Data-Mining? -->
     <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-      <h2 class="text-2xl font-bold mb-4 text-gray-800">⛏️ Was versteht man unter Data-Mining?</h2>
+      <h2 class="text-xl font-bold mb-4 text-gray-800">
+        ⛏️ Was versteht man unter Data-Mining? (15 min)
+      </h2>
 
       <div class="prose max-w-none">
         <p class="text-gray-700 mb-4">
@@ -402,25 +404,6 @@
           </div>
         </a>
       </div>
-
-      <!-- Diskussionsaufgabe -->
-      <div class="bg-indigo-50 border border-indigo-300 rounded-lg p-5">
-        <div class="space-y-3">
-          <div class="bg-white rounded p-3 border-l-4 border-indigo-400">
-            <p class="text-gray-800 text-md">
-              <strong>1.</strong> Überraschen euch die aktuellen Google Trends in der Schweiz? Warum
-              bzw. warum nicht?
-            </p>
-          </div>
-
-          <div class="bg-white rounded p-3 border-l-4 border-indigo-400">
-            <p class="text-gray-800 text-md">
-              <strong>2.</strong> Überlegt gemeinsam, welche Ereignisse die Google Trends
-              beeinflussen können.
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- Mentimeter Umfrage -->
@@ -436,31 +419,27 @@
         <span class="text-2xl">→</span>
       </button>
     </div>
+
+    <!-- Quellen -->
+    <Sources :sources="sources" />
   </div>
 </template>
 
-Die SuS können erklären, was Big Data ist, und verschiedene Datengrössen von Byte bis Zettabyte einordnen.
-
-Die SuS können die 5 V’s von Big Data (Volume, Velocity, Variety, Veracity, Value) verstehen und erläutern.
-
-Die SuS können den Begriff Big Data charakterisieren und mindestens zwei Anwendungsbeispiele nennen.
-
-Die SuS können die Grundlagen des Data-Mining beschreiben.
-
-Die SuS können den Unterschied zwischen strukturierten und unstrukturierten Daten erklären.
-
-Die SuS können verschiedene Möglichkeiten zur Speicherung von Big Data aufzählen und beschreiben.
-
-Die SuS können erklären, was relationale Datenbanken sind und wofür sie genutzt werden.
-
-Die SuS können die Grundprinzipien von SQL und den Aufbau von Datenbank-Tabellen verstehen.
-
-Die SuS können einfache SQL-Befehle anwenden.
+Die SuS können erklären, was Big Data ist, und verschiedene Datengrössen von Byte bis Zettabyte
+einordnen. Die SuS können die 5 V’s von Big Data (Volume, Velocity, Variety, Veracity, Value)
+verstehen und erläutern. Die SuS können den Begriff Big Data charakterisieren und mindestens zwei
+Anwendungsbeispiele nennen. Die SuS können die Grundlagen des Data-Mining beschreiben. Die SuS
+können den Unterschied zwischen strukturierten und unstrukturierten Daten erklären. Die SuS können
+verschiedene Möglichkeiten zur Speicherung von Big Data aufzählen und beschreiben. Die SuS können
+erklären, was relationale Datenbanken sind und wofür sie genutzt werden. Die SuS können die
+Grundprinzipien von SQL und den Aufbau von Datenbank-Tabellen verstehen. Die SuS können einfache
+SQL-Befehle anwenden.
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import InteractiveContent from '@/components/ui/InteractiveContent.vue';
 import MentimeterSurvey from '@/components/ui/MentimeterSurvey.vue';
+import Sources from '@/components/ui/Sources.vue';
 import { useNavigation } from '@/composables/useNavigation';
 import type { InteractiveContent as InteractiveContentType } from '@/types/bigdata';
 import byteScale from '@/assets/images/bigdata/byteScale.png';
@@ -663,6 +642,32 @@ const h5pGoogleData = ref<InteractiveContentType>({
 // Mentimeter URL (optional)
 // Ersetze mit deiner Mentimeter-URL für Live-Voting
 const mentimeterUrl = ref('https://www.menti.com/alaxmppxazww');
+
+// Quellen
+const sources = [
+  {
+    id: 1,
+    title: 'Zebis Digital - Big Data Kursmaterialien',
+    url: 'https://zebis.digital/start/35LSCG/',
+    type: 'Webseite' as const,
+    description: 'Zebis Digital - Big Data Kursmaterialien',
+  },
+
+  {
+    id: 2,
+    title: 'Statista - Weltweit generiertes Datenvolumen',
+    url: 'https://de.statista.com/statistik/daten/studie/267974/umfrage/prognose-zum-weltweit-generierten-datenvolumen/',
+    type: 'Webseite' as const,
+    description: 'Prognose zum weltweit generierten Datenvolumen von 2010 bis 2029',
+  },
+  {
+    id: 3,
+    title: 'Google Trends - Schweiz',
+    url: 'https://trends.google.de/trends/',
+    type: 'Webseite' as const,
+    description: 'Aktuelle Suchtrends in der Schweiz',
+  },
+];
 </script>
 
 <style scoped>
